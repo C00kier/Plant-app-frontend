@@ -1,6 +1,7 @@
 import "./SearchPlantPage.css";
 import { useEffect, useState } from "react";
 import SinglePlantResult from "./sub/SinglePlantResult/SinglePlantResult";
+import SettingsButton from "./sub/SettingsButton/SettingsButton";
 
 export default function SearchPlantPage() {
     const [plantName, setPlantName] = useState("");
@@ -8,7 +9,23 @@ export default function SearchPlantPage() {
     const [shouldRenderFlowers, setShouldRenderFlowers] = useState(false);
     const [shouldDisplayMoreButton,setShouldDisplayMoreButton]=useState("none");
     const [amountToLoad,setAmountToLoad]=useState(12);
+    const [shouldShowSettings,setShouldShowSettings]=useState(false);
+    const currentLanguage="en";
+    const langugeWritings={
+        pl:{
+            searchPlant:"Szukaj rośliny",
+            search:"Szukaj",
+            loadMore:"Załaduj więcej"
+        },
+        en:{
+            searchPlant:"Search plant",
+            search:"Search",
+            loadMore:"Load more"
+        }
+    }
+
     async function search() {
+        
         if (plantName.length > 0) {
             const response = await fetch('http://localhost:8080/plant/name/' + plantName, {
                 method: 'GET',
@@ -20,6 +37,7 @@ export default function SearchPlantPage() {
 
             if (res != undefined) {
                 setSearchResult(res);
+                console.log(searchResult);
                 setShouldRenderFlowers(true);
             }
             console.log(searchResult);
@@ -27,10 +45,11 @@ export default function SearchPlantPage() {
         }
     }
     function loadMore(){
-        if(amountToLoad>searchResult.length){
+        setAmountToLoad(amountToLoad+12);
+        if(amountToLoad>=searchResult.length-12){
             setShouldDisplayMoreButton("none");
         }
-        setAmountToLoad(amountToLoad+12);
+        
     }
     useEffect(()=>{
         console.log("ok");
@@ -39,19 +58,19 @@ export default function SearchPlantPage() {
         }
     },[shouldRenderFlowers])
 
-
     return (
         <>
             <div id="search-page">
                 <div id="search-section">
-                    <span id="search-communicate">Szukaj rośliny</span>
+                    {shouldShowSettings ? <SettingsButton></SettingsButton> : <></>}
+                    <span id="search-communicate">{langugeWritings[currentLanguage].searchPlant}</span>
                     <div id="search-bar-section">
                         <input type="text" id="search-bar" onChange={(e) => setPlantName(e.target.value)}></input>
-                        <div id="search-settings-button"></div>
+                        <div id="search-settings-button" onClick={()=>setShouldShowSettings(!shouldShowSettings)}></div>
                     </div>
 
                     <div id="search-button" onClick={search}>
-                        <span>Szukaj</span>
+                        <span>{langugeWritings[currentLanguage].search}</span>
                     </div>
 
                 </div>
@@ -66,7 +85,7 @@ export default function SearchPlantPage() {
                         )}</> : <></>}
                 </div>
                 <div id="load-more-button" onClick={()=>loadMore()} style={{display:shouldDisplayMoreButton}}>
-                    <span>Załaduj więcej </span>
+                    <span>{langugeWritings[currentLanguage].loadMore}</span>
                 </div>
             </div>
         </>
