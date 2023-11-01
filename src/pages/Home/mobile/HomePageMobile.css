@@ -1,0 +1,62 @@
+.home-page-mobile-lower-container, .home-page-mobile-main-container{
+    gap: 5vh;
+}
+
+.home-page-mobile-upper-left-container, .home-page-mobile-lower-text-box{
+    gap: 2.5vh;
+}
+
+.home-page-mobile-upper-container{
+    gap: 1vh;
+}
+
+.home-page-mobile-lower-text-box, .home-page-mobile-upper-container{
+    width: 90vw;
+}
+
+.home-page-mobile-image{
+    width: 45vw;
+    height: 70vw;
+}
+
+.home-page-mobile-lower-text-box-header, .home-page-mobile-upper-left-container > p{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.6vh;
+    line-height: 3.8vh;
+}
+
+.home-page-mobile-lower-text-box-description{
+    font-size: 2.1vh;
+    color: var(--light-grey-text-color);
+}
+
+.horizontal-thin-grey-line{
+    width: 80vw;
+    border: 1px solid var(--light-grey-text-color);
+}
+
+.home-page-mobile-video{
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.home-page-mobile-register-button{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2vh;
+    line-height: 3.2vh;
+    color: white;
+    padding: 0.5em 1.5em;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--active-button-color);
+}
+
+.home-page-mobile-register-button:hover{
+    background-color: var(--active-button-onclick-color);
+}
+
+.home-page-mobile-register-button:active{
+    scale: 0.99;
+}

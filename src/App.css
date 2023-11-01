@@ -1,11 +1,13 @@
 .App {
   text-align: center;
   --light-green-text-color: rgba(82, 183, 136, 1);
-  --light-grey-text-color: rgba(202, 214, 241, 1);
+  --light-grey-text-color: #767676;
   --red-important-text-color: rgba(244, 10, 10, 1);
   --inactive-button-color: rgba(45, 106, 79, 0.36);
   --active-button-color: rgba(45, 106, 79, 1);
+  --active-button-onclick-color:rgb(39, 92, 68);
   --white-lower-contrast: #fdfdfd ;
+  --footer-light-green-color: rgb(45,106,79,0.09);
 }
 
 html,
