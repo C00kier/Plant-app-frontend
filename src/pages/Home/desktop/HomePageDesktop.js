@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
 import "./HomePageDesktop.css";
+
+import PAGES from "../../../constants/pages";
 
 export default function HomePage() {
     return (
@@ -10,7 +13,7 @@ export default function HomePage() {
                 <div className="home-page-desktop-lower-text">
                     <p>Dostarczymy spersonalizowane rekomendacje dotyczące najlepszych gatunków roślin do Twojego domu i przypomnimy Ci o ich podlewaniu i nawożeniu.</p>
                 </div>
-                <button className="home-page-desktop-start-button" type="button">Rozpocznij!</button>
+                <Link to={PAGES.REGISTER}><button className="home-page-desktop-start-button" type="button">Rozpocznij!</button></Link>
             </div>
             <div className="home-page-desktop-righ-container">
                 <iframe
