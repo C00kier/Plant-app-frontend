@@ -16,7 +16,7 @@ import Navbar from './components/NavBar/Navbar';
 import Footer from './components/Footer/Footer';
 
 //pages
-import HomePage from './pages/Home/HomePage';
+import HomePage from './pages/Home/main/HomePage';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import AboutPage from './pages/About/AboutPage';
 import SearchPlantPage from './pages/SearchPlant/SearchPlantPage';
