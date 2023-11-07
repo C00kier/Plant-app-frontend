@@ -4,7 +4,8 @@ const MY_ACCOUNT_COMPONENT_STATES = {
     RECOMMENDATION: 2,
     MY_PLANTS: 3,
     BADGES: 4,
-    SETTINGS: 5
+    SETTINGS: 5,
+    QUIZ: 6
 }
 
 export default MY_ACCOUNT_COMPONENT_STATES; 

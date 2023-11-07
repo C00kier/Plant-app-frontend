@@ -1,9 +1,17 @@
-import "./Cockpit.css";
+import { useState } from "react";
+import CockpitWithPlants from "./CockpitWithPlants";
+import CockpitNoPlants from "./CockpitNoPlants";
 
-export default function Cockpit(){
-    return(
+export default function Cockpit() {
+    const [numberOfPlants, setNumberOfPlants] = useState(0);
+
+    return (
         <>
-            <h1>Cockpit</h1>
+            {
+                numberOfPlants > 0
+                    ? <CockpitWithPlants />
+                    : <CockpitNoPlants />
+            }
         </>
     )
 }

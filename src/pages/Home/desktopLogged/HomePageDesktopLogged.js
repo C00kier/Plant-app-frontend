@@ -1,6 +1,6 @@
 import "./HomePageDesktopLogged.css";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 //assets
 import blankImage from "../../../assets/common/blank.png";
@@ -14,7 +14,9 @@ import Recommendation from "../../../components/Recommendation/Recommendation";
 import MyPlants from "../../../components/MyPlants/MyPlants";
 import Badges from "../../../components/Badges/Badges";
 import Settings from "../../../components/Settings/Settings";
+import Quiz from "../../../components/Quiz/Quiz.js";
 
+export const functionalityElementContext = React.createContext();
 
 export default function HomePageDesktopLogged() {
     const [functionalityElement, setFunctionalityElement] = useState(COMPONENT_STATE.COCKPIT);
@@ -34,7 +36,10 @@ export default function HomePageDesktopLogged() {
                 return <Badges />;
             }
             case COMPONENT_STATE.SETTINGS: {
-                return <Settings />
+                return <Settings />;
+            }
+            case COMPONENT_STATE.QUIZ:{
+                return <Quiz />;
             }
         }
     }
@@ -66,7 +71,9 @@ export default function HomePageDesktopLogged() {
                     </div>
                 </div>
                 <div className="home-page-desktop-logged-functionality-container">
-                    {renderFunctionalityElement()}
+                    <functionalityElementContext.Provider value={setFunctionalityElement}>
+                        {renderFunctionalityElement()}
+                    </functionalityElementContext.Provider>
                 </div>
             </div>
         </div>

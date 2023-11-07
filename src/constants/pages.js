@@ -10,7 +10,6 @@ const PAGES = {
     BLOG: "/blog",
     FORUM: "/forum",
     PROFILE: "/profile/:id",
-    QUIZ: "/quiz",
     PLANT: "/plant/:id",
     UNASSIGNED: "*"
 }
