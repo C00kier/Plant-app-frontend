@@ -1,13 +1,20 @@
 .cockpit-text {
     gap: calc(1vh + 1vw);
     align-items: flex-start;
-    font-weight: 600;
     text-align: start;
+    font-size: calc(0.9vh + 0.9vw);
+    font-weight: 600;
+}
+
+.cockpit-text,
+.start-quiz-button{
+    margin-left: 5%;
+    margin-right: 25%;
 }
 
 .start-quiz-button {
     align-self: flex-start;
-    padding: calc(0.5vh + 0.5vw);
+    padding: calc(0.5vh + 0.5vw) calc(1vh + 1vw);
     font-size: calc(1vh + 0.75vw);
     background-color: var( --active-button-color);
     color: white;
