@@ -4,6 +4,7 @@ import "./HomePage.css";
 import HomePageDesktop from "../desktop/HomePageDesktop";
 import HomePageMobile from "../mobile/HomePageMobile";
 
+
 export default function HomePage() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 

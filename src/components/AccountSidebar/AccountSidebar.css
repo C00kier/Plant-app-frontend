@@ -1,0 +1,30 @@
+.home-page-desktop-logged-header{
+    align-self: flex-start;
+    font-size: calc(1.75vh + 1vw);
+    font-weight: 600; 
+}
+
+.home-page-desktop-logged-sidebar{
+    gap: calc(1vh + 1vw);
+}
+
+.home-page-desktop-logged-bar-element{
+    gap: calc(3vh + 3vw);
+    min-width: 100%;
+    justify-content: space-between;
+}
+
+.home-page-desktop-logged-bar-element-name{
+    font-size: calc(1.25vh + 0.75vw);
+    color: var(--light-grey-text-color);
+}
+
+.home-page-desktop-logged-bar-element-icon{
+    aspect-ratio: 1;
+    width: calc(1.25vh + 1vw);
+}
+
+.home-page-desktop-logged-bar-element-icon,
+.home-page-desktop-logged-bar-element-name{
+    cursor: pointer;
+}
