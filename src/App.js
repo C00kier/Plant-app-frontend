@@ -29,7 +29,6 @@ import TermsPage from './pages/Terms/TermsPage';
 import BlogPage from './pages/Blog/BlogPage';
 import ForumPage from './pages/Forum/ForumPage';
 import ProfilePage from './pages/Profile/ProfilePage';
-import QuizPage from './pages/Quiz/QuizPage';
 import PlantPage from './pages/Plant/PlantPage';
 
 export const isAuthenticatedContext = React.createContext();

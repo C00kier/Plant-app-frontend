@@ -1,0 +1,11 @@
+const MY_ACCOUNT_COMPONENT_STATES = {
+    DEFAULT: 0,
+    COCKPIT: 1,
+    RECOMMENDATION: 2,
+    MY_PLANTS: 3,
+    BADGES: 4,
+    SETTINGS: 5,
+    QUIZ: 6
+}
+
+export default MY_ACCOUNT_COMPONENT_STATES; 
