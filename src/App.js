@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import './App.css';
 
@@ -31,12 +32,14 @@ import ProfilePage from './pages/Profile/ProfilePage';
 import QuizPage from './pages/Quiz/QuizPage';
 import PlantPage from './pages/Plant/PlantPage';
 
+export const isAuthenticatedContext = React.createContext();
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
+      <isAuthenticatedContext.Provider value={isAuthenticated}>
         <Route
           path={PAGES.HOME}
           element={
@@ -45,30 +48,30 @@ function App() {
                 <Navbar />
               </nav>
               <main>
-                <Outlet/>
+                <Outlet />
               </main>
               <footer>
-                <Footer/>
+                <Footer />
               </footer>
             </>
           }>
-            <Route index element = {<HomePage/>}/>
-            <Route path={PAGES.ABOUT} element={<AboutPage/>}/>
-            <Route path={PAGES.SEARCH} element={<SearchPlantPage/>}/>
-            <Route path={PAGES.REGISTER} element={<RegisterPage/>}/>
-            <Route path={PAGES.LOGIN} element={<LoginPage/>}/>
-            <Route path={PAGES.BLOG} element={<BlogPage/>}/>
-            <Route path={PAGES.CONTACT} element={<ContactPage/>}/>
-            <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage/>}/>
-            <Route path={PAGES.TERMS} element={<TermsPage/>}/>
-            <Route path={PAGES.FORUM} element={<ForumPage/>}/>
-            <Route path={PAGES.PROFILE} element={<ProfilePage/>}/>
-            <Route path={PAGES.QUIZ} element={<QuizPage/>}/>
-            <Route path={PAGES.PLANT} element={<PlantPage/>}/>
+          <Route index element={<HomePage />} />
+          <Route path={PAGES.ABOUT} element={<AboutPage />} />
+          <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
+          <Route path={PAGES.REGISTER} element={<RegisterPage />} />
+          <Route path={PAGES.LOGIN} element={<LoginPage />} />
+          <Route path={PAGES.BLOG} element={<BlogPage />} />
+          <Route path={PAGES.CONTACT} element={<ContactPage />} />
+          <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
+          <Route path={PAGES.TERMS} element={<TermsPage />} />
+          <Route path={PAGES.FORUM} element={<ForumPage />} />
+          <Route path={PAGES.PROFILE} element={<ProfilePage />} />
+          <Route path={PAGES.QUIZ} element={<QuizPage />} />
+          <Route path={PAGES.PLANT} element={<PlantPage />} />
 
-            <Route path={PAGES.UNASSIGNED} element={<PageNotFound/>} />
-          </Route>
-      </>
+          <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
+        </Route>
+      </isAuthenticatedContext.Provider>
     )
   )
 
