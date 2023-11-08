@@ -3,8 +3,7 @@ import "./HomePage.css";
 
 import HomePageDesktop from "../desktop/HomePageDesktop";
 import HomePageMobile from "../mobile/HomePageMobile";
-import HomePageDesktopLogged from "../desktopLogged/HomePageDesktopLogged";
-import HomePageMobileLogged from "../mobileLogged/HomePageMobileLogged";
+import HomePageLogged from "../loggedUser/HomePageLogged";
 
 export default function HomePage() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -27,10 +26,7 @@ export default function HomePage() {
         <>
             {
                 isUserLoggedIn
-                    ? (
-                        windowWidth < 436
-                            ? <HomePageMobileLogged />
-                            : <HomePageDesktopLogged />)
+                    ? <HomePageLogged />
                     : (
                         windowWidth < 436
                             ? <HomePageMobile />

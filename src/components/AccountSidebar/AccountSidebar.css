@@ -21,7 +21,7 @@
 
 .home-page-desktop-logged-bar-element-icon{
     aspect-ratio: 1;
-    width: calc(1.5vh + 1.25vw);
+    width: calc(1.25vh + 1vw);
 }
 
 .home-page-desktop-logged-bar-element-icon,

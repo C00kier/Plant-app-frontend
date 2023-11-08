@@ -6,12 +6,6 @@
     font-weight: 600;
 }
 
-.cockpit-text,
-.start-quiz-button{
-    margin-left: 5%;
-    margin-right: 25%;
-}
-
 .start-quiz-button {
     align-self: flex-start;
     padding: calc(0.5vh + 0.5vw) calc(1vh + 1vw);

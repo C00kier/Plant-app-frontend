@@ -1,4 +1,4 @@
-import "./HomePageDesktopLogged.css";
+import "./HomePageLogged.css";
 
 import React, { useState } from "react";
 
@@ -6,11 +6,11 @@ import React, { useState } from "react";
 import COMPONENT_STATE from "../../../constants/myAccountComponentStates.js";
 
 //components
-import Cockpit from "../../../components/Cockpit/Cockpit";
-import Recommendation from "../../../components/Recommendation/Recommendation";
-import MyPlants from "../../../components/MyPlants/MyPlants";
-import Badges from "../../../components/Badges/Badges";
-import Settings from "../../../components/Settings/Settings";
+import Cockpit from "../../../components/Cockpit/Cockpit.js";
+import Recommendation from "../../../components/Recommendation/Recommendation.js";
+import MyPlants from "../../../components/MyPlants/MyPlants.js";
+import Badges from "../../../components/Badges/Badges.js";
+import Settings from "../../../components/Settings/Settings.js";
 import Quiz from "../../../components/Quiz/Quiz.js";
 import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js";
 

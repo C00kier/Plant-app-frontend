@@ -8,7 +8,7 @@ import PAGES from "../../constants/pages";
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
-import { functionalityElementContext } from "../../pages/Home/desktopLogged/HomePageDesktopLogged";
+import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
 
 export default function CockpitNoPlants() {
     const [username, setUsername] = useState("username");
