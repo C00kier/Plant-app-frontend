@@ -43,7 +43,7 @@ function App() {
               <nav>
                 <Navbar />
               </nav>
-              <main>
+              <main className='flex-column-center-center'>
                 <Outlet/>
               </main>
               <footer>
