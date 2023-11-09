@@ -1,5 +1,6 @@
 import "./Badges.css";
-import growingPlant from '../../../src/assets/gamePrgress/rośl-removebg-preview.png';
+import growingPlant from '../../assets/common/blank.png';
+
 export default function Badges() {
     return (
         <>

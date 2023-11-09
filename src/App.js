@@ -20,7 +20,7 @@ import Navbar from "./components/NavBar/Navbar";
 import Footer from "./components/Footer/Footer";
 
 //pages
-import HomePage from "./pages/Home/HomePage";
+import HomePage from "./pages/Home/main/HomePage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import AboutPage from "./pages/About/AboutPage";
 import SearchPlantPage from "./pages/SearchPlant/SearchPlantPage";
@@ -31,9 +31,8 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicy/PrivacyPolicyPage";
 import TermsPage from "./pages/Terms/TermsPage";
 import BlogPage from "./pages/Blog/BlogPage";
 import ForumPage from "./pages/Forum/ForumPage";
-import ProfilePage from "./pages/Profile/ProfilePage";
-import QuizPage from "./pages/Quiz/QuizPage";
 import PlantPage from "./pages/Plant/PlantPage";
+import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 
 //utils
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -51,10 +50,8 @@ function App() {
               <nav>
                 <Navbar />
               </nav>
-              <main>
-                <Outlet />
               <main className='flex-column-center-center'>
-                <Outlet/>
+                <Outlet />
               </main>
               <footer>
                 <Footer />
@@ -83,6 +80,7 @@ function App() {
           <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />} >
             <Route path={PAGES.FORUM} element={<ForumPage />} />
           </Route>
+        </Route>
       </>
     )
   );
