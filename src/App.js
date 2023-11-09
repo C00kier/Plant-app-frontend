@@ -47,8 +47,8 @@ function App() {
               <nav>
                 <Navbar />
               </nav>
-              <main>
-                <Outlet />
+              <main className='flex-column-center-center'>
+                <Outlet/>
               </main>
               <footer>
                 <Footer />
