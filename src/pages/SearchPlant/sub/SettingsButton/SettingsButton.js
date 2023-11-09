@@ -1,7 +1,7 @@
 import './SettingsButton.css'
 
 export default function SettingsButton() {
-    const currentLanguage="en";
+    const currentLanguage="pl";
     const languageWritings={
         pl:{
             mostSearched:"Najczęściej wyszukiwane",
@@ -20,8 +20,8 @@ export default function SettingsButton() {
             forBeginners:"For beginners",
             forAdvanced:"For advanced",
             airPuryfing:"Air puryfying",
-            saveForChildren:"Save for children",
-            saveForAnimals:"Save for animals"
+            saveForChildren:"Safe for children",
+            saveForAnimals:"Safe for animals"
         }
     }
 

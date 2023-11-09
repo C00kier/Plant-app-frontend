@@ -2,6 +2,7 @@ import "./SearchPlantPage.css";
 import { useEffect, useState } from "react";
 import SinglePlantResult from "./sub/SinglePlantResult/SinglePlantResult";
 import SettingsButton from "./sub/SettingsButton/SettingsButton";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function SearchPlantPage() {
     const [plantName, setPlantName] = useState("");
@@ -10,7 +11,8 @@ export default function SearchPlantPage() {
     const [shouldDisplayMoreButton,setShouldDisplayMoreButton]=useState("none");
     const [amountToLoad,setAmountToLoad]=useState(12);
     const [shouldShowSettings,setShouldShowSettings]=useState(false);
-    const currentLanguage="en";
+    const currentLanguage="pl";
+    
     const langugeWritings={
         pl:{
             searchPlant:"Szukaj rośliny",
@@ -79,7 +81,7 @@ export default function SearchPlantPage() {
                     {shouldRenderFlowers ?
                         <>{searchResult.map((element,index) =>{
                             if(index<amountToLoad){
-                            return <SinglePlantResult plantName={element.botanicalName}></SinglePlantResult>
+                            return <SinglePlantResult plantName={element.botanicalName} id={element.id}></SinglePlantResult>
                             }
                         }
                         )}</> : <></>}

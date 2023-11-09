@@ -6,6 +6,8 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
+import React, { useState } from 'react';
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import "./App.css";
@@ -33,7 +35,12 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import QuizPage from "./pages/Quiz/QuizPage";
 import PlantPage from "./pages/Plant/PlantPage";
 
+//utils
+import PrivateRoutes from "./utils/PrivateRoutes";
+
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -46,6 +53,8 @@ function App() {
               </nav>
               <main>
                 <Outlet />
+              <main className='flex-column-center-center'>
+                <Outlet/>
               </main>
               <footer>
                 <Footer />
@@ -53,10 +62,9 @@ function App() {
             </>
           }
         >
-          <Route index element={<HomePage />} />
+          <Route index element={isAuthenticated ? <HomePageLogged /> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
-
           <Route
             path={PAGES.REGISTER}
             element={
@@ -66,17 +74,15 @@ function App() {
             }
           />
           <Route path={PAGES.LOGIN} element={<LoginPage />} />
-          <Route path={PAGES.BLOG} element={<BlogPage />} />
           <Route path={PAGES.CONTACT} element={<ContactPage />} />
           <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={PAGES.TERMS} element={<TermsPage />} />
-          <Route path={PAGES.FORUM} element={<ForumPage />} />
-          <Route path={PAGES.PROFILE} element={<ProfilePage />} />
-          <Route path={PAGES.QUIZ} element={<QuizPage />} />
           <Route path={PAGES.PLANT} element={<PlantPage />} />
-
           <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
-        </Route>
+          <Route path={PAGES.BLOG} element={<BlogPage />} />
+          <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />} >
+            <Route path={PAGES.FORUM} element={<ForumPage />} />
+          </Route>
       </>
     )
   );

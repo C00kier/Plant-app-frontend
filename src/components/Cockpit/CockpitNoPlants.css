@@ -1,0 +1,31 @@
+.cockpit-text {
+    gap: calc(1vh + 1vw);
+    align-items: flex-start;
+    text-align: start;
+    font-size: calc(0.9vh + 0.9vw);
+    font-weight: 600;
+}
+
+.start-quiz-button {
+    align-self: flex-start;
+    padding: calc(0.5vh + 0.5vw) calc(1vh + 1vw);
+    font-size: calc(1vh + 0.75vw);
+    background-color: var( --active-button-color);
+    color: white;
+    border-radius: 25px;
+    border: none;
+}
+
+.start-quiz-button:hover{
+    background-color: var(--active-button-onclick-color);
+}
+
+.green-underscore-text {
+    color: var(--light-green-text-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cockpit-no-plants-container{
+    gap: calc(2.5vh + 2vw);
+}

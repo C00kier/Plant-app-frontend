@@ -13,9 +13,10 @@
     width: 80%;
     height: 80%;
     /* border: 1px solid black; */
-    background-image: url(../../../../../public/cross-close.png);
+    background-image: url(../../../../../public/Livisona-Rotundifolia-image.jpg);
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .plant-name{
@@ -30,6 +31,6 @@
 }
 
 .single-plant:hover{
-    border: 1px solid black;
+    border: 1px solid #8f8888;
     cursor: pointer;
 }

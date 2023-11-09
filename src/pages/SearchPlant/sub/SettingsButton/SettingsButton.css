@@ -7,6 +7,9 @@
     left: 74%;
     z-index: 200;
     border: 1px solid black;
+    font-size: 1em;
+    padding: 50px;
+    /* box-sizing: border-box; */
     border-radius: 35px;
     padding: 1em;
     backdrop-filter: blur(20px);
@@ -22,8 +25,8 @@
 }
 
 .option>input[type='checkbox'] {
-    width: 1em;
-    height: 1em;
+    width: 0.7em;
+    height: 0.7em;
     /* font-weight: 400; */
     font-size: 0.8em;
 }
