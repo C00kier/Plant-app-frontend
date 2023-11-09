@@ -1,0 +1,142 @@
+#register-page {
+  display: flex;
+  height: 100%;
+  width: 100vw;
+  align-items: center;
+}
+
+.accept-rules {
+  margin: 0.2em;
+  
+}
+
+.hyper-link {
+  color: #2d6a4f;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#register-form-section {
+  width: 80%;
+  margin-left: 17%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.pasword-input-container {
+  display: flex;
+  width: 100%;
+}
+
+.eye-icon1 {
+  position: relative;
+  width: 2em;
+  height: 1.5em;
+  right: 50px;
+  top: 19px;
+}
+
+.eye-icon2 {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  right: 50px;
+  top: 15px;
+}
+
+#register-communicate {
+  font-size: 2.5em;
+  font-weight: 600;
+  padding-left: 0.5vw;
+}
+
+#email-communicate,
+#username-communicate,
+#password-communicate,
+#repeat-password-communicate {
+  font-size: 1.5em;
+  font-weight: 600;
+  padding-left: 0.5vw;
+}
+
+#email-communicate > span,
+#username-communicate > span,
+#repeat-password-communicate > span,
+#password-communicate > span {
+  color: #f40a0a;
+}
+
+.form-input {
+  width: 70%;
+  height: 4em;
+  min-height: 4em;
+  border-radius: 25px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding-left: 1em;
+}
+
+#register-button-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 90%;
+  align-items: flex-start;
+}
+
+#accept-rules {
+  display: flex;
+  align-items: center;
+}
+
+#rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register-button {
+  background-color: #2d6a4f;
+  color: var(--white-lower-contrast);
+
+  display: flex;
+  width: 15em;
+  height: 4em;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#register-button > span {
+  font-size: 1.5em;
+}
+
+#accept-rules-text {
+  margin:0.5em;
+}
+
+#rodo-text {
+  width: 80%;
+  font-size: 0.7em;
+  margin: 0;
+  color: #767676;
+  text-align: start;
+}
+
+.informative-text-incorrect {
+  color: #f40a0a;
+}
+
+.informative-text-correct {
+  color: #fdfdfd;
+}
+
+.have-account-container{
+  display: flex;
+  gap: 0.5em;
+}

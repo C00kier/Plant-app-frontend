@@ -35,7 +35,7 @@ export default function SearchPlantPage() {
             })
             const res = await response.json();
 
-            if (res != undefined) {
+            if (res !== undefined) {
                 setSearchResult(res);
                 console.log(searchResult);
                 setShouldRenderFlowers(true);

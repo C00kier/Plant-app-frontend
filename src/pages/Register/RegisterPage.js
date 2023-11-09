@@ -1,9 +1,212 @@
 import "./RegisterPage.css";
+import { useState} from "react";
+import { GoogleLogin } from "@react-oauth/google";
+import eyeShow from "../../assets/RegisterPage/eyeShow.png";
+import eyeHide from "../../assets/RegisterPage/eyeHide.png";
+import { useNavigate } from "react-router-dom";
 
-export default function RegisterPage(){
-    return(
-        <>
-            <h1>Register</h1>
-        </>
-    )
+export default function RegisterPage() {
+  const [showRules, setShowRules] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    acceptRules: false,
+  });
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isTermsMpromptShown, setIsTermsMpromptShown] = useState(false);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+
+
+  const navigate = useNavigate();
+  const navigateToLogin=()=>{
+        navigate("/login");
+    }
+  const navigateToHome=()=>{
+      navigate("/");
+  }
+
+  function emailInputChangeEvent(e) {
+    const targetValue = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (targetValue.match(emailRegex) || targetValue.length === 0) {
+      setIsEmailValid(true);
+      setFormData((prevData) => ({ ...prevData, email: targetValue }));
+    } else {
+      setIsEmailValid(false);
+    }
+  }
+
+  function passwordInputChangeEvent(e) {
+    const targetValue = e.target.value;
+    const passwordRegex =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+    if (targetValue.match(passwordRegex)|| targetValue.length === 0) {
+      setIsPasswordValid(true);
+      setFormData((prevData) => ({ ...prevData, password: targetValue }));
+    } else {
+      setIsPasswordValid(false);
+    }
+  }
+
+  function eyeIconEvent() {
+    setIsPasswordShown(!isPasswordShown);
+  }
+
+  const handleAcceptRules = () => {
+    setFormData((prevData) => ({ ...prevData, acceptRules: !prevData.acceptRules }));
+    setIsTermsMpromptShown(false);
+    };
+
+  const handleRegisterClick = () => {
+    const requestData = {
+      email: formData.email,
+      password: formData.password,
+    };
+    if (formData.acceptRules === true){
+    fetch("http://localhost:8080/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+    
+      if (response.status === 200) navigateToHome()
+      return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+      else {
+        setIsTermsMpromptShown(true);
+      }
+  };
+  const handleGoogleSignIn = (request) => {
+    fetch("http://localhost:8080/auth/authenticate/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => {
+        if (response.status === 200){
+          navigateToHome();
+        }
+        return response.json()})
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  
+
+  return (
+    <>
+      {showRules ? (
+        <div id="rules">
+          <h1>Regulamin</h1>
+          <div id="register-button" onClick={() => setShowRules(!showRules)}>
+            <span>Back</span>
+          </div>
+        </div>
+      ) : (
+        <div id="register-page">
+          <div id="register-form-section">
+            <p id="register-communicate">Rejestracja</p>
+            <p id="email-communicate">
+              Adres e-mail<span> *</span>
+            </p>
+            <input
+              autoComplete="off"
+              type="text"
+              id="email-input"
+              className="form-input"
+              onChange={emailInputChangeEvent}
+            ></input>
+            <p
+              className={
+                isEmailValid
+                  ? "informative-text-correct"
+                  : "informative-text-incorrect"
+              }
+            >
+              * Proszę o wprowadzenie poprawnego adresu email
+            </p>
+            <p id="password-communicate">
+              Hasło<span> *</span>
+            </p>
+            <div className="pasword-input-container">
+              <input
+                autoComplete="off"
+                type={isPasswordShown ? "text" : "password"}
+                id="password-input"
+                className="form-input"
+                onChange={passwordInputChangeEvent}
+              ></input>
+              <img
+                className={isPasswordShown ? "eye-icon2" : "eye-icon1"}
+                src={isPasswordShown ? eyeHide : eyeShow}
+                onClick={() => eyeIconEvent()}
+                alt=""
+              />
+            </div>
+            <p
+              className={
+                isPasswordValid
+                  ? "informative-text-correct"
+                  : "informative-text-incorrect"
+              }
+            >
+              * Hasło musi zawierać 8-16 znaków, conajmniej 1 cyfrę i znak
+              specjalny"
+            </p>
+            <div id="register-button-section">
+              <div id="accept-rules">
+                <input type="checkbox" onClick={handleAcceptRules}></input>
+                <p className="accept-rules">Akceptuje</p>
+                <p
+                  id="rules-link"
+                  className="hyper-link"
+                  onClick={() => setShowRules(!showRules)}
+                >
+                  regulamin
+                </p><p className={
+                isTermsMpromptShown
+                  ? "informative-text-incorrect": "informative-text-correct"
+              } id="accept-rules-"> * Aby zarejestrować się, zaakceptuj regulamin</p>
+              </div>
+              <p id="rodo-text">
+                Twoje dane osobowe będą wykorzystywane aby dostosować działanie
+                strony do twoich potrzeb, do zarządzania dostępem do Twojego
+                konta oraz do innych celów opisanych w naszej polityka
+                prywatności.
+              </p>
+              <div id="register-button" onClick={handleRegisterClick}>
+                <span>Zarejestruj</span>
+                </div>
+                <div className="have-account-container">
+                <p>Masz już konto?</p><p className="hyper-link" onClick={navigateToLogin}>zaloguj się!</p></div>
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  handleGoogleSignIn(credentialResponse)
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
