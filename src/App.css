@@ -5,13 +5,48 @@
   --red-important-text-color: rgba(244, 10, 10, 1);
   --inactive-button-color: rgba(45, 106, 79, 0.36);
   --active-button-color: rgba(45, 106, 79, 1);
+  --active-button-onclick-color:rgb(39, 92, 68);
   --white-lower-contrast: #fdfdfd ;
   --footer-light-green-color: rgb(45,106,79,0.09);
 }
 
-html,
-body {
-
-  width: 100vw;
-  height: 100vh;
+nav {
+  height: 10vh;
+  width: 100%;
+  background-color: var(--white-lower-contrast);
 }
+
+main {
+  min-height: 75vh;
+  width: 100%;
+  background-color: var(--white-lower-contrast);
+}
+
+footer {
+  min-height: 15vh;
+  width: 100%;
+  background-color: var(--footer-light-green-color);
+}
+
+.flex-column-center-center,
+.flex-row-center-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row-center-center {
+  flex-direction: row;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
