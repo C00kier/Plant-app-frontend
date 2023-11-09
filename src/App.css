@@ -23,7 +23,7 @@ main {
 }
 
 footer {
-  height: 15vh;
+  min-height: 15vh;
   width: 100%;
   background-color: var(--footer-light-green-color);
 }
