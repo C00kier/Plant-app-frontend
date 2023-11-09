@@ -20,27 +20,27 @@ export default function AccountSidebar() {
 
     return (
         
-        <div className="home-page-desktop-logged-sidebar flex-column-center-center">
-            <div className="home-page-desktop-logged-header">Moje konto</div>
-            <div className="home-page-desktop-logged-bar-element flex-row-center-center">
-                <p className="home-page-desktop-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.COCKPIT)}>Kokpit</p>
-                <img className="home-page-desktop-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.COCKPIT)} src={dashboard_speed_icon} alt="cockpit" />
+        <div className="home-page-logged-sidebar flex-column-center-center">
+            <div className="home-page-logged-header">Moje konto</div>
+            <div className="home-page-logged-bar-element flex-row-center-center">
+                <p className="home-page-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.COCKPIT)}>Kokpit</p>
+                <img className="home-page-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.COCKPIT)} src={dashboard_speed_icon} alt="cockpit" />
             </div>
-            <div className="home-page-desktop-logged-bar-element flex-row-center-center">
-                <p className="home-page-desktop-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.RECOMMENDATION)}>Rekomendacje</p>
-                <img className="home-page-desktop-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.RECOMMENDATION)} src={plant_house_icon} alt="recommendations" />
+            <div className="home-page-logged-bar-element flex-row-center-center">
+                <p className="home-page-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.RECOMMENDATION)}>Rekomendacje</p>
+                <img className="home-page-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.RECOMMENDATION)} src={plant_house_icon} alt="recommendations" />
             </div>
-            <div className="home-page-desktop-logged-bar-element flex-row-center-center">
-                <p className="home-page-desktop-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.MY_PLANTS)}>Moje rośliny</p>
-                <img className="home-page-desktop-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.MY_PLANTS)} src={plant_icon} alt="my plants" />
+            <div className="home-page-logged-bar-element flex-row-center-center">
+                <p className="home-page-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.MY_PLANTS)}>Moje rośliny</p>
+                <img className="home-page-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.MY_PLANTS)} src={plant_icon} alt="my plants" />
             </div>
-            <div className="home-page-desktop-logged-bar-element flex-row-center-center">
-                <p className="home-page-desktop-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.BADGES)}>Odznaki</p>
-                <img className="home-page-desktop-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.BADGES)} src={medal_star} alt="badges" />
+            <div className="home-page-logged-bar-element flex-row-center-center">
+                <p className="home-page-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.BADGES)}>Odznaki</p>
+                <img className="home-page-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.BADGES)} src={medal_star} alt="badges" />
             </div>
-            <div className="home-page-desktop-logged-bar-element flex-row-center-center">
-                <p className="home-page-desktop-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.SETTINGS)}>Ustawienia</p>
-                <img className="home-page-desktop-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.SETTINGS)} src={settings_icon} alt="settings" />
+            <div className="home-page-logged-bar-element flex-row-center-center">
+                <p className="home-page-logged-bar-element-name" onClick={() => setFunctionalityElement(COMPONENT_STATE.SETTINGS)}>Ustawienia</p>
+                <img className="home-page-logged-bar-element-icon" onClick={() => setFunctionalityElement(COMPONENT_STATE.SETTINGS)} src={settings_icon} alt="settings" />
             </div>
         </div>
     )

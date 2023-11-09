@@ -6,7 +6,7 @@ import PAGES from "../../../constants/pages";
 export default function HomePage() {
     return (
         <div className="home-page-desktop-main-container flex-row-center-center">
-            <div className="home-page-desktop-left-container flex-column-center-center">
+            <div className="home-page-desktop-left-container flex-column">
                 <div className="home-page-desktop-header-text">
                     <p>Odkryj nową aplikację, która uczyni twoje życie roślinnym łatwiejszym i pełniejszym!</p>
                 </div>

@@ -43,11 +43,13 @@ export default function HomePageDesktopLogged() {
     }
 
     return (
-        <div className="home-page-desktop-logged-container flex-column-center-center">
+        <div className="home-page-logged-container flex-column-center-center">
             <functionalityElementContext.Provider value={setFunctionalityElement}>
-                <div className="home-page-desktop-logged-content flex-row-center-center">
-                    <AccountSidebar />
-                    <div className="home-page-desktop-logged-functionality-container">
+                <div className="home-page-logged-content flex-row-center-center">
+                    <div className="home-page-logged-sidebar-container">
+                        <AccountSidebar />
+                    </div>
+                    <div className="home-page-logged-functionality-container">
                         {renderFunctionalityElement()}
                     </div>
                 </div>

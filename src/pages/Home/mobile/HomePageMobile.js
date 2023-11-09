@@ -1,5 +1,11 @@
 import "./HomePageMobile.css";
+import { Link } from "react-router-dom";
+
+//assets
 import blankImage from "./../../../assets/common/blank.png";
+
+//constants
+import PAGES from "../../../constants/pages";
 
 export default function HomePageMobile(){
     return(
@@ -7,7 +13,7 @@ export default function HomePageMobile(){
             <div className="home-page-mobile-upper-container flex-row-center-center">
                 <div className="home-page-mobile-upper-left-container flex-column-center-center">
                     <p>Odkryj nową aplikację, która uczyni twoje życie roślinnym, łatwiejszym i pełniejszym!</p>
-                    <button className="home-page-mobile-register-button" type="button">Zarejestruj się!</button>
+                    <Link to={PAGES.REGISTER}><button className="home-page-mobile-register-button" type="button">Zarejestruj się!</button></Link>
                 </div>
                 <div className="home-page-mobile-upper-right-container">
                     <img className="home-page-mobile-image" src={blankImage} alt="plant"/>
