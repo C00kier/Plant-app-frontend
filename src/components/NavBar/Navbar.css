@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    text-decoration: none;
   }
   
   /* Style for the logo image */
@@ -21,7 +22,7 @@
   }
   
   /* Style for the navigation links */
-  .navbar-links {
+  .navbar-links-container {
     list-style: none;
     display: flex;
     gap: 20px;
@@ -31,78 +32,58 @@
     width: initial;
     margin-left: auto;
     padding-left: 1.2em;
-  }
-  
-  .navbar-links li {
-    font-size: 16px;
-  }
-  
-  .navbar-links a {
     text-decoration: none;
-    --light-grey-text-color: #767676;
   }
-  
-  .navbar-links a:visited {
-    --light-grey-text-color: #767676;
+    
+  .user-icon-image{
+    width: 30px;
+    height: auto;
+    padding: 2em;
   }
-  
-  .navbar-button-login a {
-    color: #000000;
-    font-weight: 600;
-  }
-  
-  .navbar-dropdown-links {
-    list-style: none;
-    text-decoration: none;
-    --light-grey-text-color: #767676;
-  }
-  
-  /* Style for the user icon and dropdown */
+
+  /* Style for dropdown content */
   .navbar-dropdown-container {
     cursor: pointer;
     position: relative;
     margin: 1em;
-  
   }
-  
-  .user_icon {
-    width: 30px;
-    height: auto;
-  }
-  
-  /* Style for dropdown content */
-  .dropdown-content {
+    
+  .navbar-dropdown-container {
     position: absolute;
     right: 0;
-    background: #fff;
+    background: white;
     padding: 30px;
     z-index: 999;
     border: 1px solid #e6e6e6;
   }
   
-  .dropdown-content ul {
+  .navbar-dropdown-container ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  .dropdown-content li {
+  .navbar-dropdown-container li {
     padding: 10px;
   }
-  
-  .dropdown-content a {
+
+  .navbar-dropdown-links {
+    list-style: none;
     text-decoration: none;
-    color: #000000
+    color: var(--light-grey-text-color);
+  }
+  .navbar-dropdown-container a {
+    text-decoration: none;
+    color: black;
   }
   
-  .dropdown-content a:visited {
-    --light-grey-text-color: #767676;
+  .navbar-dropdown-container a:visited {
+    color: var(--light-grey-text-color);
   }
   
   .navbar-dropdown-container:hover .dropdown-content {
     display: block;
   }
-  
   
   /* Media query for mobile devices */
   @media (max-width: 768px) {
