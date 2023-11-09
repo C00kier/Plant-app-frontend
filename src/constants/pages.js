@@ -9,7 +9,6 @@ const PAGES = {
     TERMS: "/terms",
     BLOG: "/blog",
     FORUM: "/forum",
-    PROFILE: "/profile/:id",
     PLANT: "/plant/:id",
     UNASSIGNED: "*"
 }

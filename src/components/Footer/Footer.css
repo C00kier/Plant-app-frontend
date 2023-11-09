@@ -1,0 +1,135 @@
+.footer-div-flex-row-space-evenly {
+    --footer-light-green-color: rgb(45, 106, 79, 0.09);
+    color: #fdfdfd;
+    display: flex;
+    padding: 5%;
+    height: 0em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-div-flex-row-space-evenly a {
+    text-decoration: none;
+    color: #000;
+    font-size: small;
+}
+
+.footer-div-flex-row-space-evenly a:active {
+    color: #000;
+}
+
+.footer-logo {
+    width: 5em;
+}
+
+.footer-logo img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin: 0;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.footer-links-container,
+.footer-social {
+    position: relative;
+    margin: 0;
+    padding: 0 20px;
+
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    float: right;
+    width: initial;
+    margin-left: auto;
+    padding-left: 2em;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-social-links {
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.footer-social-links li {
+    margin-bottom: 10px;
+}
+
+.footer-social-links img {
+    width: 1.5em;
+}
+
+@media (max-width: 768px) {
+    .footer-div-flex-row-space-evenly {
+        --footer-light-green-color: rgb(45, 106, 79, 0.09);
+        color: #fdfdfd;
+        display: flex;
+        flex-direction: column;
+        padding: 5%;
+        height: auto;
+        align-items: center;
+    }
+
+    .footer-div-flex-row-space-evenly a {
+        text-decoration: none;
+        color: #000;
+        font-size: small;
+        margin: 5px 0;
+    }
+
+    .footer-logo {
+        width: 5em;
+    }
+
+    .footer-logo img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-links-container,
+    .footer-social {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        /* Center align the links and social icons */
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        /* Add margin to separate links */
+    }
+
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .footer-social-links {
+        list-style: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-social-links li {
+        margin-bottom: 10px;
+    }
+
+    .footer-social-links img {
+        width: 1.5em;
+    }
+}

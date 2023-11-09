@@ -1,0 +1,125 @@
+/* Navbar.css */
+
+/* Style for the outer container */
+.navbar-div {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  /* Style for the logo image */
+  .navbar-logo img {
+    width: 5em;
+    height: auto;
+    padding: 2em;
+  }
+  
+  /* Style for the navigation links */
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: initial;
+    margin-left: auto;
+    padding-left: 1.2em;
+  }
+  
+  .navbar-links li {
+    font-size: 16px;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    --light-grey-text-color: #767676;
+  }
+  
+  .navbar-links a:visited {
+    --light-grey-text-color: #767676;
+  }
+  
+  .navbar-button-login a {
+    color: #000000;
+    font-weight: 600;
+  }
+  
+  .navbar-dropdown-links {
+    list-style: none;
+    text-decoration: none;
+    --light-grey-text-color: #767676;
+  }
+  
+  /* Style for the user icon and dropdown */
+  .navbar-dropdown-container {
+    cursor: pointer;
+    position: relative;
+    margin: 1em;
+  
+  }
+  
+  .user_icon {
+    width: 30px;
+    height: auto;
+  }
+  
+  /* Style for dropdown content */
+  .dropdown-content {
+    position: absolute;
+    right: 0;
+    background: #fff;
+    padding: 30px;
+    z-index: 999;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-content li {
+    padding: 10px;
+  }
+  
+  .dropdown-content a {
+    text-decoration: none;
+    color: #000000
+  }
+  
+  .dropdown-content a:visited {
+    --light-grey-text-color: #767676;
+  }
+  
+  .navbar-dropdown-container:hover .dropdown-content {
+    display: block;
+  }
+  
+  
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+    }
+  
+    .navbar-dropdown-container {
+      display: none;
+    }
+  
+    /* Style for the mobile menu (hamburger menu) */
+    .mobile-menu {
+      display: block;
+      /* Display the mobile menu on mobile devices */
+      font-size: 24px;
+      /* Set your desired font size for the hamburger menu */
+      cursor: pointer;
+    }
+  }
