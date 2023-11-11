@@ -7,14 +7,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Navbar(props) {
-    const { setProfileDetails, setIsUserLogedIn, isUserLogedIn } = props;
-    const [isSignOut, setIsSignOut] = useState(false);
+    const { isAuthenticated } = props;
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const handleSignOut = () => {
-        setProfileDetails({});
-        setIsUserLogedIn(false);
-        //setIsSignOut(true);
+        isAuthenticated(false);
     }
 
     const toggleDropdown = () => {
@@ -39,11 +36,10 @@ export default function Navbar(props) {
                     {dropdownOpen && (
                         <div className="navbar-dropdown-container">
                             <ul className="navbar-dropdown-links">
-                                <li><Link to={PAGES.HOME}>Profil</Link></li>
+                                <li><Link to={PAGES.REGISTER}>Zarejestruj się</Link></li>
                                 <li><Link to={PAGES.BLOG}>Blog</Link></li>
-                                <li><Link to={PAGES.FORUM}>Forum</Link></li>
-                                <li><Link to={PAGES.LOGIN}>Profil</Link></li>
-                                {/* <li><Link to="/logout">Wyloguj</Link></li> */}
+                                <li><Link to={PAGES.ABOUT}>O nas</Link></li>
+                                <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>
                             </ul>
                         </div>
                     )}
