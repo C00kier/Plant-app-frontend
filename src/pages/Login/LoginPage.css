@@ -1,0 +1,151 @@
+#login-page{
+    display: flex;
+    height: 100%;
+    width: 100vw;
+    align-items: center;
+    
+}
+
+#login-section-left{
+    width: 40%;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+#login-communicate{
+    font-size: 2.5em;
+    font-weight: 600;
+    padding-left: 0.5vw;
+}
+
+#user-name-communicate,
+#password-communicate{
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-left: 0.5vw;
+}
+
+#user-name-communicate>span,
+#password-communicate>span{
+    color:#F40A0A;
+}
+
+.login-input{
+    width: 90%;
+    height: 4em;
+    min-height: 4em;
+    border-radius: 25px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-size: 1em;
+    padding-left: 1em;
+}
+
+#password-incorrent-communicate{
+    color:#F40A0A;
+    font-weight: 600;
+    margin-left: 2em;
+    font-size: 0.9em;
+    display: none;
+}
+
+#restore-password-button{
+    font-weight: 600;
+    font-size: 0.9em;
+    color:#3143E6;
+    cursor: pointer;
+    margin-left: 2em;
+}
+#restore-password-button:hover{
+    text-decoration: underline;
+}
+
+
+#login-button-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+
+}
+
+#login-button{
+    background-color: #2D6A4F;
+    color: var(--white-lower-contrast);
+    
+    display: flex;
+    width: 15em;
+    height: 4em;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#login-button>span{
+    font-size: 1.5em;
+}
+
+#password-incorrent-communicate{
+    font-weight: 600;
+}
+
+#no-account-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#no-account-register:hover{
+   text-decoration: underline;
+}
+
+#no-account-register>span{
+    font-weight: 600;
+    color: #3143E6;
+    cursor: pointer;
+
+}
+
+
+@media only screen and  (max-width:436px){
+    #login-section-left{
+        margin-left: 3%;
+        /* width: 100vw; */
+        width: 100%;
+        /* margin: 0; */
+        /* pad: 0; */
+        padding-left: 0;
+    }
+    #login-communicate{
+        font-size: 2em;
+        font-weight: 700;
+    }
+    #user-name-communicate,
+    #password-communicate{
+        font-size: 1em;
+        font-weight: 700;
+    }
+
+    .login-input{
+        padding-left: 5%;
+        /* width: 100%; */
+        width: 80%;
+        /* height: 100%; */
+        /* height: 60px; */
+        font-size: 0.7em;
+        /* font-size: 1em; */
+        /* text-size-adjust: 120%; */
+    }
+    #login-button-section{
+        gap: 1em;
+        font-size: 0.8em;
+    }
+
+
+}
+
+
+
