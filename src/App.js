@@ -48,7 +48,9 @@ function App() {
           element={
             <>
               <nav>
-                <Navbar isAuthenticated = {isAuthenticated}/>
+                <Navbar 
+                isAuthenticated = {isAuthenticated}
+                setIsAuthenticated = {setIsAuthenticated}/>
               </nav>
               <main className='flex-column-center-center'>
                 <Outlet />
