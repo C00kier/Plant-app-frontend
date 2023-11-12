@@ -6,7 +6,6 @@ import facebook_logo from '../../../src/assets/social/facebook.256x256.png'
 import instagram_logo from '../../../src/assets/social/instagram.256x256.png'
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export default function Footer() {
     return (
@@ -24,8 +23,8 @@ export default function Footer() {
                     </ul>
                 </div>
                 <div className="footer-social">
-                    <Link to="https://www.facebook.com/"><img className="footer-facebook" src={facebook_logo}/></Link>
-                    <Link to="https://www.instagram.com/"><img className="footer-instagram" src={instagram_logo}/></Link>
+                    <Link to="https://www.facebook.com/"><img className="footer-facebook" src={facebook_logo} alt="facebook_logo"/></Link>
+                    <Link to="https://www.instagram.com/"><img className="footer-instagram" src={instagram_logo} alt="instagram_logo"/></Link>
                 </div>
             </div>
         </>
