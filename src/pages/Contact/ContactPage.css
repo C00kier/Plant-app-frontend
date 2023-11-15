@@ -1,0 +1,86 @@
+.contact-main-container {
+    gap: calc(2vh + 1vw);
+    text-align: start;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-text-container {
+    gap: calc(1vh + 1vw);
+    width: 80%;
+    max-width: none;
+}
+
+.contact-header-text {
+    font: 500 calc(2vh + 2vw)/1.5 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.contact-lower-text {
+    padding: 1em;
+    font-size: calc(0.7vh + 0.7vw);
+    color: var(--light-grey-text-color);
+}
+
+/* Right Container Styling */
+.contact-righ-container {
+    width: 80%;
+    margin-left: 1em;
+}
+
+/* Form input fields */
+.contact-righ-container input,
+.contact-righ-container select {
+    width: 90%;
+    padding: 0.5em;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 0.8em;
+}
+
+.contact-righ-container textarea[name="message"] {
+    height: 8em;
+    font: 500 calc(1vh + 1vw)/1 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-righ-container input[type="submit"] {
+    color: white;
+    border-radius: 25px;
+    background-color: var(--active-button-color);
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.contact-righ-container input[type="submit"]:hover {
+    background-color: var(--active-button-onclick-color);
+}
+
+.contact-righ-container p {
+    color: var(--red-important-text-color);
+    margin: -10px 0 10px;
+    text-align: center;
+}
+
+.contact-righ-container textarea {
+    width: 90%;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 1.2em;
+    overflow-y: auto; 
+    resize: vertical;
+}
+
