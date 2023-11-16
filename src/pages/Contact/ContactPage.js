@@ -34,7 +34,6 @@ export default function ContactPage() {
   const {
     register,
     control,
-    handleSubmit,
     formState: { errors },
     setValue,
   } = useForm({
@@ -79,7 +78,6 @@ export default function ContactPage() {
           );
         }}
         control={control}
-        onSubmit={handleSubmit(onSubmit)}
       >
         <input {...register("firstName")} placeholder="Imię" />
         <p>{errors.firstName?.message}</p>
