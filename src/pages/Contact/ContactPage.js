@@ -67,13 +67,13 @@ export default function ContactPage() {
         action="http://localhost:8080/contact/submit-message"
         encType={"application/json"}
         onSuccess={() => {
-          console.log(
+          alert(
             "Wiadomość wysłano. Postaramy się odpowiedzieć w jak najkrótszym czasie na podany adres e-mail."
           );
           naviagte("/");
         }}
         onError={() => {
-          console.log(
+          alert(
             "Niestety wiadomości nie udało się wysłać. Spróbuj za chwilę ponownie."
           );
         }}
