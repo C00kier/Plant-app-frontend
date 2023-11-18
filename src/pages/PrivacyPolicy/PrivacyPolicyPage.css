@@ -1,0 +1,16 @@
+.privacy-policy-container{
+    text-align: left;
+    padding: 1em;
+    gap: 3em;
+}
+
+.privacy-policy-container h1{
+    text-align: center;
+    font-weight: 600;
+    padding: 1em;
+}
+.privacy-policy-container p{
+    gap: 2em;
+    line-height: 1.7;
+    padding: 1em;
+}

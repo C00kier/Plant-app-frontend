@@ -35,7 +35,6 @@ export default function Navbar({ isAuthenticated, setIsAuthenticated }) {
                         <li className="navbar-dropdown-links-my-account"><Link to={PAGES.LOGIN}>Moje konto</Link></li>
                         <li className="navbar-desktop-hidden"><Link to={PAGES.SEARCH}>Dodaj roślinę</Link></li>
                         <li><Link to={PAGES.BLOG}>Blog</Link></li>
-                        <li><Link to={PAGES.FORUM}>Forum</Link></li>
                         <li><Link to={PAGES.ABOUT}>O nas</Link></li>
                         <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>
                         <li onClick={handleSignOut}>Wyloguj</li>

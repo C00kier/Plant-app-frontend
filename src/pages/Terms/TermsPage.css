@@ -1,0 +1,16 @@
+.terms-container{
+    text-align: left;
+    padding: 1em;
+    gap: 3em;
+}
+
+.terms-container h1{
+    text-align: center;
+    font-weight: 600;
+    padding: 1em;
+}
+.terms-container p{
+    gap: 2em;
+    line-height: 1.7;
+    padding: 1em;
+}
