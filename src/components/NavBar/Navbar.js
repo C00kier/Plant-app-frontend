@@ -19,6 +19,7 @@ export default function Navbar({ isAuthenticated, setIsAuthenticated }) {
     const commonLinks = (
         <div className="navbar-links-container">
             <ul>
+            {isAuthenticated ? (<li></li>) : (<li className='navbar-dropdown-links-bold'><Link to={PAGES.LOGIN}>Zaloguj się</Link></li>)}
                 <li><Link to={PAGES.SEARCH}>Szukaj roślin</Link></li>
                 <li><Link to={PAGES.BLOG}>Blog</Link></li>
             </ul>
@@ -62,7 +63,7 @@ export default function Navbar({ isAuthenticated, setIsAuthenticated }) {
                         {dropdownOpen && (
                             <div className="navbar-dropdown-container">
                                 <ul className="navbar-dropdown-links">
-                                    <li className="navbar-dropdown-links-register"><Link to={PAGES.REGISTER}>Zarejestruj się</Link></li>
+                                    <li className="navbar-dropdown-links-bold"><Link to={PAGES.REGISTER}>Zarejestruj się</Link></li>
                                     <li><Link to={PAGES.BLOG}>Blog</Link></li>
                                     <li><Link to={PAGES.ABOUT}>O nas</Link></li>
                                     <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>

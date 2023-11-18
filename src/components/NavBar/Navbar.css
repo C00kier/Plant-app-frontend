@@ -4,10 +4,10 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: var(--white-lower-contrast);
 }
 
 .navbar-logo img {
@@ -37,10 +37,11 @@
 
 .navbar-links-container a {
   text-decoration: none;
+  color: black;
 }
 
 .navbar-links-container a:visited {
-  color: var(--light-grey-text-color);
+  color: black;
 }
 
 .user-icon-image {
@@ -82,14 +83,14 @@
 }
 
 .navbar-dropdown-container a:visited {
-  color: var(--light-grey-text-color);
+  color: black;
 }
 
 .navbar-dropdown-container:hover .dropdown-content {
   display: block;
 }
 
-.navbar-dropdown-links-register a,
+.navbar-dropdown-links-bold a,
 .navbar-dropdown-links-my-account a {
   font-weight: bold;
   color: black;
