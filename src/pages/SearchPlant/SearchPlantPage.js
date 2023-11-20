@@ -2,7 +2,6 @@ import "./SearchPlantPage.css";
 import { useEffect, useState } from "react";
 import SinglePlantResult from "./sub/SinglePlantResult/SinglePlantResult";
 import SettingsButton from "./sub/SettingsButton/SettingsButton";
-import { Navigate, useNavigate } from "react-router-dom";
 
 export default function SearchPlantPage() {
     const [plantName, setPlantName] = useState("");
@@ -11,20 +10,6 @@ export default function SearchPlantPage() {
     const [shouldDisplayMoreButton, setShouldDisplayMoreButton] = useState("none");
     const [amountToLoad, setAmountToLoad] = useState(12);
     const [shouldShowSettings, setShouldShowSettings] = useState(false);
-    const currentLanguage = "pl";
-
-    const langugeWritings = {
-        pl: {
-            searchPlant: "Szukaj rośliny",
-            search: "Szukaj",
-            loadMore: "Załaduj więcej"
-        },
-        en: {
-            searchPlant: "Search plant",
-            search: "Search",
-            loadMore: "Load more"
-        }
-    }
 
     async function filter(e) {
         let filterIndex = e.target.value;
@@ -118,14 +103,14 @@ export default function SearchPlantPage() {
             <div id="search-page">
                 <div id="search-section">
                     {shouldShowSettings ? <SettingsButton filter={filter}></SettingsButton> : <></>}
-                    <span id="search-communicate">{langugeWritings[currentLanguage].searchPlant}</span>
+                    <span id="search-communicate">Szukaj rośliny</span>
                     <div id="search-bar-section">
                         <input type="text" id="search-bar" onChange={(e) => setPlantName(e.target.value)}></input>
                         <div id="search-settings-button" onClick={() => setShouldShowSettings(!shouldShowSettings)}></div>
                     </div>
 
                     <div id="search-button" onClick={search}>
-                        <span>{langugeWritings[currentLanguage].search}</span>
+                        <span>Szukaj</span>
                     </div>
 
                 </div>
@@ -140,7 +125,7 @@ export default function SearchPlantPage() {
                         )}</> : <></>}
                 </div>
                 <div id="load-more-button" onClick={() => loadMore()} style={{ display: shouldDisplayMoreButton }}>
-                    <span>{langugeWritings[currentLanguage].loadMore}</span>
+                    <span>Załaduj więcej</span>
                 </div>
             </div>
         </>
