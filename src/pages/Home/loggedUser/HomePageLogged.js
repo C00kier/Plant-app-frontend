@@ -34,7 +34,7 @@ export default function HomePageDesktopLogged() {
                 return <Badges />;
             }
             case COMPONENT_STATE.SETTINGS: {
-                return <Settings />;
+                return <Settings setFunctionalityElement={setFunctionalityElement} />;
             }
             case COMPONENT_STATE.QUIZ: {
                 return <Quiz />;

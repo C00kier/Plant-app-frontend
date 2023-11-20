@@ -1,0 +1,83 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 1em;
+  max-height: 40em;
+  overflow-y: scroll;
+}
+
+.setting-title {
+  margin-left: 1em;
+}
+
+.change-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+.confirm-button {
+  background-color: #2d6a4f;
+  color: var(--white-lower-contrast);
+
+  display: flex;
+  width: 15em;
+  min-height: 4em;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.confirm-button > span {
+  font-size: 1.5em;
+}
+
+.change-input {
+  min-width: 50%;
+  height: 4em;
+  min-height: 4em;
+  border-radius: 25px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding-left: 1em;
+}
+
+.password-alert-visible {
+  color: #f40a0a;
+}
+
+.password-alert-invisible {
+    color: #fdfdfd;
+}
+
+.info-text{
+    width: 50%;
+    font-size: 0.7em;
+    margin: 0;
+    color: #767676;
+    text-align: start;
+}
+
+.new-password-input-container{
+    display: flex;
+    width:100%;
+}
+
+.eye-icon-1{
+    position: relative;
+    width: 2em;
+    height: 1.5em;
+    top: 1.2em;
+    right: 3em;
+  }
+  
+  .eye-icon-2 {
+    position: relative;
+    width: 1.9em;
+    height: 1.8em;
+    top: 1em;
+    right: 3em;
+  }
