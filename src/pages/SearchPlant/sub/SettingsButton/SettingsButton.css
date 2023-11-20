@@ -9,13 +9,29 @@
     border: 1px solid black;
     font-size: 1em;
     padding: 50px;
-    /* box-sizing: border-box; */
-    border-radius: 35px;
+    height: 10em;
+    border-radius: 15px;
     padding: 1em;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px);
+
 }
 
-.option {
+#filter-select{
+    font-size: 1em;
+    outline: 10px red;
+    color: #272727;
+    border: 1px solid 767676;
+    padding: .8em;
+}
+
+.filter-option{
+    font-size: 1.1em;
+}
+
+
+
+
+/* .option {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,6 +43,6 @@
 .option>input[type='checkbox'] {
     width: 0.7em;
     height: 0.7em;
-    /* font-weight: 400; */
+    font-weight: 400;
     font-size: 0.8em;
-}
+} */
