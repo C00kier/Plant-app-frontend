@@ -1,0 +1,60 @@
+.home-page-mobile-lower-container, .home-page-mobile-main-container{
+    gap: calc(2vh + 1.5vw);
+}
+
+.home-page-mobile-upper-left-container, .home-page-mobile-lower-text-box{
+    gap: calc(1vh + 1vw);
+}
+
+.home-page-mobile-upper-container{
+    gap: calc(0.5vh + 0.5vw);
+}
+
+.home-page-mobile-lower-text-box, .home-page-mobile-upper-container{
+    width: 90vw;
+}
+
+.home-page-mobile-image{
+    aspect-ratio: 0.8;
+    height: calc(15vh + 12.5vw);
+}
+
+.home-page-mobile-lower-text-box-header, .home-page-mobile-upper-left-container > p{
+    font-style: normal;
+    font-weight: 600;
+    font-size: calc(1.75vh + 1.25vw);
+}
+
+.home-page-mobile-lower-text-box-description{
+    font-size: calc(1.5vh + 1.1vw);
+    color: var(--light-grey-text-color);
+}
+
+.horizontal-thin-grey-line{
+    width: 80vw;
+    border: 1px solid var(--light-grey-text-color);
+}
+
+.home-page-mobile-video{
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.home-page-mobile-register-button{
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(1.5vh + 1.1vw);
+    color: white;
+    padding: 0.5em 1.5em;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--active-button-color);
+}
+
+.home-page-mobile-register-button:hover{
+    background-color: var(--active-button-onclick-color);
+}
+
+.home-page-mobile-register-button:active{
+    scale: 0.99;
+}
