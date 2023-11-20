@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import RestorePassword from "./sub/RestorePassword/RestorePassword";
 
 
-export default function LoginPage() {
+export default function LoginPage(props) {
+    const {setCookie} = props;
     const [loginCredential, setLoginCredential] = useState(String);
     const [password, setPassword] = useState();
     const [wrongCredentialsVisibility, setLoginCredentialsVisibility] = useState("none");
@@ -30,7 +31,7 @@ export default function LoginPage() {
                 password: password
             }
         }
-        const response = await fetch('http://localhost:8080/user/login', {
+        const response = await fetch('http://localhost:8080/auth/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +40,9 @@ export default function LoginPage() {
         })
         if (response.status === 200) {
             navigate("/");
-            //Todo
+            const data = await response.json();
+            setCookie("token", data.token, {path: "/"});
+            setCookie("userId", data.userId, {path: "/"});
         } if (response.status === 401) {
             setLoginCredentialsVisibility("block");
         }
