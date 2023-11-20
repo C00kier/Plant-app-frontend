@@ -4,10 +4,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import PAGES from "../constants/pages";
 
 export default function PrivateRoutes(props){
-    const {isAuthenticated} = props;
-    let auth = {"token": isAuthenticated}
+    const {token} = props;
 
     return(
-        auth.token ? <Outlet/> : <Navigate to={PAGES.LOGIN}/>
+        token ? <Outlet/> : <Navigate to={PAGES.LOGIN}/>
     )
 }
