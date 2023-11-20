@@ -6,7 +6,7 @@ import SettingsButton from "./sub/SettingsButton/SettingsButton";
 export default function SearchPlantPage() {
     const [plantName, setPlantName] = useState("");
     const [searchResult, setSearchResult] = useState();
-    const [shouldRenderFlowers, setShouldRenderFlowers] = useState(false);
+    const [shouldRenderPlants, setShouldRenderPlants] = useState(false);
     const [shouldDisplayMoreButton, setShouldDisplayMoreButton] = useState("none");
     const [amountToLoad, setAmountToLoad] = useState(12);
     const [shouldShowSettings, setShouldShowSettings] = useState(false);
@@ -77,11 +77,11 @@ export default function SearchPlantPage() {
 
             if (res !== undefined) {
                 setSearchResult(res);
-                console.log(searchResult);
-                setShouldRenderFlowers(true);
+                setShouldRenderPlants(true);
             }
-            console.log(searchResult);
-            console.log(shouldRenderFlowers);
+            console.log("ok1");
+            console.log(res);
+
         }
     }
     function loadMore() {
@@ -93,10 +93,10 @@ export default function SearchPlantPage() {
     }
     useEffect(() => {
         console.log("ok");
-        if (shouldRenderFlowers) {
+        if (shouldRenderPlants) {
             setShouldDisplayMoreButton("flex");
         }
-    }, [shouldRenderFlowers])
+    }, [shouldRenderPlants])
 
     return (
         <>
@@ -116,7 +116,7 @@ export default function SearchPlantPage() {
                 </div>
                 <div id="search-result-container">
 
-                    {shouldRenderFlowers ?
+                    {shouldRenderPlants ?
                         <>{searchResult.map((element, index) => {
                             if (index < amountToLoad) {
                                 return <SinglePlantResult plantName={element.botanicalName} id={element.id}></SinglePlantResult>

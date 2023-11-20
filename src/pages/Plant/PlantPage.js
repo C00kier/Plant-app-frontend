@@ -7,6 +7,12 @@ export default function PlantPage() {
     const id = url.split("/")[url.split("/").length - 1]
     const [plant, setPlant] = useState();
     const [plantDownloaded, setPlantDownloaded] = useState(false);
+    const [backgroundImage, setBackgroundImage] = useState();
+    useEffect(() => {
+        if (plant !== undefined) {
+            setBackgroundImage(require("../../assets/plants/" + plant.botanicalName.replace(/\s/g, "-") + "-image.jpg"));
+        }
+    }, [plant])
 
 
 
@@ -30,16 +36,7 @@ export default function PlantPage() {
 
     useEffect(() => {
         getPlantByID();
-        console.log(plant);
-        // console.log("ok", typeof plant)
-        // if(plant!==undefined){
-        //     console.log("test", plant);
-        //     setPlantDownloaded(true);
-        // }
-        // console.log(plant);
     }, [])
-
-
 
     return (
         plantDownloaded ?
@@ -48,7 +45,7 @@ export default function PlantPage() {
                     <div id="plant-container-main">
                         <div id="plant-main-left">
                             <div id="plant-image-container">
-                                <div id="plant-image"></div>
+                                <div id="plant-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                             </div>
                         </div>
                         <div id="plant-main-right">
