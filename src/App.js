@@ -5,10 +5,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-
 import React, { useState } from 'react';
-
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 import "./App.css";
 
@@ -38,7 +37,7 @@ import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -48,9 +47,9 @@ function App() {
           element={
             <>
               <nav>
-                <Navbar 
-                isAuthenticated = {isAuthenticated}
-                setIsAuthenticated = {setIsAuthenticated}/>
+                <Navbar
+                  cookies={cookies}
+                  removeCookie={removeCookie} />
               </nav>
               <main className='flex-column-center-center'>
                 <Outlet />
@@ -61,25 +60,25 @@ function App() {
             </>
           }
         >
-          <Route index element={isAuthenticated ? <HomePageLogged /> : <HomePage />} />
+          <Route index element={cookies.token ? <HomePageLogged /> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
           <Route
             path={PAGES.REGISTER}
             element={
               <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-                <RegisterPage />
+                <RegisterPage setCookie={setCookie}/>
               </GoogleOAuthProvider>
             }
           />
-          <Route path={PAGES.LOGIN} element={<LoginPage />} />
+          <Route path={PAGES.LOGIN} element={<LoginPage setCookie={setCookie} />} />
           <Route path={PAGES.CONTACT} element={<ContactPage />} />
           <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={PAGES.TERMS} element={<TermsPage />} />
           <Route path={PAGES.PLANT} element={<PlantPage />} />
           <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
           <Route path={PAGES.BLOG} element={<BlogPage />} />
-          <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />} >
+          <Route element={<PrivateRoutes token={cookies.token} />} >
             <Route path={PAGES.FORUM} element={<ForumPage />} />
           </Route>
         </Route>
@@ -89,7 +88,9 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <CookiesProvider>
+        <RouterProvider router={router} />
+      </CookiesProvider>
     </div>
   );
 }
