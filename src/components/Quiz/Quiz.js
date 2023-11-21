@@ -27,7 +27,6 @@ export default function Quiz({ userId, token }) {
         } else if (e.target.id == 'next-button' && index < 6) {
             setIndex(index + 1)
         }
-        console.log(answers);
     }
 
     async function submit() {
@@ -40,7 +39,6 @@ export default function Quiz({ userId, token }) {
             },
             body: JSON.stringify(answers)
         })
-        console.log(response);
     }
 
     function renderSwitch(index) {
