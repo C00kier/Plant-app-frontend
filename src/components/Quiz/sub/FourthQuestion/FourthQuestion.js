@@ -2,16 +2,17 @@ import './FourthQuestion.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function FourthQuestion({answers}){
+export default function FourthQuestion({answers,setAnswered}){
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     useEffect(()=>{
+        if(isFirstChecked || isSecondChecked) setAnswered(true);
         if(answers.isAirPurifying=='true'){
             setIsFirstChecked(true);
         }else if(answers.isAirPurifying=='false'){
             setIsSecondChecked(true);
         }
-    },[])
+    },[isFirstChecked,isSecondChecked])
 
     function manageCheckboxClicks(e) {
         answers.isAirPurifying = e.target.value;

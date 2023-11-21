@@ -2,17 +2,18 @@ import './FifthQuestion.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function FifthQuestion({ answers }) {
+export default function FifthQuestion({ answers,setAnswered }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     useEffect(()=>{
+        if(isFirstChecked || isSecondChecked ) setAnswered(true);
         if(answers.isToxic=='true'){
             setIsSecondChecked(true);
         }else if(answers.isToxic=='false'){
             
             setIsFirstChecked(true);
         }
-    },[])
+    },[isFirstChecked,isSecondChecked])
 
     function manageCheckboxClicks(e) {
         answers.isToxic = e.target.value;

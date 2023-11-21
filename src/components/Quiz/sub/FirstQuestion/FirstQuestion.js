@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 import './FirstQuestion.css';
 
-export default function FirstQuestion({ answers }) {
+export default function FirstQuestion({ answers, setAnswered }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     const [isThirdChecked, setIsThirdChecked] = useState(false);
-    useEffect(()=>{
-        if(answers.isSunny==0){
+    useEffect(() => {
+        if (isFirstChecked || isSecondChecked || isThirdChecked) setAnswered(true);
+        if (answers.isSunny == 2) {
             setIsFirstChecked(true);
-        }else if(answers.isSunny==1){
+        } else if (answers.isSunny == 1) {
             setIsSecondChecked(true);
-        }else if(answers.isSunny==2){
+        } else if (answers.isSunny == 0) {
             setIsThirdChecked(true);
         }
-    },[])
+    }, [isFirstChecked, isSecondChecked, isThirdChecked])
+    
     function manageCheckboxClicks(e) {
+
         answers.isSunny = e.target.value;
+
         if (e.target.name == 'sunny') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
@@ -29,6 +33,7 @@ export default function FirstQuestion({ answers }) {
             setIsSecondChecked(false);
             setIsThirdChecked(true);
         }
+
     }
 
     return (

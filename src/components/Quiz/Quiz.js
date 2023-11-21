@@ -7,10 +7,10 @@ import ThirdQuestion from './sub/ThirdQuestion/ThirdQuestion';
 import FourthQuestion from './sub/FourthQuestion/FourthQuestion';
 import FifthQuestion from './sub/FifthQuestion/FifthQuestion';
 import SixthQuestion from './sub/SixthQuestion/SixthQuestion';
-
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 
 export default function Quiz({ userId, token }) {
+    const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
     const [index, setIndex] = useState(1);
     const [answers, setAnswers] = useState({
         isToxic: 'none',
@@ -22,6 +22,7 @@ export default function Quiz({ userId, token }) {
     })
 
     function manageIndex(e) {
+        setIsCurrentQuestionAnswered(false);
         if (e.target.id == 'prev-button' && index > 1) {
             setIndex(index - 1);
         } else if (e.target.id == 'next-button' && index < 6) {
@@ -44,17 +45,17 @@ export default function Quiz({ userId, token }) {
     function renderSwitch(index) {
         switch (index) {
             case 1:
-                return <FirstQuestion answers={answers}></FirstQuestion>
+                return <FirstQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></FirstQuestion>
             case 2:
-                return <SecondQuestion answers={answers}></SecondQuestion>
+                return <SecondQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></SecondQuestion>
             case 3:
-                return <ThirdQuestion answers={answers}></ThirdQuestion>
+                return <ThirdQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></ThirdQuestion>
             case 4:
-                return <FourthQuestion answers={answers}></FourthQuestion>
+                return <FourthQuestion answers={answers}setAnswered={setIsCurrentQuestionAnswered}></FourthQuestion>
             case 5:
-                return <FifthQuestion answers={answers}></FifthQuestion>
+                return <FifthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></FifthQuestion>
             case 6:
-                return <SixthQuestion answers={answers}></SixthQuestion>
+                return <SixthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></SixthQuestion>
         }
     }
     return (
@@ -64,7 +65,7 @@ export default function Quiz({ userId, token }) {
                 <div id="quiz-main">
                     {renderSwitch(index)}
                 </div>
-                <QuizFooter manageIndex={manageIndex} index={index} submit={submit}></QuizFooter>
+                <QuizFooter manageIndex={manageIndex} index={index} submit={submit} isCurrentQuestionAnswered={isCurrentQuestionAnswered}></QuizFooter>
             </div>
         </>
     )

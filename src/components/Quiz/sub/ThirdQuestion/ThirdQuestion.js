@@ -2,11 +2,12 @@ import './ThirdQuestion.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function ThirdQuestion({ answers }) {
+export default function ThirdQuestion({ answers,setAnswered }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     const [isThirdChecked, setIsThirdChecked] = useState(false);
     useEffect(()=>{
+        if(isFirstChecked || isSecondChecked || isThirdChecked) setAnswered(true);
         if(answers.difficulty==0){
             setIsFirstChecked(true);
         }else if(answers.difficulty==1){
@@ -14,7 +15,7 @@ export default function ThirdQuestion({ answers }) {
         }else if(answers.difficulty==2){
             setIsThirdChecked(true);
         }
-    },[])
+    },[isFirstChecked,isSecondChecked,isThirdChecked])
 
     function manageCheckboxClicks(e) {
         answers.difficulty = e.target.value;
