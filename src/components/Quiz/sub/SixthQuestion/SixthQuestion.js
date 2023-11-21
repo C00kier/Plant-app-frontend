@@ -1,11 +1,14 @@
 import './SixthQuestion.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function SixthQuestion({answers}){
+export default function SixthQuestion({ answers }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     function manageCheckboxClicks(e) {
-        answers.isToxic = e.target.value;
+        if (answers.isToxic == 'false') {
+            answers.isToxic = e.target.value;
+        }
         if (e.target.name == 'yes') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);

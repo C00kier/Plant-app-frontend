@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './FirstQuestion.css';
 
 export default function FirstQuestion({ answers }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     const [isThirdChecked, setIsThirdChecked] = useState(false);
+    useEffect(()=>{
+        if(answers.isSunny==0){
+            setIsFirstChecked(true);
+        }else if(answers.isSunny==1){
+            setIsSecondChecked(true);
+        }else if(answers.isSunny==2){
+            setIsThirdChecked(true);
+        }
+    },[])
     function manageCheckboxClicks(e) {
         answers.isSunny = e.target.value;
         if (e.target.name == 'sunny') {

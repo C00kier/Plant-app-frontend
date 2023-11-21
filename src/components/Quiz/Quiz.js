@@ -10,14 +10,15 @@ import SixthQuestion from './sub/SixthQuestion/SixthQuestion';
 
 import { useEffect, useState } from "react";
 
-export default function Quiz() {
+export default function Quiz({ userId, token }) {
     const [index, setIndex] = useState(1);
     const [answers, setAnswers] = useState({
-        isToxic: 0,
-        isSunny: 0,
-        isAirPurifying: false,
-        matureSize: 0,
-        difficulty: 0
+        isToxic: 'none',
+        isSunny: -1,
+        isAirPurifying: 'none',
+        matureSize: -1,
+        difficulty: -1,
+        userId: userId
     })
 
     function manageIndex(e) {
@@ -27,6 +28,19 @@ export default function Quiz() {
             setIndex(index + 1)
         }
         console.log(answers);
+    }
+
+    async function submit() {
+        const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
+        &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(answers)
+        })
+        console.log(response);
     }
 
     function renderSwitch(index) {
@@ -52,7 +66,7 @@ export default function Quiz() {
                 <div id="quiz-main">
                     {renderSwitch(index)}
                 </div>
-                <QuizFooter manageIndex={manageIndex} index={index}></QuizFooter>
+                <QuizFooter manageIndex={manageIndex} index={index} submit={submit}></QuizFooter>
             </div>
         </>
     )

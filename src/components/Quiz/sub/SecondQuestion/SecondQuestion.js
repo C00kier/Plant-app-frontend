@@ -1,10 +1,21 @@
 import './SecondQuestion.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function SecondQuestion({answers}){
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     const [isThirdChecked, setIsThirdChecked] = useState(false);
+    useEffect(()=>{
+        if(answers.matureSize==0){
+            setIsFirstChecked(true);
+        }else if(answers.matureSize==1){
+            setIsSecondChecked(true);
+        }else if(answers.matureSize==2){
+            setIsThirdChecked(true);
+        }
+    },[])
+
     function manageCheckboxClicks(e) {
         answers.matureSize = e.target.value;
         if (e.target.name == 'small') {
