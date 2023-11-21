@@ -49,7 +49,8 @@
 #plant-image{
     width: 90%;
     height: 90%;
-    background:url(../../../public/Livisona-Rotundifolia-image.jpg);
+    /* background:url(../../../public/Livisona-Rotundifolia-image.jpg); */
+    /* background-image: url(../../assets/plants/); */
     background-size:cover;
     background-repeat: no-repeat;
     border-radius: 25px;
@@ -148,7 +149,7 @@
     text-transform: uppercase;
     color:#767676;
     font-size: 1.4em;
-    font-weight: 600;
+    font-weight: 6 00;
 }
 
 .plant-card-type{
