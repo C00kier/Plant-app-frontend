@@ -16,7 +16,7 @@ import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js
 
 export const functionalityElementContext = React.createContext();
 
-export default function HomePageDesktopLogged() {
+export default function HomePageDesktopLogged({userId, token}) {
     const [functionalityElement, setFunctionalityElement] = useState(COMPONENT_STATE.COCKPIT);
 
     function renderFunctionalityElement() {
@@ -34,7 +34,7 @@ export default function HomePageDesktopLogged() {
                 return <Badges />;
             }
             case COMPONENT_STATE.SETTINGS: {
-                return <Settings setFunctionalityElement={setFunctionalityElement} />;
+                return <Settings setFunctionalityElement={setFunctionalityElement} userId={userId}/>;
             }
             case COMPONENT_STATE.QUIZ: {
                 return <Quiz />;

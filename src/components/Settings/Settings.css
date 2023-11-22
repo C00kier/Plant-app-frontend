@@ -7,8 +7,34 @@
   overflow-y: scroll;
 }
 
-.setting-title {
-  margin-left: 1em;
+.user-info-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  min-width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.user-info-container p {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #2d6a4f;
+  padding: 0.7em;
+}
+
+.user-info-container img {
+  width: 40%;
+  border-radius: 50%;
+  margin-top: 0.5em;
+  align-self: center;
+}
+
+.user-info-container span {
+  font-weight: bold;
+  color: #2d6a4f;
 }
 
 .change-text {
@@ -17,7 +43,8 @@
   margin-top: 1em;
 }
 
-.confirm-button {
+.confirm-button,
+.confirm-button-disabled {
   background-color: #2d6a4f;
   color: var(--white-lower-contrast);
 
@@ -30,11 +57,20 @@
   cursor: pointer;
 }
 
+
 .confirm-button > span {
   font-size: 1.5em;
 }
 
-.change-input {
+.confirm-button-disabled > span {
+  font-size: 1.5em;
+}
+
+.file-input {
+  appearance: inherit;
+}
+
+.change-input, .change-input-nickname {
   min-width: 50%;
   height: 4em;
   min-height: 4em;
@@ -45,39 +81,57 @@
   padding-left: 1em;
 }
 
-.password-alert-visible {
+.change-input-nickname {
+  margin-bottom: 1.5em;
+}
+
+.change-confirmation {
+  color:var(--light-green-text-color);
+}
+
+.change-confirmation-invisible {
+  color:var(--light-green-text-color);
+  visibility: hidden;
+}
+
+.alert-visible {
+  font-size: 12px;
   color: #f40a0a;
 }
 
-.password-alert-invisible {
-    color: #fdfdfd;
+.alert-invisible {
+  font-size: 12px;
+  color: #f40a0a;
+  visibility: hidden;
 }
 
-.info-text{
-    width: 50%;
-    font-size: 0.7em;
-    margin: 0;
-    color: #767676;
-    text-align: start;
+
+.info-text {
+  width: 50%;
+  font-size: 0.7em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  color: #767676;
+  text-align: start;
 }
 
-.new-password-input-container{
-    display: flex;
-    width:100%;
+.new-password-input-container {
+  display: flex;
+  width: 100%;
 }
 
-.eye-icon-1{
-    position: relative;
-    width: 2em;
-    height: 1.5em;
-    top: 1.2em;
-    right: 3em;
-  }
-  
-  .eye-icon-2 {
-    position: relative;
-    width: 1.9em;
-    height: 1.8em;
-    top: 1em;
-    right: 3em;
-  }
+.eye-icon-1 {
+  position: relative;
+  width: 2em;
+  height: 1.5em;
+  top: 1.2em;
+  right: 3em;
+}
+
+.eye-icon-2 {
+  position: relative;
+  width: 1.9em;
+  height: 1.8em;
+  top: 1em;
+  right: 3em;
+}
