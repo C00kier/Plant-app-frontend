@@ -25,7 +25,7 @@ export default function HomePageDesktopLogged({userId,token}) {
                 return <Cockpit />;
             }
             case COMPONENT_STATE.RECOMMENDATION: {
-                return <Recommendation />;
+                return <Recommendation userId={userId} token={token}/>;
             }
             case COMPONENT_STATE.MY_PLANTS: {
                 return <MyPlants />;
