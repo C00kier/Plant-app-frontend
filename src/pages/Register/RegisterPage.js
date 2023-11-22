@@ -51,6 +51,8 @@ export default function RegisterPage(props) {
     }
   }
 
+  
+
   function eyeIconEvent() {
     setIsPasswordShown(!isPasswordShown);
   }
@@ -172,7 +174,7 @@ export default function RegisterPage(props) {
               }
             >
               * Hasło musi zawierać 8-16 znaków, conajmniej 1 cyfrę i znak
-              specjalny"
+              specjalny
             </p>
             <div id="register-button-section">
               <div id="accept-rules">
