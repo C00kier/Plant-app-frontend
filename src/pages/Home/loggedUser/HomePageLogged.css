@@ -1,21 +1,20 @@
-.home-page-desktop-logged-container {
+.home-page-logged-container {
     margin-left: 5%;
     margin-right: 5%;
     gap: calc(1.5vh + 1vw);
+    margin-top: 10vh;
 }
 
 .home-page-logged-content {
     gap: calc(5vh + 5vw);
-}
-
-.home-page-logged-container,
-.home-page-logged-content {
-    width: 100%;
-    height: 100%;
+    align-items: flex-start;
 }
 
 .home-page-logged-sidebar-container{
     width: 20%;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 15vh;
 }
 
 .home-page-logged-functionality-container{

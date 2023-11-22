@@ -43,7 +43,7 @@ export default function HomePageDesktopLogged() {
     }
 
     return (
-        <div className="home-page-logged-container flex-column-center-center">
+        <div className="home-page-logged-container">
             <functionalityElementContext.Provider value={setFunctionalityElement}>
                 <div className="home-page-logged-content flex-row-center-center">
                     <div className="home-page-logged-sidebar-container">
