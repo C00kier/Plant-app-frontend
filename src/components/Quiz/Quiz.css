@@ -1,0 +1,9 @@
+#quiz-container{
+    display: flex;
+    flex-direction: column;
+    /* gap: 3em; */
+}
+
+#quiz-main{
+    min-height: 20em;
+}

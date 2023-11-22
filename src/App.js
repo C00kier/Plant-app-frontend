@@ -36,6 +36,9 @@ import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 //utils
 import PrivateRoutes from "./utils/PrivateRoutes";
 
+//context export
+export const cookiesContext = React.createContext();
+
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
 
@@ -51,7 +54,7 @@ function App() {
                   cookies={cookies}
                   removeCookie={removeCookie} />
               </nav>
-              <main className='flex-column-center-center'>
+              <main className='flex-column'>
                 <Outlet />
               </main>
               <footer>
@@ -60,14 +63,14 @@ function App() {
             </>
           }
         >
-          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token} /> : <HomePage />} />
+          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token}/> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
           <Route
             path={PAGES.REGISTER}
             element={
               <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-                <RegisterPage setCookie={setCookie}/>
+                <RegisterPage setCookie={setCookie} />
               </GoogleOAuthProvider>
             }
           />
@@ -89,7 +92,9 @@ function App() {
   return (
     <div className="App">
       <CookiesProvider>
-        <RouterProvider router={router} />
+        <cookiesContext.Provider value={cookies}>
+          <RouterProvider router={router} />
+        </cookiesContext.Provider>
       </CookiesProvider>
     </div>
   );

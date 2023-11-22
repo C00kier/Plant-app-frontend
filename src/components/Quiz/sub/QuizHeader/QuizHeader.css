@@ -1,0 +1,21 @@
+#question-header{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#answer-question-writing{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+#plant-recommendation-header,
+#count-header{
+    font-size: 1.5em;
+    color: #767676;
+    font-weight: 500;
+}
+
+#count-header{
+    margin-top: 1em;
+}
