@@ -1,0 +1,31 @@
+#fifth-question-container{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2em;
+}
+
+#fifth-question-writing,
+.fifth-question-option>label {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+#fifth-question-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-left: 3em;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.fifth-question-option {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.fifth-question-option>input[type='checkbox'] {
+    width: 1.5em;
+}

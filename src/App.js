@@ -63,7 +63,7 @@ function App() {
             </>
           }
         >
-          <Route index element={cookies.token ? <HomePageLogged /> : <HomePage />} />
+          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token}/> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
           <Route
