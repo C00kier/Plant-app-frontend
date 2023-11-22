@@ -1,0 +1,66 @@
+.recommended-plant{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 6em;
+    gap: 2em;
+}
+.recommended-plant-data-container{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: 32%;
+}
+
+.recommended-plant-picture{
+    width: 40%;
+    height: 100%;
+    /* border: 1px solid black; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+
+
+.recommended-plant-name-container{
+    text-align: left;
+    width: 60%;
+}
+
+.recommended-plant-name{
+    box-sizing: border-box;  
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.icon-container,
+.checkmark-icon,
+.cross-icon,
+.add-icon{
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+ 
+}
+
+.icon-container{
+    width: 8%;
+    height: auto;
+    /* border: 1px solid black; */
+}
+
+.checkmark-icon{
+    background-image: url(../../../../public/icon/checkmark-icon.png);
+    
+}
+
+.cross-icon{
+    background-image: url(../../../../public/icon/cross-icon.png);
+}
+
+.add-icon{
+    background-image: url(../../../../public/icon/add-icon.png);
+    cursor: pointer;
+}

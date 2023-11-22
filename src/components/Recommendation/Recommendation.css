@@ -1,0 +1,32 @@
+#recommended-plants-contanier {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#communicate-container {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    gap: 2em;
+    font-weight: 500;
+    border-bottom: 1px solid #76767648;
+    padding-bottom: 1em;
+}
+
+#plant-communicate {
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 32%;
+}
+
+.criteria-communicate {
+    font-size: 0.8em;
+    width: 8%;
+}
+
+#plants-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
