@@ -3,7 +3,8 @@
     text-align: start;
     margin-left: calc(5vh + 5vw);
     margin-right: calc(5vh + 5vw);
-    width: 100%;
+
+    margin-top: 5vh;
 }
 
 .home-page-desktop-left-container{
