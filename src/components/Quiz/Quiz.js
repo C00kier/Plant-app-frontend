@@ -12,6 +12,8 @@ import { useEffect, useState} from "react";
 export default function Quiz({ userId, token }) {
     const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
     const [index, setIndex] = useState(1);
+    const [hasAnimals,setHasAnimals]=useState();
+    const [hasChildren,setHasChildren]=useState();
     const [answers, setAnswers] = useState({
         isToxic: 'none',
         isSunny: -1,
@@ -31,6 +33,10 @@ export default function Quiz({ userId, token }) {
     }
 
     async function submit() {
+        answers.isToxic=hasAnimals&&hasChildren;
+        console.log(hasAnimals);
+        console.log(hasChildren);
+        console.log(answers);
         const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
         &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
             method: 'PUT',
@@ -53,9 +59,9 @@ export default function Quiz({ userId, token }) {
             case 4:
                 return <FourthQuestion answers={answers}setAnswered={setIsCurrentQuestionAnswered}></FourthQuestion>
             case 5:
-                return <FifthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></FifthQuestion>
+                return <FifthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered} setHasAnimals={setHasAnimals} hasAnimals={hasAnimals}></FifthQuestion>
             case 6:
-                return <SixthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></SixthQuestion>
+                return <SixthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered} setHasChildren={setHasChildren} hasChildren={hasChildren}></SixthQuestion>
         }
     }
     return (

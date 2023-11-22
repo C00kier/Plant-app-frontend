@@ -2,21 +2,21 @@ import './FifthQuestion.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function FifthQuestion({ answers,setAnswered }) {
+export default function FifthQuestion({ answers, setAnswered, setHasAnimals,hasAnimals }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
-    useEffect(()=>{
-        if(isFirstChecked || isSecondChecked ) setAnswered(true);
-        if(answers.isToxic=='true'){
+    useEffect(() => {
+        if (isFirstChecked || isSecondChecked) setAnswered(true);
+        if (hasAnimals == 'true') {
             setIsSecondChecked(true);
-        }else if(answers.isToxic=='false'){
-            
+        } else if (hasAnimals == 'false') {
+
             setIsFirstChecked(true);
         }
-    },[isFirstChecked,isSecondChecked])
+    }, [isFirstChecked, isSecondChecked])
 
     function manageCheckboxClicks(e) {
-        answers.isToxic = e.target.value;
+        setHasAnimals(e.target.value);
         if (e.target.name == 'yes') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);

@@ -2,18 +2,21 @@ import './SixthQuestion.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function SixthQuestion({ answers,setAnswered }) {
+export default function SixthQuestion({ answers, setAnswered, setHasChildren,hasChildren }) {
     const [isFirstChecked, setIsFirstChecked] = useState(false);
     const [isSecondChecked, setIsSecondChecked] = useState(false);
-    useEffect(()=>{
-        if(isFirstChecked || isSecondChecked) setAnswered(true);
-    },[isFirstChecked,isSecondChecked])
+    useEffect(() => {
+        if (isFirstChecked || isSecondChecked) setAnswered(true);
+        if (hasChildren == 'true') {
+            setIsSecondChecked(true);
+        } else if (hasChildren == 'false') {
+
+            setIsFirstChecked(true);
+        }
+    }, [isFirstChecked, isSecondChecked])
 
     function manageCheckboxClicks(e) {
-        
-        if (answers.isToxic == 'false') {
-            answers.isToxic = e.target.value;
-        }
+        setHasChildren(e.target.value);
         if (e.target.name == 'yes') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
