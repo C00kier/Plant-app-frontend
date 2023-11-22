@@ -296,7 +296,7 @@ export default function Settings({ setFunctionalityElement, userId }) {
           tym nformacje o swoich kwiatkach oraz wszystkie zdobyte odznaki.
         </p>
         <div
-          className="confirm-button"
+          className="confirm-button-delete"
           onClick={() => setShowDeletePopup(true)}
         >
           <span>Usuń</span>
