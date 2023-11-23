@@ -12,20 +12,16 @@ export default function Cockpit() {
     useEffect(() => {
         try {
             (async () => {
-                const response = await fetch("http://localhost:8080/user-plants"
+                const response = await fetch(`http://localhost:8080/user-plant/${cookies.userId}`
                 , {
-                    method: "POST",
+                    method: "GET",
                     headers: 
                     {"Content-Type" : "application/json",
-                    Authorization : `Bearer ${cookies.token}`},
-                    body: JSON.stringify({userId : cookies.userId})
-                }
-                );
-                console.log(response);
+                    "Authorization" : `Bearer ${cookies.token}`}
+                });
                 if(response.status === 200){
                     const data = await response.json();
                     setUserPlants(data);
-                    console.log("ok")
                 }
             })();
         } catch (error) {
@@ -38,7 +34,7 @@ export default function Cockpit() {
         <>
             {
                 userPlants.length > 0
-                    ? <CockpitWithPlants />
+                    ? <CockpitWithPlants userPlants={userPlants}/>
                     : <CockpitNoPlants />
             }
         </>
