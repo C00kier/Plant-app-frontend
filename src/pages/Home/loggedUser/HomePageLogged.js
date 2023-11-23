@@ -1,6 +1,7 @@
 import "./HomePageLogged.css";
 
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 //constants
 import COMPONENT_STATE from "../../../constants/myAccountComponentStates.js";
@@ -17,9 +18,49 @@ import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js
 export const functionalityElementContext = React.createContext();
 
 
-export default function HomePageDesktopLogged({userId,token}) {
-
+export default function HomePageDesktopLogged({ userId, token }) {
     const [functionalityElement, setFunctionalityElement] = useState(COMPONENT_STATE.COCKPIT);
+    const [userPlants, setUserPlants] = useState();
+    const [rooms, setRooms] = useState();
+    async function getUserPlants() {
+        try {
+            const response = await fetch('http://localhost:8080/user-plant/' + userId, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+            });
+
+            if (!response.ok) {
+                console.error('Failed to fetch user plants:', response.status, response.statusText);
+                return;
+            }
+
+            const data = await response.json();
+            setUserPlants(data);
+
+        } catch (error) {
+            console.error('Error fetching user plants:', error.message);
+        }
+    }
+
+    function getUserRooms() {
+        const userRooms = [];
+        userPlants.forEach(plant => {
+            if (!userRooms.includes(plant.room) && plant.room!==null) {
+                userRooms.push(plant.room);
+            }
+        });
+        setRooms(userRooms);
+        console.log(userRooms);
+    }
+
+
+    useEffect(() => {
+        if (userPlants === undefined) getUserPlants();
+        if (userPlants !== undefined) getUserRooms();
+    }, [userPlants])
 
     function renderFunctionalityElement() {
         switch (functionalityElement) {
@@ -27,7 +68,7 @@ export default function HomePageDesktopLogged({userId,token}) {
                 return <Cockpit />;
             }
             case COMPONENT_STATE.RECOMMENDATION: {
-                return <Recommendation userId={userId} token={token}/>;
+                return <Recommendation userId={userId} token={token} rooms={rooms} />;
             }
             case COMPONENT_STATE.MY_PLANTS: {
                 return <MyPlants />;
@@ -36,10 +77,10 @@ export default function HomePageDesktopLogged({userId,token}) {
                 return <Badges />;
             }
             case COMPONENT_STATE.SETTINGS: {
-                return <Settings setFunctionalityElement={setFunctionalityElement} userId={userId}/>;
+                return <Settings setFunctionalityElement={setFunctionalityElement} userId={userId} />;
             }
             case COMPONENT_STATE.QUIZ: {
-                return <Quiz userId={userId} token={token}/>;
+                return <Quiz userId={userId} token={token} />;
             }
         }
     }

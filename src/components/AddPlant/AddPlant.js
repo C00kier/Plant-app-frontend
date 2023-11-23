@@ -116,8 +116,10 @@ export default function AddPlant({ close, token, userId, plantId, name, rooms })
                             <div id="restore-password-close-bttn" onClick={close}></div>
                             <div id='room-container' className='add-plant-input-container'>
                                 <span>Pokój (opcjonalnie):</span>
-                                <select id='room-input' className='add-plant-input-dropdown' disabled={!rooms.length > 0}>
-
+                                <select id='room-input' className='add-plant-input-dropdown' disabled={!rooms.length === 0}>
+                                    {
+                                        rooms.map(room=><option value={room}>{room}</option>)
+                                    }
                                 </select>
                             </div>
                             <div id='last-water-container' className='add-plant-input-container'>
