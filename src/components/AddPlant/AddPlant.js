@@ -118,7 +118,7 @@ export default function AddPlant({ close, token, userId, plantId, name, rooms })
                                 <span>Pokój (opcjonalnie):</span>
                                 <select id='room-input' className='add-plant-input-dropdown' disabled={!rooms.length === 0}>
                                     {
-                                        rooms.map(room=><option value={room}>{room}</option>)
+                                        rooms.map(room=><option value={room}>{room.charAt(0).toUpperCase()+room.slice(1,room.length)}</option>)
                                     }
                                 </select>
                             </div>
