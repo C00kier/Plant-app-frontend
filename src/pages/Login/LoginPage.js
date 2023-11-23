@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import RestorePassword from "./sub/RestorePassword/RestorePassword";
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
 
 export default function LoginPage(props) {
@@ -10,6 +11,7 @@ export default function LoginPage(props) {
     const [password, setPassword] = useState();
     const [wrongCredentialsVisibility, setLoginCredentialsVisibility] = useState("none");
     const [displayRestorePassword,setDisplayRestorePassword] =useState(false);
+    const [displayLoadingScreen,setDisplayLoadingScreen]=useState(false);
     
     const navigate = useNavigate();
     const navigateToRegistration=()=>{
@@ -19,6 +21,7 @@ export default function LoginPage(props) {
         setDisplayRestorePassword(!displayRestorePassword);
     }
     async function login() {
+        setDisplayLoadingScreen(true);
         let loginObject = {};
         if (loginCredential.includes("@")) {
             loginObject = {
@@ -39,11 +42,12 @@ export default function LoginPage(props) {
             body: JSON.stringify(loginObject)
         })
         if (response.status === 200) {
+            setDisplayLoadingScreen(false);
             navigate("/");
             const data = await response.json();
             setCookie("token", data.token, {path: "/"});
             setCookie("userId", data.userId, {path: "/"});
-        } if (response.status === 401) {
+        } if (response.status === 401 || response.status===403) {
             setLoginCredentialsVisibility("block");
         }
     }
@@ -51,6 +55,7 @@ export default function LoginPage(props) {
     return (
         <>
             {displayRestorePassword ? <RestorePassword close={handleRestoreVisbility}></RestorePassword> : <></>}
+            {displayLoadingScreen ? <LoadingScreen></LoadingScreen> : <></>}
             <div id="login-page">
                 <div id="login-section-left">
                     <p id="login-communicate">Logowanie</p>
@@ -64,7 +69,7 @@ export default function LoginPage(props) {
                     <p id="restore-password-button" onClick={()=>{setDisplayRestorePassword(true)}}>Nie pamiętasz hasła?</p>
                     <div id="login-button-section">
                         <div id="login-button" onClick={login}><span>Zaloguj się!</span></div>
-                        <div id="no-account-register" onClick={navigateToRegistration}><span>Nie posiadasz konta? Zarestruj się!</span></div>
+                        <div id="no-account-register" onClick={navigateToRegistration}><span>Nie posiadasz konta? Zarejestruj się!</span></div>
                     </div>
                     <div id="login-with-google-section">
 

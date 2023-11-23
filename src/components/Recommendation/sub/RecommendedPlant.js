@@ -2,13 +2,14 @@ import './RecommendedPlant.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-export default function RecommendedPlant({ plant, quiz }) {
+export default function RecommendedPlant({ plant, quiz,open }) {
     const [backgroundImage, setBackgroundImage] = useState();
     const [sunIcon, setSunIcon] = useState();
     const [sizeIcon, setSizeIcon] = useState();
     const [difficultyIcon, setDifficultyIcon] = useState();
     const [checkmarkIcon, setCheckmarkIcon] = useState();
     const [corssIcon, setCrossIcon] = useState();
+    
 
     useEffect(() => {
         if (plant !== undefined) {
@@ -25,6 +26,7 @@ export default function RecommendedPlant({ plant, quiz }) {
 
 
         }
+        console.log(plant);
     }, [plant])
 
     return (
@@ -55,7 +57,7 @@ export default function RecommendedPlant({ plant, quiz }) {
                 <div className={quiz["air_purifying"] ? "icon-container checkmark-icon" : "icon-container cross-icon"}>
 
                 </div>
-                <div className='recommeneded-plant-add-button add-icon icon-container'>
+                <div className='recommeneded-plant-add-button add-icon icon-container' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
 
                 </div>
             </div>

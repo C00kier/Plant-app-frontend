@@ -7,13 +7,13 @@ import ThirdQuestion from './sub/ThirdQuestion/ThirdQuestion';
 import FourthQuestion from './sub/FourthQuestion/FourthQuestion';
 import FifthQuestion from './sub/FifthQuestion/FifthQuestion';
 import SixthQuestion from './sub/SixthQuestion/SixthQuestion';
-import { useEffect, useState} from "react";
+import { useState } from "react";
 
 export default function Quiz({ userId, token }) {
     const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
     const [index, setIndex] = useState(1);
-    const [hasAnimals,setHasAnimals]=useState();
-    const [hasChildren,setHasChildren]=useState();
+    const [hasAnimals, setHasAnimals] = useState();
+    const [hasChildren, setHasChildren] = useState();
     const [answers, setAnswers] = useState({
         isToxic: 'none',
         isSunny: -1,
@@ -25,18 +25,17 @@ export default function Quiz({ userId, token }) {
 
     function manageIndex(e) {
         setIsCurrentQuestionAnswered(false);
-        if ((e.target.id == 'prev-button' || e.target.id==='back') && index > 1) {
+        if ((e.target.id == 'prev-button' || e.target.id === 'back') && index > 1) {
             setIndex(index - 1);
-        } else if ((e.target.id == 'next-button' || e.target.id==='next') && index < 6) {
+        } else if ((e.target.id == 'next-button' || e.target.id === 'next') && index < 6) {
             setIndex(index + 1)
         }
     }
 
     async function submit() {
-        answers.isToxic=hasAnimals&&hasChildren;
-        console.log(hasAnimals);
-        console.log(hasChildren);
-        console.log(answers);
+        
+        answers.isToxic = hasAnimals && hasChildren;
+        console.log(answers.isToxic);
         const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
         &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
             method: 'PUT',
@@ -57,7 +56,7 @@ export default function Quiz({ userId, token }) {
             case 3:
                 return <ThirdQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></ThirdQuestion>
             case 4:
-                return <FourthQuestion answers={answers}setAnswered={setIsCurrentQuestionAnswered}></FourthQuestion>
+                return <FourthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered}></FourthQuestion>
             case 5:
                 return <FifthQuestion answers={answers} setAnswered={setIsCurrentQuestionAnswered} setHasAnimals={setHasAnimals} hasAnimals={hasAnimals}></FifthQuestion>
             case 6:
@@ -66,6 +65,7 @@ export default function Quiz({ userId, token }) {
     }
     return (
         <>
+
             <div id="quiz-container">
                 <QuizHeader index={index}></QuizHeader>
                 <div id="quiz-main">

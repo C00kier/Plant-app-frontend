@@ -1,4 +1,4 @@
-#plant-page-container{
+#plant-page-container {
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -7,7 +7,7 @@
     gap: 2em;
 }
 
-#plant-container-main{
+#plant-container-main {
     width: 100%;
     display: flex;
     height: 80vh;
@@ -15,7 +15,7 @@
 }
 
 #plant-main-left,
-#plant-main-right{
+#plant-main-right {
     height: 100%;
     display: flex;
     /* align-items: center;
@@ -23,21 +23,22 @@
     flex-direction: column; */
 }
 
-#plant-main-left{
+#plant-main-left {
     width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-#plant-main-right{
+
+#plant-main-right {
     width: 60%;
     padding-top: 5%;
     display: flex;
     flex-direction: column;
 }
 
-#plant-image-container{
+#plant-image-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -46,12 +47,12 @@
 
 }
 
-#plant-image{
+#plant-image {
     width: 90%;
     height: 90%;
     /* background:url(../../../public/Livisona-Rotundifolia-image.jpg); */
     /* background-image: url(../../assets/plants/); */
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
     border-radius: 25px;
 
@@ -59,7 +60,7 @@
 
 
 
-#plant-name-container{
+#plant-name-container {
     width: 80%;
     height: 20%;
     display: flex;
@@ -71,20 +72,20 @@
 
 
 
-#plant-name{
+#plant-name {
     font-size: 3em;
     font-weight: 500;
     text-align: left;
 }
 
-#common-name{
+#common-name {
     text-align: left;
-    color:#767676;
+    color: #767676;
     text-transform: uppercase;
     padding-left: 0.2em;
 }
 
-#plant-info-images{
+#plant-info-images {
     margin-top: 2em;
     width: 80%;
     height: 40%;
@@ -95,7 +96,7 @@
     align-items: center;
 }
 
-.plant-image-card{
+.plant-image-card {
     width: 30%;
     height: 90%;
     border: 1px solid black;
@@ -107,13 +108,13 @@
 
 }
 
-.card-image{
+.card-image {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.card-image{
+.card-image {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -121,7 +122,7 @@
     height: 60%;
 }
 
-#care-difficulty-card-image{
+#care-difficulty-card-image {
     background: url(../../../public/hand-holding-plant-image.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -129,15 +130,15 @@
     height: 70%;
 }
 
-#sun-card-image{
-    background:url(../../../public/sun-behind-clouds-img.png);
+#sun-card-image {
+    background: url(../../../public/sun-behind-clouds-img.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60%;
     height: 70%;
 }
 
-#plant-care-card-image{
+#plant-care-card-image {
     background: url(../../../public/watering-soil-image.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -145,19 +146,19 @@
     height: 70%;
 }
 
-.plant-card-description{
+.plant-card-description {
     text-transform: uppercase;
-    color:#767676;
+    color: #767676;
     font-size: 1.4em;
     font-weight: 6 00;
 }
 
-.plant-card-type{
+.plant-card-type {
     font-size: 1.3em;
     font-weight: 600;
 }
 
-#add-plant-container{
+#add-plant-container {
     width: 80%;
     height: 20%;
     display: flex;
@@ -165,22 +166,23 @@
     align-items: center;
 }
 
-#add-plant-button{
+#add-plant-button {
     background-color: #2D6A4F;
     width: 60%;
-    height: 50%;
+    height: 3.2em;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-#add-plant-button>span{
+
+#add-plant-button>span {
     font-size: 2em;
     color: #ffffff;
 }
 
-#plant-details-container{
+#plant-details-container {
     display: flex;
     flex-direction: column;
     width: 100%;

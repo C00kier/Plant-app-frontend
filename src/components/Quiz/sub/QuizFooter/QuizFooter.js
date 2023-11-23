@@ -27,7 +27,7 @@ export default function QuizFooter({ manageIndex, index, submit, isCurrentQuesti
                         </div>
                     )
                     : (isCurrentQuestionAnswered ? <div id='submit-button' onClick={submit} className='quiz-nav-button'>
-                        <span id='submit' className='quiz-button-writing' >Wyślij!</span>
+                        <span id='submit' className='quiz-button-writing' >Wyślij</span>
                     </div> :
                         <div id='next-button' className='quiz-nav-button-inactive'><span id='submit' className='quiz-button-writing'>Wyślij!</span></div>
                     )}

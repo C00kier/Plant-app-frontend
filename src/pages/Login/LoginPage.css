@@ -55,7 +55,7 @@
 
 #restore-password-button{
     font-weight: 600;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
     color:#3143E6;
     cursor: pointer;
     margin-left: 2em;
