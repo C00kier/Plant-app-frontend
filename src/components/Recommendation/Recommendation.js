@@ -12,7 +12,7 @@ import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 //context
 import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
 
-export default function Recommendation({ token, userId }) {
+export default function Recommendation({ token, userId,rooms }) {
     const setFunctionalityElement = useContext(functionalityElementContext);
     const [userQuizAnswers, setUserQuizAnswers] = useState();
     const [recommendedPlants, setRecommendedPlants] = useState();
@@ -78,7 +78,7 @@ export default function Recommendation({ token, userId }) {
     return (
         <>
             {(shouldDisplayAddPlant ? <AddPlant close={close} userId={userId} plantId={plantId} 
-            token={token} name={name} rooms={[]}></AddPlant> : <></>)}{
+            token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
                 userQuizAnswers !== undefined ?
                     <div id="recommended-plants-container">
                         <div id="communicate-container">
