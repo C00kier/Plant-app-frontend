@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./CockpitNoPlants.css";
@@ -9,10 +9,33 @@ import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
 import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { cookiesContext } from "../../App.js";
 
 export default function CockpitNoPlants() {
     const [username, setUsername] = useState("username");
     const setFunctionalityElement = useContext(functionalityElementContext);
+    const cookies = useContext(cookiesContext);
+
+    useEffect(() => {
+        try {
+            (async () => {
+                const response = await fetch("http://localhost:8080/user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${cookies.token}`
+                    },
+                    body: JSON.stringify({ "userId": cookies.userId })
+                });
+                if(response.status === 200){
+                    const data = await response.json();
+                    setUsername(data.nickName)
+                }
+            })();
+        } catch (error) {
+            console.error(`Error fetching data: ${error}`);
+        }
+    })
 
     return (
         <div className="cockpit-no-plants-container flex-column-center-center">
@@ -20,11 +43,11 @@ export default function CockpitNoPlants() {
                 <p>Witaj {username}!</p>
                 <p>Dodaj swoją pierwszą <Link to={PAGES.SEARCH}><span className="green-underscore-text">roślinę!</span></Link></p>
                 <p>
-                    W <span className="green-underscore-text" onClick={() => setFunctionalityElement(COMPONENT_STATES.SETTINGS)}>ustawieniach</span> swojego 
+                    W <span className="green-underscore-text" onClick={() => setFunctionalityElement(COMPONENT_STATES.SETTINGS)}>ustawieniach</span> swojego
                     konta możesz dodać swoje zdjęcie, albo zmienić hasło oraz dodać szczegóły konta.
                 </p>
                 <p>
-                    A teraz <span className="green-underscore-text" onClick={() => setFunctionalityElement(COMPONENT_STATES.QUIZ)}> wypełnij quiz</span>, 
+                    A teraz <span className="green-underscore-text" onClick={() => setFunctionalityElement(COMPONENT_STATES.QUIZ)}> wypełnij quiz</span>,
                     dzięki czemu dowiesz się z jakimi roślinami będzie Ci najlepiej.
                 </p>
             </div>
