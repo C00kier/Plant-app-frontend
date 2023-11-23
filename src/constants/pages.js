@@ -8,6 +8,7 @@ const PAGES = {
     PRIVACY_POLICY: "/privacy-policy",
     TERMS: "/terms",
     BLOG: "/blog",
+    POST: "/blog/post/:id",
     FORUM: "/forum",
     PLANT: "/plant/:id",
     UNASSIGNED: "*"

@@ -29,6 +29,7 @@ import ContactPage from "./pages/Contact/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy/PrivacyPolicyPage";
 import TermsPage from "./pages/Terms/TermsPage";
 import BlogPage from "./pages/Blog/BlogPage";
+import Post from "./pages/Blog/Post";
 import ForumPage from "./pages/Forum/ForumPage";
 import PlantPage from "./pages/Plant/PlantPage";
 import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
@@ -81,6 +82,7 @@ function App() {
           <Route path={PAGES.PLANT} element={<PlantPage />} />
           <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
           <Route path={PAGES.BLOG} element={<BlogPage />} />
+          <Route path={PAGES.POST} element={<Post />} />
           <Route element={<PrivateRoutes token={cookies.token} />} >
             <Route path={PAGES.FORUM} element={<ForumPage />} />
           </Route>
