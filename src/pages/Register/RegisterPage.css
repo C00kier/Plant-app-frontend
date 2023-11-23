@@ -140,3 +140,14 @@
   display: flex;
   gap: 0.5em;
 }
+
+#accept-rules-checkbox{
+  width: 1.3em;
+  height: 1.3em;
+  margin-right: .5em;
+}
+
+#google-login-container{
+  scale: 1.4;
+  margin-left: 2em;
+}
