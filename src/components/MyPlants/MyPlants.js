@@ -31,9 +31,6 @@ export default function MyPlants({ userPlants, rooms }) {
               className="search-bar"
               onChange={(e) => onSearch(e)}
             ></input>
-            {/* <div className="search-button" onClick>
-              <span>Szukaj</span>
-            </div> */}
           </div>
         </div>
         <div className="my-rooms-container">
