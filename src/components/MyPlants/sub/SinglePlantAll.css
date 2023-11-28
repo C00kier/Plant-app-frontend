@@ -1,0 +1,43 @@
+.single-plant-all {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 3em;
+  border-top: 0em;
+  border-bottom: 0.1em;
+  border-left: 0em;
+  border-right: 0em;
+  border-color: #b5b5b5;
+  border-style: solid;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.plant-image-all {
+  min-width: 10vw;
+  min-height: 10vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.plant-name-all {
+    width: 10em;
+  font-size: 1.5em;
+  padding-top: 0.5em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--light-grey-text-color);
+}
+
+.plant-room-all {
+  font-weight: 500;
+}
+
+.single-plant-all:hover {
+  border: 1px solid #8f8888;
+  cursor: pointer;
+}

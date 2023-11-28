@@ -1,0 +1,128 @@
+.room-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+  height: 12em;
+  border-top: 0em;
+  border-bottom: 0.1em;
+  border-left: 0em;
+  border-right: 0em;
+  border-color: #b5b5b5;
+  border-style: solid;
+}
+
+.plants-by-room-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.headers-container {
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-top: 0em;
+  border-bottom: 0.1em;
+  border-left: 0em;
+  border-right: 0em;
+  border-color: #b5b5b5;
+  border-style: solid;
+  padding-bottom: 1em;
+}
+
+.header-room-name {
+  margin-left: 2em;
+}
+
+.header-plant-count {
+  margin-left: 7.3em;
+}
+
+.header-plant-name {
+  margin-left: 2em;
+}
+
+.header-plant-room {
+  margin-left: 24em;
+}
+
+.single-plant-rooms {
+  scale: 0.5;
+}
+
+.my-rooms-container,
+.search-bar-container,
+.all-plants-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.my-plants-container h1 {
+  align-self: flex-start;
+  margin-left: 0.7em;
+}
+
+h2 {
+  width: 1em;
+}
+.plant-count {
+  margin-left: 7em;
+  width: 1em;
+  margin-right: 1em;
+}
+
+h1 {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+
+/*search bar section*/
+
+.search-container {
+  width: 100%;
+  height: 12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.search-communicate {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-bottom: 0.5em;
+}
+
+
+.search-bar {
+    width: 90%;
+    height: 30%;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    padding-left: 0.7em;
+}
+
+
+.search-button {
+    color: white;
+    border-radius: 35px;
+    background-color: #2D6A4F;
+    font-size: 1.5em;
+    width: 25%;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5em;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: green;
+    transition: all ease-in-out 1s;
+}

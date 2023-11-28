@@ -71,7 +71,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
                 return <Recommendation userId={userId} token={token} rooms={rooms} />;
             }
             case COMPONENT_STATE.MY_PLANTS: {
-                return <MyPlants />;
+                return <MyPlants userPlants={userPlants} rooms={rooms}/>;
             }
             case COMPONENT_STATE.BADGES: {
                 return <Badges />;
