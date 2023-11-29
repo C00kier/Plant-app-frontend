@@ -1,10 +1,12 @@
 .single-plant-all {
+  max-height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   box-sizing: border-box;
   align-items: center;
-  gap: 3em;
+  text-align: center;
+  gap: 1em;
   border-top: 0em;
   border-bottom: 0.1em;
   border-left: 0em;
@@ -15,8 +17,8 @@
   padding-bottom: 0.5em;
 }
 .plant-image-all {
-  min-width: 10vw;
-  min-height: 10vw;
+  min-width: 4vw;
+  min-height: 4vw;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -24,20 +26,26 @@
 
 .plant-name-all {
     width: 10em;
-  font-size: 1.5em;
+  font-size: 1em;
   padding-top: 0.5em;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   font-weight: 600;
-  color: var(--light-grey-text-color);
 }
 
 .plant-room-all {
-  font-weight: 500;
+  margin-left:10em;
+  font-weight: 600;
+  text-align: right;
 }
 
 .single-plant-all:hover {
   border: 1px solid #8f8888;
   cursor: pointer;
 }
+
+span {
+  font-weight: 600;
+}
+

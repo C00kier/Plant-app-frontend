@@ -1,4 +1,6 @@
 .room-container {
+  max-height: 20vh;
+  padding: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,10 +20,10 @@
 }
 
 .headers-container {
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
+  flex-direction: row;
   border-top: 0em;
   border-bottom: 0.1em;
   border-left: 0em;
@@ -31,22 +33,13 @@
   padding-bottom: 1em;
 }
 
-.header-room-name {
-  margin-left: 2em;
-}
-
 .header-plant-count {
-  margin-left: 7.4em;
-}
-
-.header-plant-name {
-  margin-left: 2em;
+margin-left: 15.7em;
 }
 
 .header-plant-room {
-  margin-left: 24.3em;
+  margin-left: 27em;
 }
-
 
 .my-rooms-container,
 .search-bar-container,
@@ -55,15 +48,11 @@
   flex-direction: column;
 }
 
-
 .my-plants-container h1 {
   align-self: flex-start;
   margin-left: 0.7em;
 }
 
-h2 {
-  width: 1em;
-}
 .plant-count {
   margin-left: 7em;
   width: 1em;
@@ -75,6 +64,14 @@ h1 {
   margin-top: 1em;
 }
 
+.room-container > p {
+  width: 8em;
+  font-weight: 600;
+}
+
+.room-header {
+  text-align: left;
+}
 
 /*search bar section*/
 
@@ -88,38 +85,36 @@ h1 {
 }
 
 .search-communicate {
-    font-size: 1.5em;
-    font-weight: 600;
-    padding-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: 600;
+  padding-bottom: 0.5em;
 }
-
 
 .search-bar {
-    width: 90%;
-    height: 30%;
-    border-radius: 25px;
-    border: 1px solid black;
-    font-size: 1.5em;
-    box-sizing: border-box;
-    padding-left: 0.7em;
+  width: 90%;
+  height: 30%;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  padding-left: 0.7em;
 }
 
-
 .search-button {
-    color: white;
-    border-radius: 35px;
-    background-color: #2D6A4F;
-    font-size: 1.5em;
-    width: 25%;
-    height: 2.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.5em;
-    cursor: pointer;
+  color: white;
+  border-radius: 35px;
+  background-color: #2d6a4f;
+  font-size: 1.5em;
+  width: 25%;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5em;
+  cursor: pointer;
 }
 
 .search-button:hover {
-    background-color: green;
-    transition: all ease-in-out 1s;
+  background-color: green;
+  transition: all ease-in-out 1s;
 }

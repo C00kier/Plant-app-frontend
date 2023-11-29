@@ -5,6 +5,7 @@ import SinglePlantAll from "./sub/SinglePlantAll";
 
 export default function MyPlants({ userPlants, rooms }) {
   const [plantsToShow, setPlantsToShow] = useState(userPlants);
+  
 
   useEffect(() => {
     console.log(userPlants);
@@ -18,6 +19,8 @@ export default function MyPlants({ userPlants, rooms }) {
       )
     );
   }
+
+ 
 
   return (
     <>
@@ -46,14 +49,15 @@ export default function MyPlants({ userPlants, rooms }) {
               );
               return (
                 <div className="room-container" key={index}>
-                  <h2 className="room-header">{room}</h2>
-                  <h2 className="plant-count">{filteredPlants.length}</h2>
+                  <p className="room-header">{room}</p>
+                  <p className="plant-count">{filteredPlants.length}</p>
                   <div className="plants-by-room-container">
                     {filteredPlants.map((filteredPlant, plantIndex) => (
                       <SinglePlantRooms
                         className="single-plant-room"
                         key={plantIndex}
-                        plantName={filteredPlant.plant.botanicalName}
+                        plant={filteredPlant}
+                        rooms={rooms}
                       ></SinglePlantRooms>
                     ))}
                   </div>
@@ -71,8 +75,8 @@ export default function MyPlants({ userPlants, rooms }) {
             <SinglePlantAll
               className="single-plant-all"
               key={index}
-              plantName={plant.plant.botanicalName}
-              plantRoom={plant.room}
+              plant={plant}
+              rooms={rooms}
             ></SinglePlantAll>
           ))}
         </div>
