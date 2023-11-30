@@ -39,6 +39,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
 
             const data = await response.json();
             setUserPlants(data);
+            console.log(data)
 
         } catch (error) {
             console.error('Error fetching user plants:', error.message);
