@@ -74,7 +74,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
                 return <MyPlants />;
             }
             case COMPONENT_STATE.BADGES: {
-                return <Badges />;
+                return <Badges userId={userId} token={token}/>;
             }
             case COMPONENT_STATE.SETTINGS: {
                 return <Settings setFunctionalityElement={setFunctionalityElement} userId={userId} />;
