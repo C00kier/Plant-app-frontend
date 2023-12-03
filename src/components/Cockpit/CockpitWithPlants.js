@@ -1,4 +1,5 @@
 import "./Cockpit.css";
+import { useEffect, useState } from "react";
 
 //constants
 import ACTION_PERIODS from "../../constants/cockpitActionPeriods";
@@ -6,7 +7,7 @@ import ACTION_PERIODS from "../../constants/cockpitActionPeriods";
 //components
 import CockpitActionHeader from "./CockpitActionHeader";
 import CockpitActionElement from "./CockpitActionElement";
-import { useEffect, useState } from "react";
+
 
 export default function CockpitWithPlants(props) {
     const { userPlants } = props;
@@ -16,15 +17,13 @@ export default function CockpitWithPlants(props) {
         Week: []
     });
 
-    console.log(userPlants);
-
-
     useEffect(() => {
         sortPlants();
     }, userPlants);
 
-    /*
-        Function that assign user plants to
+
+   /**
+    * Function that assign user plants to
         correct period of time in 
         sortedPlantsByActionDate variable.
         If period of time is more than Week
@@ -38,67 +37,117 @@ export default function CockpitWithPlants(props) {
         }
 
         for (const userPlant of userPlants) {
-            if (shouldBeCareOfToday(userPlant)) {
+            if (shouldBeCaredToday(userPlant)) {
                 sortedPlants.Today.push(userPlant);
+            }
+            else if (shouldBeCared(userPlant, 1)) {
+                sortedPlants.Tommorow.push(userPlant);
+            }
+            else if (shouldBeCared(userPlant, 7)) {
+                sortedPlants.Week.push(userPlant);
             }
         }
 
         setSortedPlantsByActionDate(sortedPlants);
     }
 
-    /*
-        Returns true if there is action to perform
-        on plant today. False otherwise.
-    */
 
-    function shouldBeCareOfToday(userPlant) {
+   /**
+    * Returns true if there is action to perform on plant. False otherwise.
+    * @param {*} userPlant 
+    * @param {*} daysToSubtract number of days we want prediction for
+    * @returns {boolean}
+    */
+    function shouldBeCared(userPlant, daysToSubtract) {
         const monthLength = 30;
         const yearLength = 365;
-        if (shouldTakeActionToday(userPlant.lastFertilized, userPlant.plant.fertilizer * monthLength)) {
+        if (shouldTakeAction(userPlant.lastFertilized, userPlant.plant.fertilizer * monthLength, daysToSubtract)) {
             return true;
         }
-        if (shouldTakeActionToday(userPlant.lastRepotted, userPlant.plant.repotting * yearLength)) {
+        if (shouldTakeAction(userPlant.lastRepotted, userPlant.plant.repotting * yearLength, daysToSubtract)) {
             return true;
         }
-        if (shouldTakeActionToday(userPlant.lastWatered, userPlant.plant.water)) {
+        if (shouldTakeAction(userPlant.lastWatered, userPlant.plant.water, daysToSubtract)) {
             return true;
         }
         return false;
     }
 
-    /*
-        Returns true if greater than numberOfDays
-        has passed since the start date. Otherwise
-        returns false. If startingDate is not instanceof Date
-        or numberOfDays isNaN returns true.
-    */
-    function shouldTakeActionToday(startingDate, numberOfDays) {
-        const currentTimestamp = new Date().getTime();
 
-        if (!(startingDate instanceof Date) || Number.isNaN(numberOfDays)) {
+    /**
+    * Returns true if there is action to perform on plant today. False otherwise.
+    * @param {*} userPlant 
+    * @returns {boolean}
+    */
+    function shouldBeCaredToday(userPlant) {
+        const monthLength = 30;
+        const yearLength = 365;
+        if (shouldTakeActionForToday(userPlant.lastFertilized, userPlant.plant.fertilizer * monthLength)) {
             return true;
         }
+        if (shouldTakeActionForToday(userPlant.lastRepotted, userPlant.plant.repotting * yearLength)) {
+            return true;
+        }
+        if (shouldTakeActionForToday(userPlant.lastWatered, userPlant.plant.water)) {
+            return true;
+        }
+        return false;
+    }
 
-        const predictedActionTime = addDaysToDateInTimestamp(startingDate, numberOfDays);
 
+   /**
+    *   Returns true if greater numberOfDays
+        has passed since the passed date
+        than current date minus days for date 
+        we want to get prediction for. Otherwise
+        returns false.
+    * @param {*} date 
+    * @param {*} numberOfDays number of days to add to date
+    * @param {*} daysToSubtract number of days we want prediction for
+    * @returns 
+    */
+    function shouldTakeAction(date, numberOfDays, daysToSubtract) {
+        if (date === null) {
+            return false;
+        }
+        const currentTimestamp = new Date().getTime();
+        const predictedActionTime = addDaysToDateInTimestamp(date, numberOfDays) - convertNumberOfDaysToTimestamp(daysToSubtract);
         return currentTimestamp > predictedActionTime;
     }
 
-    /*
-        Returns timestamp for adding days
-        to date.
-    */
-    function addDaysToDateInTimestamp(startingDate, numberOfDays) {
-        const numberOfDaysTimestamp = convertNumberOfDaysToTimestamp(numberOfDays);
-        const startingDateTimestamp = startingDate.getTime();
-        return startingDateTimestamp + numberOfDaysTimestamp;
+
+    /**
+     * Returns true if databaseDate is equal null or shouldTakeAction function returns true
+     * @param {Date} date 
+     * @param {int} numberOfDays number of days to add to date
+     * @returns {boolean}
+     */
+    function shouldTakeActionForToday(date, numberOfDays) {
+        if (date === null) {
+            return true;
+        }
+        shouldTakeAction(date, numberOfDays, 0);
     }
 
 
-    /*
-        Returns timestamp for numberOfDays.
-        If numberOfDays isNaN return 0.
-    */
+    /**
+     * Returns timestamp for adding days to date.
+     * @param {Date} date 
+     * @param {int} numberOfDays number of days to add to date
+     * @returns 
+     */
+    function addDaysToDateInTimestamp(date, numberOfDays) {
+        const numberOfDaysTimestamp = convertNumberOfDaysToTimestamp(numberOfDays);
+        const dateTimestamp = new Date(date).getTime();
+        return dateTimestamp + numberOfDaysTimestamp;
+    }
+
+
+    /**
+     * Returns timestamp for numberOfDays. If numberOfDays isNaN return 0.
+     * @param {int} numberOfDays number of dasys to convert 
+     * @returns 
+     */
     function convertNumberOfDaysToTimestamp(numberOfDays) {
         if (Number.isNaN(numberOfDays)) {
             return 0;
