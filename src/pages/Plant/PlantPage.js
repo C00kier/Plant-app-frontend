@@ -11,6 +11,7 @@ export default function PlantPage() {
     useEffect(() => {
         if (plant !== undefined) {
             setBackgroundImage(require("../../assets/plants/" + plant.botanicalName.replace(/\s/g, "-") + "-image.jpg"));
+            console.log(plant);
         }
     }, [plant])
 
@@ -27,6 +28,7 @@ export default function PlantPage() {
         if (response.status === 200) {
             setPlant(await response.json());
             setPlantDownloaded(true);
+            
 
         } if (response.status === 401) {
             //todo
@@ -59,7 +61,7 @@ export default function PlantPage() {
                                         <div id="care-difficulty-card-image"></div>
                                     </div>
                                     <span id="plant-care-difficulty" className="plant-card-description">
-                                        prosta
+                                        {plant.careDifficulty==0 ? "Prosta" : plant.careDifficulty==1 ? "Średnia" : "Trudna"}
                                     </span>
                                     <span id="care-difficulty" className="plant-card-type">
                                         Pielęgnacja
@@ -70,7 +72,7 @@ export default function PlantPage() {
                                         <div id="sun-card-image"></div>
                                     </div>
                                     <span id="plant-sun" className="plant-card-description">
-                                        półcień
+                                    {plant.sun==0 ? "Słonecznie" : plant.sun==1 ? "Półcień" : "Cień"}
                                     </span>
                                     <span id="sun" className="plant-card-type">
                                         Nasłonecznienie
@@ -81,7 +83,7 @@ export default function PlantPage() {
                                         <div id="plant-care-card-image"></div>
                                     </div>
                                     <span id="plant-care" className="plant-card-description">
-                                        raz w tygodniu
+                                        {"Raz na "+plant.water+" dni"}
                                     </span>
                                     <span id="care" className="plant-card-type">
                                         Pielęgnacja
