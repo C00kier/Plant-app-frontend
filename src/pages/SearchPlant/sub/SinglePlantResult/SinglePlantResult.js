@@ -11,7 +11,11 @@ export default function SinglePlantResult({ plantName, id }) {
 
     }
     useEffect(() => {
+        try{
         setBackgroundImage(require("../../../../assets/plants/" + plantName.replace(/\s/g, "-") + "-image.jpg"));
+        }catch(e){
+            console.log(e);
+        }
     }, [plantName])
 
     return (
