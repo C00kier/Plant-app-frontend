@@ -33,7 +33,7 @@ export default function Recommendation({ token, userId,rooms }) {
 
     async function getUserQuiz(userId) {
         try {
-            const response = await fetch('http://localhost:8080/quiz/get-quiz-result?userId=' + userId,
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}quiz/get-quiz-result?userId=` + userId,
                 {
                     method: 'GET',
                     headers: {
@@ -50,7 +50,7 @@ export default function Recommendation({ token, userId,rooms }) {
     }
 
     async function getRecommendedPlants() {
-        const response = await fetch(`http://localhost:8080/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

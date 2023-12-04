@@ -12,7 +12,7 @@ export default function Cockpit() {
     useEffect(() => {
         try {
             (async () => {
-                const response = await fetch(`http://localhost:8080/user-plant/${cookies.userId}`
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}user-plant/${cookies.userId}`
                 , {
                     method: "GET",
                     headers: 

@@ -68,7 +68,7 @@ export default function RegisterPage(props) {
       password: formData.password,
     };
     if (formData.acceptRules === true) {
-      fetch("http://localhost:8080/auth/register", {
+      fetch(`${process.env.REACT_APP_BASE_URL}auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export default function RegisterPage(props) {
     }
   };
   const handleGoogleSignIn = (request) => {
-    fetch("http://localhost:8080/auth/authenticate/google", {
+    fetch(`${process.env.REACT_APP_BASE_URL}auth/authenticate/google`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -12,17 +12,17 @@ export default function UserScore({ userId, token }) {
             try {
                 const [experienceResponse, gameTitleResponse, pointsLeftResponse] =
                     await Promise.all([
-                        fetch(`http://localhost:8080/user-game-progress/get-exp?userId=${userId}`, {
+                        fetch(`${process.env.REACT_APP_BASE_URL}user-game-progress/get-exp?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
                         }),
-                        fetch(`http://localhost:8080/user-game-progress/get-game-title?userId=${userId}`, {
+                        fetch(`${process.env.REACT_APP_BASE_URL}user-game-progress/get-game-title?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
                         }),
-                        fetch(`http://localhost:8080/user-game-progress/get-exp-left?userId=${userId}`, {
+                        fetch(`${process.env.REACT_APP_BASE_URL}user-game-progress/get-exp-left?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },

@@ -36,7 +36,7 @@ export default function Quiz({ userId, token }) {
         
         answers.isToxic = hasAnimals && hasChildren;
         console.log(answers.isToxic);
-        const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
         &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
             method: 'PUT',
             headers: {

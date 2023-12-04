@@ -59,7 +59,7 @@ export default function AddPlant({ close, token, userId, plantId, name, rooms })
 
     async function submit() {
         console.log(lastWater);
-        const response = await fetch("http://localhost:8080/user-plant/add", {
+        const response = await fetch(process.env.REACT_APP_BASE_URL+'user-plant/add', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

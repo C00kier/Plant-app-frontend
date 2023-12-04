@@ -24,7 +24,7 @@ export default function Settings({ setFunctionalityElement, userId }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/user`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}user`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function Settings({ setFunctionalityElement, userId }) {
     let requestData = updateSwitch(toUpdate);
 
     try {
-      const response = await fetch("http://localhost:8080/user/update", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export default function Settings({ setFunctionalityElement, userId }) {
 
   async function confirmDelete() {
     try {
-      const response = await fetch("http://localhost:8080/user/delete", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

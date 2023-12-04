@@ -24,7 +24,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
     const [rooms, setRooms] = useState();
     async function getUserPlants() {
         try {
-            const response = await fetch('http://localhost:8080/user-plant/' + userId, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}user-plant/` + userId, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",

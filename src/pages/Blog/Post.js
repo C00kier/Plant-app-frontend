@@ -11,7 +11,7 @@ const Post = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/post/' + id);
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}post/` + id);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

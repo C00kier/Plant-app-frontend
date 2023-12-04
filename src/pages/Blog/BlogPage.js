@@ -6,7 +6,7 @@ export default function BlogPage() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/post/getAllPosts', {
+        fetch(`${process.env.REACT_APP_BASE_URL}post/getAllPosts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

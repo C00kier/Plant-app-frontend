@@ -16,34 +16,34 @@ export default function SearchPlantPage() {
         let url = "";
         switch (filterIndex) {
             case "1": //swiatlolubne
-                url = "http://localhost:8080/plant/filter/sun/0?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/sun/0?name=` + plantName
                 break;
             case "2": //czesciowo naslonecznione
-                url = "http://localhost:8080/plant/filter/sun/1?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/sun/1?name=` + plantName
                 break;
             case "3": //cieniolubne
-                url = "http://localhost:8080/plant/filter/sun/2?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/sun/2?name=` + plantName
                 break;
             case "4": //la poczatkujacych
-                url = "http://localhost:8080/plant/filter/difficulty/0?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/difficulty/0?name=` + plantName
                 break;
             case "5": // dla zaawansowanych
-                url = "http://localhost:8080/plant/filter/difficulty/1?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/difficulty/1?name=` + plantName
                 break;
             case "6": //dla expertow
-                url = "http://localhost:8080/plant/filter/difficulty/2?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/difficulty/2?name=` + plantName
                 break;
             case "7": //oczyszczajace powietrze
-                url = "http://localhost:8080/plant/filter/airpuryfying?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/airpuryfying?name=` + plantName
                 break;
             case "8": // bezpieczne dla dzieci
-                url = "http://localhost:8080/plant/filter/nontoxic?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/nontoxic?name=` + plantName
                 break;
             case "9": // bezpieczne dla zwierzat
-                url = "http://localhost:8080/plant/filter/nontoxic?name=" + plantName
+                url = `${process.env.REACT_APP_BASE_URL}plant/filter/nontoxic?name=` + plantName
                 break;
             default:
-                url = "http://localhost:8080/plant/name/" + plantName;
+                url = `${process.env.REACT_APP_BASE_URL}plant/name/` + plantName;
                 break;
 
 
@@ -63,7 +63,7 @@ export default function SearchPlantPage() {
     async function search() {
 
         if (plantName.length > 0) {
-            const response = await fetch('http://localhost:8080/plant/name/' + plantName, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}plant/name/` + plantName, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ export default function SearchPlantPage() {
             }
 
         }else{
-            const response = await fetch('http://localhost:8080/plant', {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}plant`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
