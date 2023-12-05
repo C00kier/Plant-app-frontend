@@ -1,0 +1,43 @@
+.single-plant-rooms {
+  width: 7em;
+  margin-right: 1em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.plant-image-rooms {
+  height: 10vh;
+  width: 10vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.plant-name-rooms {
+  font-size: 0.8em;
+  padding-top: 0.5em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.plant-alias-rooms {
+  font-size: 0.8em;
+  padding-top: 0.5em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--light-green-text-color);
+}
+
+.single-plant-rooms:hover {
+  border: 1px solid #8f8888;
+  cursor: pointer;
+}
+
+
