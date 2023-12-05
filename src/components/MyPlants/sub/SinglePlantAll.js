@@ -4,7 +4,7 @@ import "./SinglePlantAll.css";
 import PlantMenu from "./PlantMenu";
 import EditPlant from "../../EditPlant/EditPlant";
 
-export default function SinglePlantResult({ plant, rooms }) {
+export default function SinglePlantResult({ plant, rooms, token, getUserRooms, getUserPlants }) {
   const [backgroundImage, setBackgroundImage] = useState();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isEditPlantShown, setIsEditPlantShown] = useState(false);
@@ -28,7 +28,7 @@ export default function SinglePlantResult({ plant, rooms }) {
   return (
     <>
       {isEditPlantShown ? (
-        <EditPlant close={close} plant={plant} rooms={rooms}></EditPlant>
+        <EditPlant close={close} plant={plant} rooms={rooms} token={token} getUserPlants={getUserPlants} getUserRooms={getUserRooms}></EditPlant>
       ) : (
         <></>
       )}

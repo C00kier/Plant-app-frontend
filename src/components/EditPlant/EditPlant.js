@@ -1,88 +1,51 @@
 import "./EditPlant.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export default function AddPlant({ close, plant, rooms }) {
-  const [todaysDate, setTodaysDate] = useState(getCurrentDate());
+export default function EditPlant({
+  close,
+  plant,
+  token,
+  rooms,
+  getUserPlants,
+  getUserRooms,
+}) {
   const [alias, setAlias] = useState(plant.alias);
-  const [lastWater, setLastWater] = useState();
-  const [lastFertilizer, setLastFertilizer] = useState();
-  const [lastRepotted, setLastRepotted] = useState();
-  const [image, setImage] = useState();
   const [wasPlantAdded, setWasPlantAdded] = useState(false);
-  useEffect(() => {
-    if (plant.alias !== undefined) {
-      try {
-        setImage(
-          require("../../assets/plants/" +
-            plant.alias.replace(/\s/g, "-") +
-            "-image.jpg")
-        );
-      } catch (e) {
-        setImage(require("../../assets/common/blank.png"));
-      }
-    }
-  }, [plant.alias]);
-
-  function getCurrentDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
-    const day = today.getDate().toString().padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  }
-
-  function manageFertilizerDate(e) {
-    if (e.target.value === null) {
-      setLastFertilizer(null);
-    } else if (e.target.value === "-20") {
-      const result = new Date(getCurrentDate());
-      result.setDate(result.getDate() - 20);
-      setLastFertilizer(result);
-    } else if (e.target.value === "-100") {
-      const result = new Date(getCurrentDate());
-      result.setDate(result.getDate() - 100);
-      setLastFertilizer(result);
-    }
-  }
-
-  function manageReportDate(e) {
-    if (e.target.value === null) {
-      setLastRepotted(null);
-    } else if (e.target.value === "-365") {
-      const result = new Date(getCurrentDate());
-      result.setDate(result.getDate() - 365);
-      setLastRepotted(result);
-    } else if (e.target.value === "-1000") {
-      const result = new Date(getCurrentDate());
-      result.setDate(result.getDate() - 1000);
-      setLastRepotted(result);
-    }
-  }
+  const [room, setRoom] = useState(plant.room);
+  const [wasPageUpdated, setWasPageUpdated] = useState(false);
 
   async function submit() {
-    console.log(lastWater);
-    const response = await fetch("http://localhost:8080/user-plant/add", {
-      // method: 'POST',
-      // headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`
-      // },
-      // body: JSON.stringify({
-      //     user: {
-      //         userId: userId
-      //     },
-      //     plant: {
-      //         plantId: plantId
-      //     },
-      //     alias: alias,
-      //     lastWater: new Date(lastWater),
-      //     lastFertilizer: lastFertilizer,
-      //     lastRepotted: lastRepotted
-      // })
-    });
+    if (room) {
+      const responseRoom = await fetch(
+        `http://localhost:8080/user-plant/${plant.userPlantId}/room?roomName=${room}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(responseRoom);
+    }
 
+    if (alias !== plant.alias) {
+      const responseAlias = await fetch(
+        `http://localhost:8080/user-plant/${plant.userPlantId}/alias?alias=${alias}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(responseAlias);
+    }
+
+    getUserPlants();
+    getUserRooms();
+    setWasPageUpdated(!wasPageUpdated);
     setWasPlantAdded(true);
     setTimeout(() => {
       close();
@@ -94,10 +57,7 @@ export default function AddPlant({ close, plant, rooms }) {
       <div id="background-shade">
         {wasPlantAdded ? (
           <div id="edit-plant-container">
-            <div id="plant-edit-image"></div>
-            <div id="plant-edit-message-container">
-              <span id="plant-edit-message">Zauktualizowano roślinę!</span>
-            </div>
+            <p id="plant-edit-message">Zauktualizowano roślinę!</p>
           </div>
         ) : (
           <div id="edit-plant-container">
@@ -107,65 +67,24 @@ export default function AddPlant({ close, plant, rooms }) {
             <div id="edit-plant-main-container">
               <div id="restore-password-close-bttn" onClick={close}></div>
               <div id="room-container" className="edit-plant-input-container">
-                <span>Pokój (opcjonalnie):</span>
+                <span>Pokój:</span>
                 <select
                   id="room-input"
                   className="edit-plant-input-dropdown"
                   disabled={!rooms.length === 0}
+                  onChange={(e) => setRoom(e.target.value)}
+                  value={room}
                 >
-                  {rooms.map((room) => (
-                    <option value={room}>
+                  {rooms.map((room, index) => (
+                    <option value={room} key={index}>
                       {room.charAt(0).toUpperCase() +
                         room.slice(1, room.length)}
                     </option>
                   ))}
-                  <option value="">Bez pokoju</option>
-                </select>
-              </div>
-              <div
-                id="last-water-container"
-                className="edit-plant-input-container"
-              >
-                <span>Ostatnio podlewane:</span>
-                <input
-                  type="date"
-                  onChange={(e) => setLastWater(e.target.value)}
-                  defaultValue={todaysDate}
-                  id="last-water-input"
-                ></input>
-              </div>
-              <div
-                id="last-fertilizer-container"
-                className="edit-plant-input-container"
-              >
-                <span>Ostatnie nawożenie: </span>
-                <select
-                  id="last-fertilizer-input"
-                  className="edit-plant-input-dropdown"
-                  onChange={(e) => manageFertilizerDate(e)}
-                >
-                  <option value={null}>Nigdy</option>
-                  <option value={"-20"}>W ciągu ostatniego miesiąca</option>
-                  <option value={"-100"}>Dłużej niż miesiąc temu</option>
-                </select>
-              </div>
-              <div
-                id="last-repotted-container"
-                className="edit-plant-input-container"
-              >
-                <span>Ostatnie przesadzenie:</span>
-                <select
-                  id="last-repotted-input"
-                  className="edit-plant-input-dropdown"
-                  onChange={(e) => manageReportDate(e)}
-                >
-                  <option value={null}>Nigdy</option>
-                  <option value={"-365"}>W ciągu ostatniego roku</option>
-                  <option value={"-1000"}>Dłużej niż rok temu</option>
                 </select>
               </div>
               <div id="alias-container" className="edit-plant-input-container">
-                <span>Nazwa rośliny (opcjonalnie): </span>
+                <span>Alias: </span>
                 <input
                   type="text"
                   placeholder={plant.alias}

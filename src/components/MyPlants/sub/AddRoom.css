@@ -1,0 +1,84 @@
+.add-room-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.add-room-window{
+    border-radius: 25px;
+}
+
+.add-room-content {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-room-content p {
+  margin-bottom: 1em;
+}
+
+.add-room-window {
+  background: white;
+}
+
+.close-button {
+  background-image: url("../../../assets/common/x-letter.256x256.png");
+  width: 1em;
+  height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 0.7em;
+  margin-right: 0.7em;
+  cursor: pointer;
+  display:flex;
+  align-items: flex-end;
+}
+
+.close-button-container{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.add-room-input {
+  
+  height: 5vh;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-size: 1.2em;
+  box-sizing: border-box;
+  padding-left: 0.7em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  
+}
+
+.save-button {
+  background-color: #2d6a4f;
+  color: var(--white-lower-contrast);
+  display: flex;
+  width: 8em;
+  min-height: 4em;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #208d5c;
+    transition: all 0.3s ease-in-out;
+  }
