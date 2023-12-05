@@ -13,38 +13,40 @@ export default function PlantPage() {
   const isLastPageMyPlants = location.state.isLastPageMyPlants;
   const navigate = useNavigate();
 
-    useEffect(() => {
-        if (plant !== undefined) {
-            setBackgroundImage(require("../../assets/plants/" + plant.botanicalName.replace(/\s/g, "-") + "-image.jpg"));
-            console.log(plant);
-        }
-    }, [plant])
+  useEffect(() => {
+    if (plant !== undefined) {
+      setBackgroundImage(
+        require("../../assets/plants/" +
+          plant.botanicalName.replace(/\s/g, "-") +
+          "-image.jpg")
+      );
+      console.log(plant);
+    }
+  }, [plant]);
 
   const navigateToMyPlants = () => {
     navigate("/", { state: { myPlants: true } });
   };
 
-
   const navigateToSearch = () => {
     navigate("/search");
   };
 
-    async function getPlantByID() {
-        const response = await fetch('http://localhost:8080/plant/' + id, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        if (response.status === 200) {
-            setPlant(await response.json());
-            setPlantDownloaded(true);
-            
-
-        } if (response.status === 401) {
-            //todo
-        }
-
+  async function getPlantByID() {
+    const response = await fetch("http://localhost:8080/plant/" + id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      setPlant(await response.json());
+      setPlantDownloaded(true);
+    }
+    if (response.status === 401) {
+      //todo
+    }
+  }
 
   useEffect(() => {
     if (plant !== undefined) {
@@ -75,7 +77,7 @@ export default function PlantPage() {
   useEffect(() => {
     getPlantByID();
   }, []);
-      
+
   return plantDownloaded ? (
     <>
       <div
