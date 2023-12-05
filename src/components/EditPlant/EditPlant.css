@@ -9,8 +9,7 @@
   gap: 2em;
   position: fixed;
   top: 20%;
-  left: 25%;
-  width: 50%;
+  width: 30em;
   height: 35%;
 }
 
@@ -37,7 +36,7 @@ font-size: 2em;;
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
-  width: 70%;
+  width: 50%;
   font-size: 1em;
   font-weight: 600;
   gap: 0.5em;
@@ -73,7 +72,7 @@ font-size: 2em;;
 
 #edit-plant-bttn-message {
   color: white;
-  font-size: 1.7em;
+  font-size: 1.3em;
  
 }
 

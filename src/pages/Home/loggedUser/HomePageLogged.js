@@ -2,6 +2,7 @@ import "./HomePageLogged.css";
 
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 //constants
 import COMPONENT_STATE from "../../../constants/myAccountComponentStates.js";
@@ -17,86 +18,113 @@ import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js
 
 export const functionalityElementContext = React.createContext();
 
-
 export default function HomePageDesktopLogged({ userId, token }) {
-    const [functionalityElement, setFunctionalityElement] = useState(COMPONENT_STATE.COCKPIT);
-    const [userPlants, setUserPlants] = useState();
-    const [rooms, setRooms] = useState();
-    async function getUserPlants() {
-        try {
-            const response = await fetch('http://localhost:8080/user-plant/' + userId, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-            });
+  const location = useLocation();
+  const [functionalityElement, setFunctionalityElement] = useState(
+    COMPONENT_STATE.COCKPIT
+  );
+  const [userPlants, setUserPlants] = useState();
+  const [rooms, setRooms] = useState();
+  const myPlants = location.state ? location.state.myPlants : false;
 
-            if (!response.ok) {
-                console.error('Failed to fetch user plants:', response.status, response.statusText);
-                return;
-            }
-
-            const data = await response.json();
-            setUserPlants(data);
-
-        } catch (error) {
-            console.error('Error fetching user plants:', error.message);
+  async function getUserPlants() {
+    try {
+      const response = await fetch(
+        "http://localhost:8080/user-plant/" + userId,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
+
+      if (!response.ok) {
+        console.error(
+          "Failed to fetch user plants:",
+          response.status,
+          response.statusText
+        );
+        return;
+      }
+
+      const data = await response.json();
+      setUserPlants(data);
+    } catch (error) {
+      console.error("Error fetching user plants:", error.message);
     }
+  }
 
-    function getUserRooms() {
-        const userRooms = [];
-        userPlants.forEach(plant => {
-            if (!userRooms.includes(plant.room) && plant.room!==null) {
-                userRooms.push(plant.room);
-            }
-        });
-        setRooms(userRooms);
-        console.log(userRooms);
+  function getUserRooms() {
+    const userRooms = [];
+    userPlants.forEach((plant) => {
+      if (!userRooms.includes(plant.room) && plant.room !== null) {
+        userRooms.push(plant.room);
+      }
+    });
+    setRooms(userRooms);
+    console.log(userRooms);
+  }
+
+  useEffect(() => {
+    if (myPlants) setFunctionalityElement(COMPONENT_STATE.MY_PLANTS);
+  }, [myPlants]);
+
+  useEffect(() => {
+    if (userPlants === undefined) getUserPlants();
+    if (userPlants !== undefined) getUserRooms();
+  }, [userPlants]);
+
+  function renderFunctionalityElement() {
+    switch (functionalityElement) {
+      case COMPONENT_STATE.COCKPIT: {
+        return <Cockpit />;
+      }
+      case COMPONENT_STATE.RECOMMENDATION: {
+        return <Recommendation userId={userId} token={token} rooms={rooms} />;
+      }
+      case COMPONENT_STATE.MY_PLANTS: {
+        return (
+          <MyPlants
+            userPlants={userPlants}
+            rooms={rooms}
+            setRooms={setRooms}
+            token={token}
+            getUserPlants={getUserPlants}
+            getUserRooms={getUserRooms}
+          />
+        );
+      }
+      case COMPONENT_STATE.BADGES: {
+        return <Badges />;
+      }
+      case COMPONENT_STATE.SETTINGS: {
+        return (
+          <Settings
+            setFunctionalityElement={setFunctionalityElement}
+            userId={userId}
+          />
+        );
+      }
+      case COMPONENT_STATE.QUIZ: {
+        return <Quiz userId={userId} token={token} />;
+      }
     }
+  }
 
-
-    useEffect(() => {
-        if (userPlants === undefined) getUserPlants();
-        if (userPlants !== undefined) getUserRooms();
-    }, [userPlants])
-
-    function renderFunctionalityElement() {
-        switch (functionalityElement) {
-            case COMPONENT_STATE.COCKPIT: {
-                return <Cockpit />;
-            }
-            case COMPONENT_STATE.RECOMMENDATION: {
-                return <Recommendation userId={userId} token={token} rooms={rooms} />;
-            }
-            case COMPONENT_STATE.MY_PLANTS: {
-                return <MyPlants userPlants={userPlants} rooms={rooms} setRooms={setRooms} token={token} getUserPlants={getUserPlants} getUserRooms={getUserRooms}/>;
-            }
-            case COMPONENT_STATE.BADGES: {
-                return <Badges />;
-            }
-            case COMPONENT_STATE.SETTINGS: {
-                return <Settings setFunctionalityElement={setFunctionalityElement} userId={userId} />;
-            }
-            case COMPONENT_STATE.QUIZ: {
-                return <Quiz userId={userId} token={token} />;
-            }
-        }
-    }
-
-    return (
-        <div className="home-page-logged-container">
-            <functionalityElementContext.Provider value={setFunctionalityElement}>
-                <div className="home-page-logged-content flex-row-center-center">
-                    <div className="home-page-logged-sidebar-container">
-                        <AccountSidebar />
-                    </div>
-                    <div className="home-page-logged-functionality-container">
-                        {renderFunctionalityElement()}
-                    </div>
-                </div>
-            </functionalityElementContext.Provider>
+  return (
+    <div className="home-page-logged-container">
+      <functionalityElementContext.Provider value={setFunctionalityElement}>
+        <div className="home-page-logged-content flex-row-center-center">
+          <div className="home-page-logged-sidebar-container">
+            <AccountSidebar />
+          </div>
+          <div className="home-page-logged-functionality-container">
+            {renderFunctionalityElement()}
+          </div>
         </div>
-    )
+      </functionalityElementContext.Provider>
+    </div>
+  );
 }

@@ -8,6 +8,7 @@ export default function SinglePlantResult({ plant, rooms, token, getUserRooms, g
   const [backgroundImage, setBackgroundImage] = useState();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isEditPlantShown, setIsEditPlantShown] = useState(false);
+  
   useEffect(() => {
     try {
       const image = require(`../../../assets/plants/${plant.plant.botanicalName.replace(

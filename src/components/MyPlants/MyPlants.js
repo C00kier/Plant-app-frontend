@@ -16,10 +16,6 @@ export default function MyPlants({
   const [isAddRoomVisible, setIsAddRoomVisible] = useState(false);
 
   useEffect(() => {
-    console.log(userPlants);
-  }, [userPlants, rooms]);
-
-  useEffect(() => {
     setPlantsToShow(userPlants);
   }, [userPlants]);
 
