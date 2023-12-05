@@ -164,3 +164,8 @@
     height: 3em;
     align-self: center;
 }
+
+/*Cockpit all plants cared*/
+.all-plants-cared-information{
+    font-size: 1.4em;
+}

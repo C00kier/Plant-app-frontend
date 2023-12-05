@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { cookiesContext } from "../../App";
 
 export default function CockpitPerformActionWindow(props) {
-    const { setIsActionMenuVisible, currentAction, userPlant, plantCare, setPlantCare } = props;
+    const { setIsActionMenuVisible, currentAction, userPlant } = props;
     const cookies = useCookies(cookiesContext);
     const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -16,20 +16,25 @@ export default function CockpitPerformActionWindow(props) {
         switch (currentAction.ACTION_TYPE) {
             case 0:
                 await updateDateInDatabase(`${BASE_URL}/user-plant/${userPlant.userPlantId}/last-watering`);
-                setPlantCare(Object.assign(plantCare, {watering: false}));
                 break;
             case 1:
                 await updateDateInDatabase(`${BASE_URL}/user-plant/${userPlant.userPlantId}/last-fertilized`);
-                setPlantCare(Object.assign(plantCare, {fertilizing: false}));
                 break;
             case 2:
                 await updateDateInDatabase(`${BASE_URL}/user-plant/${userPlant.userPlantId}/last-repotted`);
-                setPlantCare(Object.assign(plantCare, {repotting: false}));
                 break;
             default:
                 break;
         }
+        handleRefresh();
     }
+
+    /**
+     * Page refresh function
+     */
+    const handleRefresh = () => {
+        window.location.reload();
+      };
 
     /**
      * Patch request with date inside body on url adress
@@ -56,10 +61,16 @@ export default function CockpitPerformActionWindow(props) {
         }
     }
 
+
+    /**
+     * Function that updates date of action to current date
+     * and hide action menu
+     */
     async function actionNowOnClickEvent() {
         await performActionNow();
         setIsActionMenuVisible(false);
     }
+
 
     /**
      * Disable action menu on clicking outside menu box

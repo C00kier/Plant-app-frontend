@@ -7,6 +7,7 @@ import ACTION_PERIODS from "../../constants/cockpitActionPeriods";
 //components
 import CockpitActionHeader from "./CockpitActionHeader";
 import CockpitActionElement from "./CockpitActionElement";
+import CockpitAllPlantsCared from "./CockpitAllPlantsCared";
 
 
 export default function CockpitWithPlants(props) {
@@ -16,7 +17,11 @@ export default function CockpitWithPlants(props) {
         Tommorow: [],
         Week: []
     });
-    const [plantsRequiredActions, setPlantsRequiredActions] = useState([]);
+    const [plantsRequiredActions, setPlantsRequiredActions] = useState({
+        Today: [],
+        Tommorow: [],
+        Week: []
+    });
     
     useEffect(() => {
         sortPlants();
@@ -25,9 +30,11 @@ export default function CockpitWithPlants(props) {
    /**
     * Function that assign user plants to
         correct period of time in 
-        sortedPlantsByActionDate variable.
+        sortedPlantsByActionDate variable,
+        and assign needed actions for userPlant
+        to plantsRequiredActions variable.
         If period of time is more than Week
-        plant will be not assigned.
+        plant will not be assigned.
     */
     function sortPlants() {
         const sortedPlants = {
@@ -35,16 +42,20 @@ export default function CockpitWithPlants(props) {
             Tommorow: [],
             Week: []
         }
-        const plantCareArray = [];
+        const plantCareArray = {
+        Today: [],
+        Tommorow: [],
+        Week: []
+    };
 
         for (const userPlant of userPlants) {
-            if (shouldBeCared(userPlant, 0, plantCareArray)) {
+            if (shouldBeCared(userPlant, 0, plantCareArray.Today)) {
                 sortedPlants.Today.push(userPlant);
             }
-            else if (shouldBeCared(userPlant, 1, plantCareArray)) {
+            else if (shouldBeCared(userPlant, 1, plantCareArray.Tommorow)) {
                 sortedPlants.Tommorow.push(userPlant);
             }
-            else if (shouldBeCared(userPlant, 7, plantCareArray)) {
+            if (shouldBeCared(userPlant, 6, plantCareArray.Week)) {
                 sortedPlants.Week.push(userPlant);
             }
         }
@@ -114,14 +125,15 @@ export default function CockpitWithPlants(props) {
 
 
     /**
-     * Returns timestamp for adding days to date.
+     * Returns timestamp for adding days to date midnight.
      * @param {Date} date 
      * @param {int} numberOfDays number of days to add to date
      * @returns 
      */
     function addDaysToDateInTimestamp(date, numberOfDays) {
         const numberOfDaysTimestamp = convertNumberOfDaysToTimestamp(numberOfDays);
-        const dateTimestamp = new Date(date).getTime();
+        const dateMidnight = new Date(date).setHours(0,0,0,0);
+        const dateTimestamp = new Date(dateMidnight).getTime();
         return dateTimestamp + numberOfDaysTimestamp;
     }
 
@@ -141,17 +153,23 @@ export default function CockpitWithPlants(props) {
     }
 
 
-    //dodać info jeżeli wszystko jest zadbane.
     return (
         <div className="cockpit-with-plants-container flex-column-center-center">
             <p className="cockpit-with-plants-header">Kokpit</p>
             <div className="cockpit-with-plants-action-container flex-column">
                 {
+                    sortedPlantsByActionDate.Today.length === 0 &&
+                    sortedPlantsByActionDate.Tommorow.length === 0 &&
+                    sortedPlantsByActionDate.Week.length === 0 
+                    &&
+                    <CockpitAllPlantsCared/>
+                }
+                {
                     sortedPlantsByActionDate.Today.length > 0 &&
                     <div className="cockpit-with-plants-today-action-container">
                         <CockpitActionHeader timePeriod={ACTION_PERIODS.TODAY} />
                         {sortedPlantsByActionDate.Today.map((userPlant, index) =>
-                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions}/>
+                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions.Today}/>
                         )}
                     </div>
                 }
@@ -160,7 +178,7 @@ export default function CockpitWithPlants(props) {
                     <div className="cockpit-with-plants-yesterday-action-container">
                         <CockpitActionHeader timePeriod={ACTION_PERIODS.TOMMOROW} />
                         {sortedPlantsByActionDate.Tommorow.map((userPlant, index) =>
-                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions}/>
+                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions.Tommorow}/>
                         )}
                     </div>
                 }
@@ -169,7 +187,7 @@ export default function CockpitWithPlants(props) {
                     <div className="cockpit-with-plants-week-action-container">
                         <CockpitActionHeader timePeriod={ACTION_PERIODS.WEEK} />
                         {sortedPlantsByActionDate.Week.map((userPlant, index) =>
-                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions}/>
+                            <CockpitActionElement key={`userPlant${index}`} userPlant={userPlant} requiredActions={plantsRequiredActions.Week}/>
                         )}
                     </div>
                 }

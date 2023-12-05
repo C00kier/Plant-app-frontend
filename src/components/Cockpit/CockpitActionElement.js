@@ -84,9 +84,7 @@ export default function CockpitActionElement(props) {
                     <CockpitPerformActionWindow
                         setIsActionMenuVisible={setIsActionMenuVisible}
                         currentAction={currentAction}
-                        userPlant={userPlant}
-                        plantCare={plantCare}
-                        setPlantCare={setPlantCare} />
+                        userPlant={userPlant}/>
                 }
                 <img className="cockpit-userplant-image" src={(userPlant.plant.picture !== null) ? userPlant.plant.picture : blankImage} alt="plant" />
                 <span className="cockpit-userplant-alias">{userPlant.alias}</span>
