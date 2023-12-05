@@ -110,7 +110,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
       case COMPONENT_STATE.QUIZ: {
         return <Quiz userId={userId} token={token} />;
       }
-    }
+}
   }
 
   return (
