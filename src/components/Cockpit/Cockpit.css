@@ -1,0 +1,189 @@
+/*Cockpit without plants*/
+
+.cockpit-text {
+    gap: calc(1vh + 1vw);
+    align-items: flex-start;
+    text-align: start;
+    font-size: calc(0.9vh + 0.9vw);
+    font-weight: 600;
+}
+
+.start-quiz-button {
+    align-self: flex-start;
+    padding: calc(0.5vh + 0.5vw) calc(1vh + 1vw);
+    font-size: calc(1vh + 0.75vw);
+    background-color: var( --active-button-color);
+    color: white;
+    border-radius: 25px;
+    border: none;
+}
+
+.start-quiz-button:hover{
+    background-color: var(--active-button-onclick-color);
+}
+
+.green-underscore-text {
+    color: var(--light-green-text-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cockpit-no-plants-container{
+    gap: calc(2.5vh + 2vw);
+}
+
+
+/*Cockpit with plants*/
+
+.cockpit-with-plants-container {
+    gap: calc(2.5vh + 2vw);
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.cockpit-with-plants-header{
+    font-size: calc(2.5vh + 1vw);
+    font-weight: 600;
+}
+
+.cockpit-with-plants-action-container{
+    gap: calc(2vh + 2vw);
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.cockpit-with-plants-column-header{
+    font-size: calc(1vh + 0.75vw);
+    font-weight: 600;
+}
+
+.cockpit-with-plants-action-container-left,
+.cockpit-with-plants-action-container-right{
+    gap: calc(0.75vh + 0.75vw);
+    align-items: flex-start;
+}
+
+.cockpit-with-plants-container hr{
+
+    width: 100%;
+    border-color: white;
+}
+
+
+/*Cockpit action header*/
+.grid-action-container-header{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: start;
+    font-size: calc(1.15vh + 1.15vw);
+}
+
+
+/*Cockpit action element*/
+.grid-action-container-element{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    margin-top: calc(0.5vh + 0.5vw);
+}
+
+.grid-action-icons-container{
+    display: flex;
+    align-items: center;
+    gap: calc(0.5vh + 0.5vw);
+}
+
+.action-icon{
+    width: calc(1.5vh + 1.5vw);
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+
+.cockpit-userplant-image{
+    width: calc(3vh + 3vw);
+    aspect-ratio: 0.85;
+}
+
+.cockpit-userplant-alias{
+    align-self: center;
+    justify-self: flex-start;
+}
+
+/*Cockpit perform action window*/
+.modal-perform-action{
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: var(--action-modal-background);
+}
+
+.perform-action-content{
+    width: calc(15vh + 15vw);
+    z-index: 101;
+
+    background-color: var(--white-lower-contrast);
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+#close-button{
+    grid-column: 5/6; 
+    grid-row: 1/2;
+    aspect-ratio: 1;
+    justify-self: end;
+    align-self: flex-start;
+}
+
+#action-description{
+    grid-column: 2/5;
+    grid-row: 2/3;
+    align-self: center;
+}
+
+#action-now-button{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+#select-date-button{
+    grid-row: 3/4;
+    grid-column: 4/5;
+}
+
+.action-window-button{
+    width: 8em;
+    height: 3em;
+    align-self: center;
+}
+
+.calendar-button{
+    width: calc(5vh + 5vw);
+    height: calc(2vh + 2vw);
+}
+
+.cockpit-calendar{
+    background-color: var(--white-lower-contrast);
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 15px;
+    gap: calc(1vh + 1vw);
+}
+
+.calendar-button-bar{
+    gap:calc(1vh + 1vw);
+}
+
+/*Cockpit all plants cared*/
+.all-plants-cared-information{
+    font-size: 1.4em;
+}
+

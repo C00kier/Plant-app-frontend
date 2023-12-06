@@ -8,6 +8,7 @@
   --active-button-onclick-color:rgb(39, 92, 68);
   --white-lower-contrast: #fdfdfd ;
   --footer-light-green-color: rgb(45,106,79,0.09);
+  --action-modal-background: rgba(0, 0, 0, 0.04);
 }
 
 nav {
