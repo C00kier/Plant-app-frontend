@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./CockpitNoPlants.css";
+import "./Cockpit.css";
 
 //constants
 import PAGES from "../../constants/pages";
