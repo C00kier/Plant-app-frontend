@@ -165,7 +165,25 @@
     align-self: center;
 }
 
+.calendar-button{
+    width: calc(5vh + 5vw);
+    height: calc(2vh + 2vw);
+}
+
+.cockpit-calendar{
+    background-color: var(--white-lower-contrast);
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 15px;
+    gap: calc(1vh + 1vw);
+}
+
+.calendar-button-bar{
+    gap:calc(1vh + 1vw);
+}
+
 /*Cockpit all plants cared*/
 .all-plants-cared-information{
     font-size: 1.4em;
 }
+

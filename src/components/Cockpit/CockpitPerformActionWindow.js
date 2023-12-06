@@ -1,18 +1,23 @@
 import "./Cockpit.css";
 import { useCookies } from "react-cookie";
+import { useState } from "react";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 //imported context
 import { cookiesContext } from "../../App";
 
 export default function CockpitPerformActionWindow(props) {
     const { setIsActionMenuVisible, currentAction, userPlant } = props;
+    const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+    const [date, setDate] = useState(new Date());
     const cookies = useCookies(cookiesContext);
     const BASE_URL = process.env.REACT_APP_BASE_URL;
 
     /**
      * Updates last action date in database to current date based on action type
      */
-    async function performActionNow() {
+    async function performAction() {
         switch (currentAction.ACTION_TYPE) {
             case 0:
                 await updateDateInDatabase(`${BASE_URL}/user-plant/${userPlant.userPlantId}/last-watering`);
@@ -34,7 +39,7 @@ export default function CockpitPerformActionWindow(props) {
      */
     const handleRefresh = () => {
         window.location.reload();
-      };
+    };
 
     /**
      * Patch request with date inside body on url adress
@@ -51,6 +56,7 @@ export default function CockpitPerformActionWindow(props) {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${cookies[0].token}`
                     },
+                    body: JSON.stringify({ date })
                 });
             if (response.status === 200) {
                 return response;
@@ -66,8 +72,8 @@ export default function CockpitPerformActionWindow(props) {
      * Function that updates date of action to current date
      * and hide action menu
      */
-    async function actionNowOnClickEvent() {
-        await performActionNow();
+    async function performActionOnClickEvent() {
+        await performAction();
         setIsActionMenuVisible(false);
     }
 
@@ -82,14 +88,49 @@ export default function CockpitPerformActionWindow(props) {
         }
     }
 
+
+    function calendarButtonOnClickEvent() {
+        setIsCalendarVisible(true);
+    }
+
+    function handleDateChange(newDate) {
+        setDate(newDate);
+    };
+
+    function backButtonCalendarOnClickEvent() {
+        setDate(new Date);
+        setIsCalendarVisible(false);
+    }
+
+    function actionWindowOnClickEvent(){
+        setIsActionMenuVisible(false);
+        setIsCalendarVisible(false);
+    }
+
+
     return (
         <div className="modal-perform-action flex-column-center-center" onClick={(e) => closeModalOnClickOutside(e)}>
-            <div className="perform-action-content">
-                <button id="close-button" onClick={() => setIsActionMenuVisible(false)}>X</button>
-                <span id="action-description">{currentAction.DESCRIPTION}</span>
-                <button id="action-now-button" className="action-window-button" type="button" onClick={async () => await actionNowOnClickEvent()}>{currentAction.ACTION_NOW}</button>
-                <button id="select-date-button" className="action-window-button" type="button">{currentAction.PICK_DATE}</button>
-            </div>
+            {isCalendarVisible ?
+                <div className="cockpit-calendar flex-column-center-center">
+                    <Calendar
+                        className="calendar"
+                        onChange={handleDateChange}
+                        value={date}
+                        maxDate={new Date()}
+                    />
+                    <div className="calendar-button-bar flex-row-center-center">
+                        <button className='calendar-button back-button' onClick={() => backButtonCalendarOnClickEvent()}>Wstecz</button>
+                        <button className='calendar-button confrim-button' onClick={async () => await performActionOnClickEvent()}>Zatwierdź</button>
+                    </div>
+                </div>
+                :
+                <div className="perform-action-content">
+                    <button id="close-button" onClick={() => actionWindowOnClickEvent()}>X</button>
+                    <span id="action-description">{currentAction.DESCRIPTION}</span>
+                    <button id="action-now-button" className="action-window-button" type="button" onClick={async () => await performActionOnClickEvent()}>{currentAction.ACTION_NOW}</button>
+                    <button id="select-date-button" className="action-window-button" type="button" onClick={() => calendarButtonOnClickEvent()}>{currentAction.PICK_DATE}</button>
+                </div>
+            }
         </div>
     )
 }

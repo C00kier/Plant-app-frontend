@@ -74,9 +74,6 @@ export default function CockpitActionElement(props) {
         setCurrentAction(actionMenuDescriptions.REPOTTING);
     }
 
-    //sprawdzenie dat i wyświetlanie obrazków
-
-
     return (
         <>
             <div className="grid-action-container-element">
