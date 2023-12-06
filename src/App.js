@@ -75,7 +75,9 @@ function App() {
               </GoogleOAuthProvider>
             }
           />
-          <Route path={PAGES.LOGIN} element={<LoginPage setCookie={setCookie} />} />
+          <Route path={PAGES.LOGIN} element={
+             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+          <LoginPage setCookie={setCookie} /></GoogleOAuthProvider>} />
           <Route path={PAGES.CONTACT} element={<ContactPage />} />
           <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={PAGES.TERMS} element={<TermsPage />} />
