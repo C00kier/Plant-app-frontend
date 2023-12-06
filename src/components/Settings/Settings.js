@@ -46,10 +46,6 @@ export default function Settings({ setFunctionalityElement, userId }) {
     fetchData();
   }, [userId]);
 
-  useEffect(() => {
-    console.log(userInfo);
-  });
-
   function handleFileChange(e) {
     const file = e.target.files[0];
     setSelectedFile(file);

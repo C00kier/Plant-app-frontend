@@ -39,20 +39,20 @@ export default function ThirdQuestion({ answers,setAnswered }) {
                 <span id='third-question-writing'>Jakie są Twoje umiejętności pielęgnacji roślin?</span>
                 <form id='third-question-form'>
                     <div className='third-question-option'>
-                        <input type='checkbox' name='small' value={0} checked={isFirstChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='easy'>
+                        <input type='checkbox' name='small' value={0} checked={isFirstChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='easy'>
                             Jestem początkującym ogrodnikiem
                         </label>
                     </div>
                     <div className='third-question-option'>
-                        <input type='checkbox' name='medium' value={1} checked={isSecondChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='medium'>
+                        <input type='checkbox' name='medium' value={1} checked={isSecondChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='medium'>
                             Mam już doświadczenie w pielęgnacji roślin
                         </label>
                     </div>
                     <div className='third-question-option'>
-                        <input type='checkbox' name='big' value={2} checked={isThirdChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='hard'>
+                        <input type='checkbox' name='big' value={2} checked={isThirdChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='hard'>
                             Jestem ekspertem w pielęgnacji roślin
                         </label>
                     </div>

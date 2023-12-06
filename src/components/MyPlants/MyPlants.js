@@ -22,8 +22,10 @@ export default function MyPlants({
   function onSearch(e) {
     const searchTerm = e.target.value.toLowerCase();
     setPlantsToShow(
-      userPlants.filter((plant) =>
-        plant.plant.botanicalName.toLowerCase().includes(searchTerm) || plant.alias.toLowerCase().includes(searchTerm)
+      userPlants.filter(
+        (plant) =>
+          plant.plant.botanicalName.toLowerCase().includes(searchTerm) ||
+          plant.alias.toLowerCase().includes(searchTerm)
       )
     );
   }
@@ -90,6 +92,7 @@ export default function MyPlants({
                 plant={plant}
                 rooms={rooms}
                 token={token}
+                getUserPlants={getUserPlants}
                 getUserRooms={getUserRooms}
               ></SinglePlantAll>
             ))}

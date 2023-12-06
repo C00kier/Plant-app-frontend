@@ -20,7 +20,6 @@ export default function PlantPage() {
           plant.botanicalName.replace(/\s/g, "-") +
           "-image.jpg")
       );
-      console.log(plant);
     }
   }, [plant]);
 

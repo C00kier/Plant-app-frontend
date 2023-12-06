@@ -3,12 +3,9 @@ import './PlantDetail.css'
 import { useState } from 'react';
 
 export default function PlantDetail({detailName,description}){
-    // console.log(description)
-    // le formattedDescription;
     const [formattedDescription,setFormattedDescription]=useState(description);
     useEffect(()=>{
         if(description!==undefined){
-            console.log("type",typeof description)
             setFormattedDescription(String(formattedDescription).replaceAll("/","\n"));
         }
     },[description])

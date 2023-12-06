@@ -42,15 +42,17 @@ export default function EditPlant({
       );
       console.log(responseAlias);
     }
-
-    getUserPlants();
-    getUserRooms();
     setWasPageUpdated(!wasPageUpdated);
     setWasPlantAdded(true);
     setTimeout(() => {
       close();
     }, 1000);
   }
+
+  useEffect(() => {
+    getUserPlants();
+    getUserRooms();
+  }, [wasPageUpdated]);
 
   return (
     <>

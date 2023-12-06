@@ -39,20 +39,20 @@ export default function SecondQuestion({answers,setAnswered}){
             <span id='second-question-writing'>Ile miejsca masz dostępnego na rośliny doniczkowe?</span>
             <form id='second-question-form'>
                     <div className='second-question-option'>
-                        <input type='checkbox' name='small' value={0} checked={isFirstChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='small'>
+                        <input type='checkbox' name='small' value={0} checked={isFirstChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='small'>
                             Mieszkam w bloku, w mieszkaniu 1-2 pokojowym
                         </label>
                     </div>
                     <div className='second-question-option'>
-                        <input type='checkbox' name='medium' value={1} checked={isSecondChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='medium'>
+                        <input type='checkbox' name='medium' value={1} checked={isSecondChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='medium'>
                             Mieszkam w bloku, w mieszkaniu 3+ pokojowym
                         </label>
                     </div>
                     <div className='second-question-option'>
-                        <input type='checkbox' name='big' value={2} checked={isThirdChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='big'>
+                        <input type='checkbox' name='big' value={2} checked={isThirdChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='big'>
                             Mieszkam w domu
                         </label>
                     </div>

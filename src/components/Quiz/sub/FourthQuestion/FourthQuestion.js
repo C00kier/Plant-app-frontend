@@ -30,14 +30,14 @@ export default function FourthQuestion({answers,setAnswered}){
                 <span id='fourth-question-writing'>Czy wybierając rośliny interesuje Cię jej zdolność oczyszczania powietrza?</span>
                 <form id='fourth-question-form'>
                     <div className='fourth-question-option'>
-                        <input type='checkbox' name='yes' value={true} checked={isFirstChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='yes'>
+                        <input type='checkbox' name='yes' value={true} checked={isFirstChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='yes'>
                             Tak
                         </label>
                     </div>
                     <div className='fourth-question-option'>
-                        <input type='checkbox' name='no' value={false} checked={isSecondChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='no'>
+                        <input type='checkbox' name='no' value={false} checked={isSecondChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='no'>
                             Nie
                         </label>
                     </div>

@@ -42,23 +42,23 @@ export default function FirstQuestion({ answers, setAnswered }) {
                 <span id='first-question-writing'>Czy przez okna w Twoim mieszkaniu wpada dużo światła?</span>
                 <form id='first-question-form'>
                     <div className='first-question-option'>
-                        <input type='checkbox' name='sunny' value={2} checked={isFirstChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='sunny'>
+                        <input type='checkbox' name='sunny' value={2} checked={isFirstChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='sunny'>
                             Do mojego mieszkania wpada bezpośrednie światło<br></br>
                             słoneczne (mieszkanie jest wschodnie lub zachodnie)
                         </label>
                     </div>
                     <div className='first-question-option'>
-                        <input type='checkbox' name='mid-sunny' value={1} checked={isSecondChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='mid-sunny'>
+                        <input type='checkbox' name='mid-sunny' value={1} checked={isSecondChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='mid-sunny'>
                             Do mojego mieszkania nie wpada bezpośrednie światło<br></br>
                             słoneczne, ale mogę je określić jako jasne (północne lub <br></br>
                             południowe)
                         </label>
                     </div>
                     <div className='first-question-option'>
-                        <input type='checkbox' name='dark' value={0} checked={isThirdChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='dark'>
+                        <input type='checkbox' name='dark' value={0} checked={isThirdChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='dark'>
                             Moje mieszkanie jest raczej ciemne
                         </label>
                     </div>

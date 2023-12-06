@@ -31,14 +31,14 @@ export default function FifthQuestion({ answers, setAnswered, setHasAnimals,hasA
                 <span id='fifth-question-writing'>Czy masz w domu małe dzieci?</span>
                 <form id='fifth-question-form'>
                     <div className='fifth-question-option'>
-                        <input type='checkbox' name='yes' value={false} checked={isFirstChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='yes'>
+                        <input type='checkbox' name='yes' value={false} checked={isFirstChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='yes'>
                             Tak
                         </label>
                     </div>
                     <div className='fifth-question-option'>
-                        <input type='checkbox' name='no' value={true} checked={isSecondChecked} onClick={manageCheckboxClicks}></input>
-                        <label for='no'>
+                        <input type='checkbox' name='no' value={true} checked={isSecondChecked} onChange={manageCheckboxClicks}></input>
+                        <label htmlFor='no'>
                             Nie
                         </label>
                     </div>

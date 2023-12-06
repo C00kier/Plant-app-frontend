@@ -45,7 +45,7 @@ export default function Recommendation({ token, userId,rooms }) {
             const data = await response.json();
             if (data !== undefined) setUserQuizAnswers(data);
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     }
 

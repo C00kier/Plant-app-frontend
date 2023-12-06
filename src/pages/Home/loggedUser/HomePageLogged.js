@@ -64,7 +64,6 @@ export default function HomePageDesktopLogged({ userId, token }) {
       }
     });
     setRooms(userRooms);
-    console.log(userRooms);
   }
 
   useEffect(() => {
