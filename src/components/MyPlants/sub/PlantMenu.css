@@ -1,0 +1,35 @@
+.icon-container-info {
+    background-image: url("../../../assets/plant-menu/info.256x256.png");
+    height: 4vh;
+    width: 4vh;
+    margin:0.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .icon-container-info:hover{
+    scale:1.1;
+  }
+  
+  .icon-container-change:hover{
+    scale:1.1;
+  }
+  
+  .icon-container-change {
+    background-image: url("../../../assets/plant-menu/edit.256x254.png");
+    height: 4vh;
+    width: 4vh;
+    margin:0.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  
+  .icon-container{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    gap:2em;
+  }

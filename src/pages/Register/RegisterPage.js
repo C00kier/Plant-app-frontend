@@ -6,7 +6,7 @@ import eyeHide from "../../assets/RegisterPage/eyeHide.png";
 import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage(props) {
-  const { setCookie } = props;
+  const {setCookie} = props;
 
   const [showRules, setShowRules] = useState(false);
   const [formData, setFormData] = useState({
@@ -51,7 +51,7 @@ export default function RegisterPage(props) {
     }
   }
 
-
+  
 
   function eyeIconEvent() {
     setIsPasswordShown(!isPasswordShown);
@@ -81,8 +81,8 @@ export default function RegisterPage(props) {
           return response.json();
         })
         .then((data) => {
-          setCookie("token", data.token, { path: "/" });
-          setCookie("userId", data.userId, { path: "/" });
+          setCookie("token", data.token, {path: "/"});
+          setCookie("userId", data.userId, {path: "/"});
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -107,8 +107,8 @@ export default function RegisterPage(props) {
         return response.json()
       })
       .then((data) => {
-        setCookie("token", data.token, { path: "/" });
-        setCookie("userId", data.userId, { path: "/" });
+        setCookie("token", data.token, {path: "/"});
+        setCookie("userId", data.userId, {path: "/"});
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -178,7 +178,7 @@ export default function RegisterPage(props) {
             </p>
             <div id="register-button-section">
               <div id="accept-rules">
-                <input id='accept-rules-checkbox' type="checkbox" onClick={handleAcceptRules}></input>
+                <input type="checkbox" onClick={handleAcceptRules}></input>
                 <p className="accept-rules">Akceptuje</p>
                 <p
                   id="rules-link"
@@ -200,14 +200,9 @@ export default function RegisterPage(props) {
               <div id="register-button" onClick={handleRegisterClick}>
                 <span>Zarejestruj</span>
               </div>
-
               <div className="have-account-container">
                 <p>Masz już konto?</p><p className="hyper-link" onClick={navigateToLogin}>zaloguj się!</p></div>
-
-            </div>
-            <div id="google-login-container">
               <GoogleLogin
-                size={"large"}
                 onSuccess={(credentialResponse) => {
                   handleGoogleSignIn(credentialResponse)
                 }}
