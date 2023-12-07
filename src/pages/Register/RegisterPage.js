@@ -4,11 +4,12 @@ import { GoogleLogin } from "@react-oauth/google";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
 import { useNavigate } from "react-router-dom";
+import PAGES from "../../constants/pages";
 
 export default function RegisterPage(props) {
-  const {setCookie} = props;
+  const { setCookie } = props;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const [showRules, setShowRules] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -51,7 +52,7 @@ export default function RegisterPage(props) {
     }
   }
 
-  
+
 
   function eyeIconEvent() {
     setIsPasswordShown(!isPasswordShown);
@@ -68,7 +69,7 @@ export default function RegisterPage(props) {
       password: formData.password,
     };
     if (formData.acceptRules === true) {
-      fetch("http://localhost:8080/auth/register", {
+      fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,8 +82,8 @@ export default function RegisterPage(props) {
           return response.json();
         })
         .then((data) => {
-          setCookie("token", data.token, {path: "/"});
-          setCookie("userId", data.userId, {path: "/"});
+          setCookie("token", data.token, { path: "/" });
+          setCookie("userId", data.userId, { path: "/" });
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -93,7 +94,7 @@ export default function RegisterPage(props) {
     }
   };
   const handleGoogleSignIn = (request) => {
-    fetch("http://localhost:8080/auth/authenticate/google", {
+    fetch(`${BASE_URL}/auth/authenticate/google`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,113 +108,107 @@ export default function RegisterPage(props) {
         return response.json()
       })
       .then((data) => {
-        setCookie("token", data.token, {path: "/"});
-        setCookie("userId", data.userId, {path: "/"});
+        setCookie("token", data.token, { path: "/" });
+        setCookie("userId", data.userId, { path: "/" });
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }
 
+  function navigateToTerms() {
+    navigate(PAGES.TERMS);
+  }
 
   return (
     <>
-      {showRules ? (
-        <div id="rules">
-          <h1>Regulamin</h1>
-          <div id="register-button" onClick={() => setShowRules(!showRules)}>
-            <span>Back</span>
-          </div>
-        </div>
-      ) : (
-        <div id="register-page">
-          <div id="register-form-section">
-            <p id="register-communicate">Rejestracja</p>
-            <p id="email-communicate">
-              Adres e-mail<span> *</span>
-            </p>
+      <div id="register-page">
+        <div id="register-form-section">
+          <p id="register-communicate">Rejestracja</p>
+          <p id="email-communicate">
+            Adres e-mail<span> *</span>
+          </p>
+          <input
+            autoComplete="off"
+            type="text"
+            id="email-input"
+            className="form-input"
+            onChange={emailInputChangeEvent}
+          ></input>
+          <p
+            className={
+              isEmailValid
+                ? "informative-text-correct"
+                : "informative-text-incorrect"
+            }
+          >
+            * Proszę o wprowadzenie poprawnego adresu email
+          </p>
+          <p id="password-communicate">
+            Hasło<span> *</span>
+          </p>
+          <div className="pasword-input-container">
             <input
               autoComplete="off"
-              type="text"
-              id="email-input"
+              type={isPasswordShown ? "text" : "password"}
+              id="password-input"
               className="form-input"
-              onChange={emailInputChangeEvent}
+              onChange={passwordInputChangeEvent}
             ></input>
-            <p
-              className={
-                isEmailValid
-                  ? "informative-text-correct"
-                  : "informative-text-incorrect"
-              }
-            >
-              * Proszę o wprowadzenie poprawnego adresu email
-            </p>
-            <p id="password-communicate">
-              Hasło<span> *</span>
-            </p>
-            <div className="pasword-input-container">
-              <input
-                autoComplete="off"
-                type={isPasswordShown ? "text" : "password"}
-                id="password-input"
-                className="form-input"
-                onChange={passwordInputChangeEvent}
-              ></input>
-              <img
-                className={isPasswordShown ? "eye-icon2" : "eye-icon1"}
-                src={isPasswordShown ? eyeHide : eyeShow}
-                onClick={() => eyeIconEvent()}
-                alt=""
-              />
+            <img
+              className={isPasswordShown ? "eye-icon2" : "eye-icon1"}
+              src={isPasswordShown ? eyeHide : eyeShow}
+              onClick={() => eyeIconEvent()}
+              alt=""
+            />
+          </div>
+          <p
+            className={
+              isPasswordValid
+                ? "informative-text-correct"
+                : "informative-text-incorrect"
+            }
+          >
+            * Hasło musi zawierać 8-16 znaków, conajmniej 1 cyfrę i znak
+            specjalny
+          </p>
+          <div id="register-button-section">
+            <div id="accept-rules">
+              <input type="checkbox" onClick={handleAcceptRules}></input>
+              <p className="accept-rules">Akceptuje</p>
+              <p
+                id="rules-link"
+                className="hyper-link"
+                onClick={() => navigateToTerms()}
+              >
+                regulamin
+              </p><p className={
+                isTermsMpromptShown
+                  ? "informative-text-incorrect" : "informative-text-correct"
+              } id="accept-rules-"> * Aby zarejestrować się, zaakceptuj regulamin</p>
             </div>
-            <p
-              className={
-                isPasswordValid
-                  ? "informative-text-correct"
-                  : "informative-text-incorrect"
-              }
-            >
-              * Hasło musi zawierać 8-16 znaków, conajmniej 1 cyfrę i znak
-              specjalny
+            <p id="rodo-text">
+              Twoje dane osobowe będą wykorzystywane aby dostosować działanie
+              strony do twoich potrzeb, do zarządzania dostępem do Twojego
+              konta oraz do innych celów opisanych w naszej polityka
+              prywatności.
             </p>
-            <div id="register-button-section">
-              <div id="accept-rules">
-                <input type="checkbox" onClick={handleAcceptRules}></input>
-                <p className="accept-rules">Akceptuje</p>
-                <p
-                  id="rules-link"
-                  className="hyper-link"
-                  onClick={() => setShowRules(!showRules)}
-                >
-                  regulamin
-                </p><p className={
-                  isTermsMpromptShown
-                    ? "informative-text-incorrect" : "informative-text-correct"
-                } id="accept-rules-"> * Aby zarejestrować się, zaakceptuj regulamin</p>
-              </div>
-              <p id="rodo-text">
-                Twoje dane osobowe będą wykorzystywane aby dostosować działanie
-                strony do twoich potrzeb, do zarządzania dostępem do Twojego
-                konta oraz do innych celów opisanych w naszej polityka
-                prywatności.
-              </p>
-              <div id="register-button" onClick={handleRegisterClick}>
-                <span>Zarejestruj</span>
-              </div>
-              <div className="have-account-container">
-                <p>Masz już konto?</p><p className="hyper-link" onClick={navigateToLogin}>zaloguj się!</p></div>
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  handleGoogleSignIn(credentialResponse)
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              />
+            <div id="register-button" onClick={handleRegisterClick}>
+              <span>Zarejestruj</span>
             </div>
+            <div className="have-account-container">
+              <p>Masz już konto?</p><p className="hyper-link" onClick={navigateToLogin}>zaloguj się!</p></div>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                handleGoogleSignIn(credentialResponse)
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
