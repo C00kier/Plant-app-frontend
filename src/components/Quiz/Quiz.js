@@ -25,9 +25,9 @@ export default function Quiz({ userId, token }) {
 
     function manageIndex(e) {
         setIsCurrentQuestionAnswered(false);
-        if ((e.target.id == 'prev-button' || e.target.id === 'back') && index > 1) {
+        if ((e.target.id === 'prev-button' || e.target.id === 'back') && index > 1) {
             setIndex(index - 1);
-        } else if ((e.target.id == 'next-button' || e.target.id === 'next') && index < 6) {
+        } else if ((e.target.id === 'next-button' || e.target.id === 'next') && index < 6) {
             setIndex(index + 1)
         }
     }

@@ -7,19 +7,19 @@ export default function FourthQuestion({answers,setAnswered}){
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     useEffect(()=>{
         if(isFirstChecked || isSecondChecked) setAnswered(true);
-        if(answers.isAirPurifying=='true'){
+        if(answers.isAirPurifying === 'true'){
             setIsFirstChecked(true);
-        }else if(answers.isAirPurifying=='false'){
+        }else if(answers.isAirPurifying==='false'){
             setIsSecondChecked(true);
         }
     },[isFirstChecked,isSecondChecked])
 
     function manageCheckboxClicks(e) {
         answers.isAirPurifying = e.target.value;
-        if (e.target.name == 'yes') {
+        if (e.target.name === 'yes') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
-        } else if (e.target.name == 'no') {
+        } else if (e.target.name === 'no') {
             setIsFirstChecked(false);
             setIsSecondChecked(true);
         } 
