@@ -54,6 +54,7 @@ export default function LoginPage(props) {
       setCookie("userId", data.userId, { path: "/" });
     }
     if (response.status === 401 || response.status === 403) {
+      setDisplayLoadingScreen(false);
       setLoginCredentialsVisibility("block");
     }
   }
