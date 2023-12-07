@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Sprout
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Sprout is a user-friendly application designed to help plant enthusiasts keep track of their plant collection. Whether you're a seasoned plant parent or just starting your green journey, this app provides a convenient way to manage and care for your plants.
 
-## Available Scripts
+## Backend
+For the application to work, the backend must also be launched.
 
-In the project directory, you can run:
+https://github.com/C00kier/Plant-app-backend
 
-### `npm start`
+## Demo
+https://youtu.be/RRMcCNbmFWc
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Searching for Plant Details: Easily search for detailed information about specific plants. Access care tips, growth patterns, and more at your fingertips.
 
-### `npm test`
+- Blog Articles: Stay informed and entertained with a curated collection of blog articles covering various topics related to plant care, gardening tips, and the latest trends in the plant community.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Gamification: Make plant care fun by incorporating gamification elements. Earn badges, gain points, and set personal challenges to keep your plant care routine engaging.
 
-### `npm run build`
+- Recommendation Based on Quiz: Answer a few questions in the app's quiz, and receive personalized plant recommendations tailored to your lifestyle, environment, and preferences.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Care System: Get reminder and manage watering, fertilizing, and repotting of your plants.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Assigning Plants to Rooms: Organize your plants by assigning them to specific rooms in your home.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Assigning Special Names to Plants: Add a personal touch by giving special names to your plants. Create a connection with your green companions and make plant care a more enjoyable experience.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To install the Sprout, follow these steps:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Clone the repository to your local machine.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    git clone https://github.com/C00kier/Plant-app-frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Navigate to the project directory.
 
-## Learn More
+    cd Plant-app-frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Install dependencies.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    npm install
 
-### Code Splitting
+Start the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    npm start
 
-### Analyzing the Bundle Size
+Visit http://localhost:3000 in your web browser to access the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Requirements
 
-### Making a Progressive Web App
+    Node.js (version 12 or higher)
+    npm (Node Package Manager)
+    Modern web browser (Chrome, Firefox, Safari, or Edge)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+If you encounter any issues or have questions, please open an issue.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Happy planting! 🌱🌿
