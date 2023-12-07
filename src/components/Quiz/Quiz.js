@@ -35,7 +35,6 @@ export default function Quiz({ userId, token }) {
     async function submit() {
         
         answers.isToxic = hasAnimals && hasChildren;
-        console.log(answers.isToxic);
         const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
         &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
             method: 'PUT',

@@ -91,7 +91,7 @@ export default function Recommendation({ token, userId,rooms }) {
                             <span id="add-to-my-plants-communicate" className="criteria-communicate">Dodaj do<br></br> moich roślin</span>
                         </div>
                         <div id="plants-container">
-                            {shouldDisplayRecommeneded ? recommendedPlants.map(plant => <RecommendedPlant plant={plant} quiz={userQuizAnswers}
+                            {shouldDisplayRecommeneded ? recommendedPlants.map((plant, index) => <RecommendedPlant key={index} plant={plant} quiz={userQuizAnswers}
                                 open={open}></RecommendedPlant>) : <></>}
                         </div>
                     </div>
