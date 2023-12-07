@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./PlantMenu.css";
 
-export default function PlantMenu({ plant, clickEvent }) {
+export default function PlantMenu({ plant, clickEvent, getUserRooms }) {
   const navigate = useNavigate();
   const navigateToPlant = () => {
-    navigate("/plant/" + plant.userPlantId, { state: { isLastPageMyPlants: true } });
+    navigate("/plant/" + plant.plant.plantId, {
+      state: { isLastPageMyPlants: true },
+    });
   };
 
   return (

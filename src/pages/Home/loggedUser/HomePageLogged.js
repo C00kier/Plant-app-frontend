@@ -24,7 +24,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
     COMPONENT_STATE.COCKPIT
   );
   const [userPlants, setUserPlants] = useState();
-  const [rooms, setRooms] = useState();
+  const [rooms, setRooms] = useState([]);
   const myPlants = location.state ? location.state.myPlants : false;
   const quiz = location.state ? location.state.quiz : false;
 
@@ -58,7 +58,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
   }
 
   function getUserRooms() {
-    const userRooms = [];
+    const userRooms = rooms;
     userPlants.forEach((plant) => {
       if (!userRooms.includes(plant.room) && plant.room !== null) {
         userRooms.push(plant.room);
@@ -69,7 +69,6 @@ export default function HomePageDesktopLogged({ userId, token }) {
 
   useEffect(() => {
     if (myPlants) setFunctionalityElement(COMPONENT_STATE.MY_PLANTS);
-    
   }, [myPlants, quiz]);
 
   useEffect(() => {
@@ -105,11 +104,18 @@ export default function HomePageDesktopLogged({ userId, token }) {
           <Settings
             setFunctionalityElement={setFunctionalityElement}
             userId={userId}
+            token={token}
           />
         );
       }
       case COMPONENT_STATE.QUIZ: {
-        return <Quiz userId={userId} token={token} setFunctionalityElement={setFunctionalityElement}/>;
+        return (
+          <Quiz
+            userId={userId}
+            token={token}
+            setFunctionalityElement={setFunctionalityElement}
+          />
+        );
       }
     }
   }

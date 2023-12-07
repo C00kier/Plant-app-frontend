@@ -5,10 +5,17 @@ export default function AddRoom({ setIsAddRoomVisible, setRooms, rooms }) {
   const [room, setRoom] = useState(null);
 
   function save() {
-    const roomsToSet = rooms;
-    roomsToSet.push(room);
-    setRooms(roomsToSet);
-    setIsAddRoomVisible(false);
+    const isRoomExists = rooms.some((existingRoom) => existingRoom === room);
+
+    if (isRoomExists) {
+      alert("Room with the same name already exists!");
+    } else {
+      // Create a new array and push the room only if it doesn't exist
+      const roomsToSet = [...rooms, room];
+      setRooms(roomsToSet);
+      setIsAddRoomVisible(false);
+      
+    }
   }
 
   function close() {
