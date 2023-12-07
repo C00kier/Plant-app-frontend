@@ -11,7 +11,6 @@ export default function AddPlant({ close, token, userId, plantId, name, rooms })
     const [image, setImage] = useState();
     const [wasPlantAdded, setWasPlantAdded] = useState(false);
 
-
     
     useEffect(() => {
         if (name !== undefined) {

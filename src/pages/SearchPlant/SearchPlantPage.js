@@ -83,7 +83,7 @@ export default function SearchPlantPage() {
         setShouldRenderPlants(true);
       }
       }else{
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}plant`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/plant`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

@@ -4,7 +4,7 @@ import "./PlantPage.css";
 import PlantDetail from "./sub/PlantDetail/PlantDetail";
 import AddPlant from "../../components/AddPlant/AddPlant"
 
-export default function PlantPage() {
+export default function PlantPage({userId,token}) {
   const location = useLocation();
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
@@ -12,8 +12,49 @@ export default function PlantPage() {
   const [plantDownloaded, setPlantDownloaded] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState();
   const isLastPageMyPlants = location.state.isLastPageMyPlants;
+  const [userPlants, setUserPlants] = useState();
+  const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
   const [wasAddPlantClicked, setWasAddPlantClicked] = useState(false);
+
+  async function getUserPlants() {
+    try {
+      const response = await fetch(
+        "http://localhost:8080/user-plant/" + userId,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error(
+          "Failed to fetch user plants:",
+          response.status,
+          response.statusText
+        );
+        return;
+      }
+
+      const data = await response.json();
+      setUserPlants(data);
+    } catch (error) {
+      console.error("Error fetching user plants:", error.message);
+    }
+  }
+
+  function getUserRooms() {
+    const userRooms = [];
+    userPlants.forEach((plant) => {
+      if (!userRooms.includes(plant.room) && plant.room !== null) {
+        userRooms.push(plant.room);
+      }
+    });
+    setRooms(userRooms);
+  }
 
   useEffect(() => {
     if (plant !== undefined) {
@@ -75,6 +116,10 @@ export default function PlantPage() {
     }
   }
 
+  function close() {
+    setWasAddPlantClicked(!setWasAddPlantClicked)
+}
+
   useEffect(() => {
     getPlantByID();
   }, []);
@@ -82,7 +127,7 @@ export default function PlantPage() {
   return plantDownloaded ? (
 
     <>
-      {wasAddPlantClicked ? <AddPlant></AddPlant> : <></>}
+      {wasAddPlantClicked ? <AddPlant userId={userId} token={token }close={close} plantId={plant.plantId} name={plant.botanicalName} rooms={rooms}></AddPlant> : <></>}
       <div
         className="back-btn"
         onClick={() =>
