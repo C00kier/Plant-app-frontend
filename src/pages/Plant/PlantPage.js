@@ -11,50 +11,10 @@ export default function PlantPage({userId,token}) {
   const [plant, setPlant] = useState();
   const [plantDownloaded, setPlantDownloaded] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState();
-  const isLastPageMyPlants = location.state.isLastPageMyPlants;
-  const [userPlants, setUserPlants] = useState();
+  const isLastPageMyPlants = location.state.isLastPageMyPlants;;
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
   const [wasAddPlantClicked, setWasAddPlantClicked] = useState(false);
-
-  async function getUserPlants() {
-    try {
-      const response = await fetch(
-        "http://localhost:8080/user-plant/" + userId,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        console.error(
-          "Failed to fetch user plants:",
-          response.status,
-          response.statusText
-        );
-        return;
-      }
-
-      const data = await response.json();
-      setUserPlants(data);
-    } catch (error) {
-      console.error("Error fetching user plants:", error.message);
-    }
-  }
-
-  function getUserRooms() {
-    const userRooms = [];
-    userPlants.forEach((plant) => {
-      if (!userRooms.includes(plant.room) && plant.room !== null) {
-        userRooms.push(plant.room);
-      }
-    });
-    setRooms(userRooms);
-  }
 
   useEffect(() => {
     if (plant !== undefined) {
@@ -77,32 +37,6 @@ export default function PlantPage({userId,token}) {
   const navigateToSearch = () => {
     navigate("/search");
   };
-
-  async function getPlantByID() {
-    const response = await fetch("http://localhost:8080/plant/" + id, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.status === 200) {
-      setPlant(await response.json());
-      setPlantDownloaded(true);
-    }
-    if (response.status === 401) {
-      //todo
-    }
-  }
-
-  // useEffect(() => {
-  //   if (plant !== undefined) {
-  //     setBackgroundImage(
-  //       require("../../assets/plants/" +
-  //         plant.botanicalName.replace(/\s/g, "-") +
-  //         "-image.jpg")
-  //     );
-  //   }
-  // }, [plant]);
 
   async function getPlantByID() {
     const response = await fetch("http://localhost:8080/plant/" + id, {

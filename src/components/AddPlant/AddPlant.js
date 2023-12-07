@@ -153,7 +153,7 @@ export default function AddPlant({ close, token, userId, plantId, name, rooms })
                     </div>
                     <div id='add-plant-bttn-container'>
                         <div id='add-plant-bttn' onClick={submit}>
-                            <span id='add-plant-bttn-message' onClick={submit}>Dodaj roślinę</span>
+                            <span id='add-plant-bttn-message'>Dodaj roślinę</span>
                         </div>
                     </div>
 

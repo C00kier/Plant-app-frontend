@@ -1,13 +1,19 @@
 import "./Settings.css";
 import DeletePopUp from "./DeletePopUp.js";
+import { useNavigate } from "react-router-dom";
 import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
-
+import PAGES from "../../constants/pages.js";
 import userIconImage from "../../../src/assets/user/user-circle.256x256.png";
 import { useState, useEffect } from "react";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
 
-export default function Settings({ setFunctionalityElement, userId, token }) {
+export default function Settings({
+  setFunctionalityElement,
+  userId,
+  token,
+  removeCookie,
+}) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [nickName, setNickName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -20,6 +26,7 @@ export default function Settings({ setFunctionalityElement, userId, token }) {
   const [updated, setUpdated] = useState("");
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +85,12 @@ export default function Settings({ setFunctionalityElement, userId, token }) {
     setIsPasswordShown(!isPasswordShown);
   }
 
+  const handleSignOut = () => {
+    removeCookie("token");
+    removeCookie("userId");
+    navigate(PAGES.HOME);
+  };
+
   async function updateEvent(toUpdate) {
     let requestData = updateSwitch(toUpdate);
 
@@ -86,11 +99,13 @@ export default function Settings({ setFunctionalityElement, userId, token }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(requestData),
       });
 
       if (response.status === 200) {
+        handleSignOut();
         console.log(response);
         setUpdated(toUpdate);
       }
@@ -105,12 +120,14 @@ export default function Settings({ setFunctionalityElement, userId, token }) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(userInfo.userId),
       });
 
       if (response.status === 200) {
         console.log(response);
+        removeCookie();
       }
     } catch (error) {
       console.error("Error:", error);

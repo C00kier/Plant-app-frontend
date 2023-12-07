@@ -33,11 +33,11 @@ const Post = () => {
     
     useEffect(()=>{
         if (post.article) {
-            const articleLines = post.article.split('\n')
+            const articleLines = post.article.split('/n')
             .map((line, index) => (
                 <span key={index}>
                     {line}
-                    <br />
+                    <br /><br />
                 </span>
             ));
             setFormattedArticle(articleLines);

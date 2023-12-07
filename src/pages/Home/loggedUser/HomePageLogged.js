@@ -18,7 +18,7 @@ import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js
 
 export const functionalityElementContext = React.createContext();
 
-export default function HomePageDesktopLogged({ userId, token }) {
+export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
   const location = useLocation();
   const [functionalityElement, setFunctionalityElement] = useState(
     COMPONENT_STATE.COCKPIT
@@ -105,6 +105,7 @@ export default function HomePageDesktopLogged({ userId, token }) {
             setFunctionalityElement={setFunctionalityElement}
             userId={userId}
             token={token}
+            removeCookie={removeCookie}
           />
         );
       }
