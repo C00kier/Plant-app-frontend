@@ -36,6 +36,7 @@ import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 
 //utils
 import PrivateRoutes from "./utils/PrivateRoutes";
+import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
 
 //context export
 export const cookiesContext = React.createContext();
@@ -64,20 +65,11 @@ function App() {
             </>
           }
         >
-          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token}/> : <HomePage />} />
+          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token} /> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
-          <Route
-            path={PAGES.REGISTER}
-            element={
-              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-                <RegisterPage setCookie={setCookie} />
-              </GoogleOAuthProvider>
-            }
-          />
-          <Route path={PAGES.LOGIN} element={
-             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-          <LoginPage setCookie={setCookie} /></GoogleOAuthProvider>} />
+
+
           <Route path={PAGES.CONTACT} element={<ContactPage />} />
           <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={PAGES.TERMS} element={<TermsPage />} />
@@ -85,6 +77,19 @@ function App() {
           <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
           <Route path={PAGES.BLOG} element={<BlogPage />} />
           <Route path={PAGES.POST} element={<Post />} />
+          <Route element={<UnauthorizedRoutes token={cookies.token} />}>
+            <Route path={PAGES.LOGIN} element={
+              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+                <LoginPage setCookie={setCookie} /></GoogleOAuthProvider>} />
+            <Route
+              path={PAGES.REGISTER}
+              element={
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+                  <RegisterPage setCookie={setCookie} />
+                </GoogleOAuthProvider>
+              }
+            />
+          </Route>
           <Route element={<PrivateRoutes token={cookies.token} />} >
             <Route path={PAGES.FORUM} element={<ForumPage />} />
           </Route>
