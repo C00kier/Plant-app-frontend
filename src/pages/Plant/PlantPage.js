@@ -58,11 +58,15 @@ export default function PlantPage({userId,token}) {
 
   useEffect(() => {
     if (plant !== undefined) {
+      try{
       setBackgroundImage(
         require("../../assets/plants/" +
           plant.botanicalName.replace(/\s/g, "-") +
           "-image.jpg")
       );
+      }catch(e){
+        setBackgroundImage(require("../../assets/common/blank.png"))
+      }
     }
   }, [plant]);
 
@@ -90,15 +94,15 @@ export default function PlantPage({userId,token}) {
     }
   }
 
-  useEffect(() => {
-    if (plant !== undefined) {
-      setBackgroundImage(
-        require("../../assets/plants/" +
-          plant.botanicalName.replace(/\s/g, "-") +
-          "-image.jpg")
-      );
-    }
-  }, [plant]);
+  // useEffect(() => {
+  //   if (plant !== undefined) {
+  //     setBackgroundImage(
+  //       require("../../assets/plants/" +
+  //         plant.botanicalName.replace(/\s/g, "-") +
+  //         "-image.jpg")
+  //     );
+  //   }
+  // }, [plant]);
 
   async function getPlantByID() {
     const response = await fetch("http://localhost:8080/plant/" + id, {
