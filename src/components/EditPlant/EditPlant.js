@@ -15,19 +15,7 @@ export default function EditPlant({
   const [wasPageUpdated, setWasPageUpdated] = useState(false);
 
   async function submit() {
-    if (room !== "brak") {
-      const responseRoom = await fetch(
-        `http://localhost:8080/user-plant/${plant.userPlantId}/room?roomName=${room}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(responseRoom);
-    } else {
+    if (room === 0) {
       const responseNoRoom = await fetch(
         `http://localhost:8080/user-plant/${plant.userPlantId}/room/remove`,
         {
@@ -40,7 +28,19 @@ export default function EditPlant({
       );
       console.log(responseNoRoom);
     }
-
+    if (room !== undefined && room !== null) {
+      const responseRoom = await fetch(
+        `http://localhost:8080/user-plant/${plant.userPlantId}/room?roomName=${room}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(responseRoom);
+    }
     if (alias !== plant.alias) {
       const responseAlias = await fetch(
         `http://localhost:8080/user-plant/${plant.userPlantId}/alias?alias=${alias}`,
@@ -88,13 +88,14 @@ export default function EditPlant({
                   disabled={!rooms.length === 0}
                   onChange={(e) => setRoom(e.target.value)}
                 >
+                  <option></option>
                   {rooms.map((room, index) => (
                     <option value={room} key={index}>
                       {room.charAt(0).toUpperCase() +
                         room.slice(1, room.length)}
                     </option>
                   ))}
-                  <option value={"brak"}>Bez pokoju</option>
+                  <option value={0}>Bez pokoju</option>
                 </select>
               </div>
               <div id="alias-container" className="edit-plant-input-container">

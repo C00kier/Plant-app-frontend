@@ -4,11 +4,17 @@ import "./SinglePlantAll.css";
 import PlantMenu from "./PlantMenu";
 import EditPlant from "../../EditPlant/EditPlant";
 
-export default function SinglePlantResult({ plant, rooms, token, getUserRooms, getUserPlants }) {
+export default function SinglePlantResult({
+  plant,
+  rooms,
+  token,
+  getUserRooms,
+  getUserPlants,
+}) {
   const [backgroundImage, setBackgroundImage] = useState();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isEditPlantShown, setIsEditPlantShown] = useState(false);
-  
+
   useEffect(() => {
     try {
       const image = require(`../../../assets/plants/${plant.plant.botanicalName.replace(
@@ -29,7 +35,14 @@ export default function SinglePlantResult({ plant, rooms, token, getUserRooms, g
   return (
     <>
       {isEditPlantShown ? (
-        <EditPlant close={close} plant={plant} rooms={rooms} token={token} getUserPlants={getUserPlants} getUserRooms={getUserRooms}></EditPlant>
+        <EditPlant
+          close={close}
+          plant={plant}
+          rooms={rooms}
+          token={token}
+          getUserPlants={getUserPlants}
+          getUserRooms={getUserRooms}
+        ></EditPlant>
       ) : (
         <></>
       )}
@@ -49,12 +62,10 @@ export default function SinglePlantResult({ plant, rooms, token, getUserRooms, g
         <div className="plant-name-all">
           <p>{plant.plant.botanicalName}</p>
         </div>
-        {plant.alias.length > 0 ? (
+        {plant.alias && (
           <div className="plant-alias-rooms">
             <span>{plant.alias}</span>
           </div>
-        ) : (
-          <></>
         )}
         <div className="plant-room-all">
           <p>{plant.room}</p>

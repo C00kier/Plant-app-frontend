@@ -105,7 +105,6 @@ export default function Settings({
       });
 
       if (response.status === 200) {
-        handleSignOut();
         console.log(response);
         setUpdated(toUpdate);
       }
@@ -127,7 +126,7 @@ export default function Settings({
 
       if (response.status === 200) {
         console.log(response);
-        removeCookie();
+        handleSignOut();
       }
     } catch (error) {
       console.error("Error:", error);

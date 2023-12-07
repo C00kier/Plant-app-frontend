@@ -3,7 +3,13 @@ import "./SinglePlantRooms.css";
 import PlantMenu from "./PlantMenu";
 import EditPlant from "../../EditPlant/EditPlant";
 
-export default function SinglePlantResult({ plant, rooms, token, getUserPlants, getUserRooms }) {
+export default function SinglePlantResult({
+  plant,
+  rooms,
+  token,
+  getUserPlants,
+  getUserRooms,
+}) {
   const [backgroundImage, setBackgroundImage] = useState();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isEditPlantShown, setIsEditPlantShown] = useState(false);
@@ -28,7 +34,14 @@ export default function SinglePlantResult({ plant, rooms, token, getUserPlants, 
   return (
     <>
       {isEditPlantShown ? (
-        <EditPlant close={close} plant={plant} rooms={rooms} token={token} getUserPlants={getUserPlants} getUserRooms={getUserRooms}></EditPlant>
+        <EditPlant
+          close={close}
+          plant={plant}
+          rooms={rooms}
+          token={token}
+          getUserPlants={getUserPlants}
+          getUserRooms={getUserRooms}
+        ></EditPlant>
       ) : (
         <></>
       )}
@@ -48,12 +61,10 @@ export default function SinglePlantResult({ plant, rooms, token, getUserPlants, 
         <div className="plant-name-rooms">
           <span>{plant.plant.botanicalName}</span>
         </div>
-        {plant.alias.length>0 ? (
+        {plant.alias && (
           <div className="plant-alias-rooms">
             <span>{plant.alias}</span>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </>
