@@ -4,8 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 export default function ContactPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
   const schema = yup
     .object({
       firstName: yup

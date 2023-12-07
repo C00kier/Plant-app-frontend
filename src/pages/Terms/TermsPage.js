@@ -1,6 +1,10 @@
 import "./TermsPage.css";
-
+import { useEffect } from "react";
 export default function TermsPage() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <div className="terms-container">
             <h1>Regulamin forum</h1>
