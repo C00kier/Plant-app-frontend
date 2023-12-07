@@ -123,7 +123,7 @@
 }
 
 #care-difficulty-card-image {
-    background: url(../../../public/hand-holding-plant-image.png);
+    background: url(../../assets/plant-page/hand-holding-plant-image.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60%;
@@ -131,7 +131,7 @@
 }
 
 #sun-card-image {
-    background: url(../../../public/sun-behind-clouds-img.png);
+    background: url(../../assets/plant-page/sun-behind-clouds-img.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60%;
@@ -139,7 +139,7 @@
 }
 
 #plant-care-card-image {
-    background: url(../../../public/watering-soil-image.png);
+    background: url(../../assets/plant-page/watering-soil-image.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60%;
