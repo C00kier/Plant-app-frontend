@@ -7,9 +7,9 @@ export default function FifthQuestion({ answers, setAnswered, setHasAnimals,hasA
     const [isSecondChecked, setIsSecondChecked] = useState(false);
     useEffect(() => {
         if (isFirstChecked || isSecondChecked) setAnswered(true);
-        if (hasAnimals == 'true') {
+        if (hasAnimals === 'true') {
             setIsSecondChecked(true);
-        } else if (hasAnimals == 'false') {
+        } else if (hasAnimals === 'false') {
 
             setIsFirstChecked(true);
         }
@@ -17,10 +17,10 @@ export default function FifthQuestion({ answers, setAnswered, setHasAnimals,hasA
 
     function manageCheckboxClicks(e) {
         setHasAnimals(e.target.value);
-        if (e.target.name == 'yes') {
+        if (e.target.name === 'yes') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
-        } else if (e.target.name == 'no') {
+        } else if (e.target.name === 'no') {
             setIsFirstChecked(false);
             setIsSecondChecked(true);
         }

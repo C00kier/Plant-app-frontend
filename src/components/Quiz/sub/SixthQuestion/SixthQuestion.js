@@ -12,19 +12,19 @@ export default function SixthQuestion({
   const [isSecondChecked, setIsSecondChecked] = useState(false);
   useEffect(() => {
     if (isFirstChecked || isSecondChecked) setAnswered(true);
-    if (hasChildren == "true") {
+    if (hasChildren === "true") {
       setIsSecondChecked(true);
-    } else if (hasChildren == "false") {
+    } else if (hasChildren === "false") {
       setIsFirstChecked(true);
     }
   }, [isFirstChecked, isSecondChecked]);
 
   function manageCheckboxClicks(e) {
     setHasChildren(e.target.value);
-    if (e.target.name == "yes") {
+    if (e.target.name === "yes") {
       setIsFirstChecked(true);
       setIsSecondChecked(false);
-    } else if (e.target.name == "no") {
+    } else if (e.target.name === "no") {
       setIsFirstChecked(false);
       setIsSecondChecked(true);
     }

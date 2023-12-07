@@ -1,39 +1,39 @@
 import "./Recommendation.css";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
-import "./sub/RecommendedPlant";
+import { useState, useEffect, useContext } from "react";
+
 import RecommendedPlant from "./sub/RecommendedPlant";
 import AddPlant from "../AddPlant/AddPlant.js";
+
 //constants
-import PAGES from "../../constants/pages";
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
 import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
 
-export default function Recommendation({ token, userId,rooms }) {
+export default function Recommendation({ token, userId, rooms }) {
     const setFunctionalityElement = useContext(functionalityElementContext);
     const [userQuizAnswers, setUserQuizAnswers] = useState();
     const [recommendedPlants, setRecommendedPlants] = useState();
     const [shouldDisplayRecommeneded, setShouldDisplayRecommended] = useState(false);
     const [shouldDisplayAddPlant, setShouldDisplayAddPlant] = useState(false);
-    const [plantId,setPlantId]=useState();
-    const [image,setImage]=useState();
-    const [name,setName]=useState();
+    const [plantId, setPlantId] = useState();
+    const [image, setImage] = useState();
+    const [name, setName] = useState();
+
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+
     useEffect(() => {
         if (userQuizAnswers === undefined) getUserQuiz(userId);
         if (userQuizAnswers !== undefined) getRecommendedPlants();
+    }, [userQuizAnswers]);
 
-
-    }, [userQuizAnswers])
     useEffect(() => {
         if (recommendedPlants !== undefined) setShouldDisplayRecommended(true);
-    }, [recommendedPlants])
+    }, [recommendedPlants]);
 
     async function getUserQuiz(userId) {
         try {
-            const response = await fetch('http://localhost:8080/quiz/get-quiz-result?userId=' + userId,
+            const response = await fetch(`${BASE_URL}/quiz/get-quiz-result?userId=` + userId,
                 {
                     method: 'GET',
                     headers: {
@@ -42,43 +42,49 @@ export default function Recommendation({ token, userId,rooms }) {
                     }
                 })
 
-            const data = await response.json();
-            if (data !== undefined) setUserQuizAnswers(data);
-        } catch (e) {
-            console.error(e);
+            if (response.status === 200) {
+                const data = await response.json();
+                if (data !== undefined) setUserQuizAnswers(data);
+            }
+        } catch (error) {
+            console.error(`Error fetching data: ${error}`);
         }
     }
 
     async function getRecommendedPlants() {
-        const response = await fetch(`http://localhost:8080/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-        })
-        const data = await response.json();
-        if (data !== undefined) setRecommendedPlants(data);
+        try {
+            const response = await fetch(`${BASE_URL}/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+            })
 
+            if (response.status === 200) {
+                const data = await response.json();
+                if (data !== undefined) setRecommendedPlants(data);
+            }
+        } catch (error) {
+            console.error(`Error fetching data: ${error}`);
+        }
     }
-    function open(e,backgroundImage,botanicalName){
+
+    function open(e, backgroundImage, botanicalName) {
         setShouldDisplayAddPlant(!shouldDisplayAddPlant);
         setPlantId(e.target.id);
         setImage(backgroundImage);
         setName(botanicalName);
     }
 
-    function close(){
+    function close() {
         setShouldDisplayAddPlant(!shouldDisplayAddPlant);
     }
 
-
-
-
     return (
         <>
-            {(shouldDisplayAddPlant ? <AddPlant close={close} userId={userId} plantId={plantId} 
-            token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
+            {(shouldDisplayAddPlant ? <AddPlant close={close} userId={userId} plantId={plantId}
+                token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
                 userQuizAnswers !== undefined ?
                     <div id="recommended-plants-container">
                         <span id="recommended-plants-title">Teraz możesz zobaczyć rekomendowane rośliny do Twojego wnętrza</span>
@@ -92,7 +98,7 @@ export default function Recommendation({ token, userId,rooms }) {
                             <span id="add-to-my-plants-communicate" className="criteria-communicate">Dodaj do<br></br> moich roślin</span>
                         </div>
                         <div id="plants-container">
-                            {shouldDisplayRecommeneded ? recommendedPlants.map(plant => <RecommendedPlant plant={plant} quiz={userQuizAnswers}
+                            {shouldDisplayRecommeneded ? recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} plant={plant} quiz={userQuizAnswers}
                                 open={open}></RecommendedPlant>) : <></>}
                         </div>
                     </div>
