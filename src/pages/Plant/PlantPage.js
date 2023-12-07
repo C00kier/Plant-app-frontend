@@ -4,10 +4,15 @@ import "./PlantPage.css";
 import PlantDetail from "./sub/PlantDetail/PlantDetail";
 import AddPlant from "../../components/AddPlant/AddPlant"
 
-export default function PlantPage({userId,token}) {
+//imported context
+import { cookiesContext } from "../../App";
+import { useCookies } from "react-cookie";
+
+export default function PlantPage({ userId, token }) {
   const location = useLocation();
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
+  const cookies = useCookies(cookiesContext);
   const [plant, setPlant] = useState();
   const [plantDownloaded, setPlantDownloaded] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState();
@@ -18,13 +23,13 @@ export default function PlantPage({userId,token}) {
 
   useEffect(() => {
     if (plant !== undefined) {
-      try{
-      setBackgroundImage(
-        require("../../assets/plants/" +
-          plant.botanicalName.replace(/\s/g, "-") +
-          "-image.jpg")
-      );
-      }catch(e){
+      try {
+        setBackgroundImage(
+          require("../../assets/plants/" +
+            plant.botanicalName.replace(/\s/g, "-") +
+            "-image.jpg")
+        );
+      } catch (e) {
         setBackgroundImage(require("../../assets/common/blank.png"))
       }
     }
@@ -56,7 +61,7 @@ export default function PlantPage({userId,token}) {
 
   function close() {
     setWasAddPlantClicked(!setWasAddPlantClicked)
-}
+  }
 
   useEffect(() => {
     getPlantByID();
@@ -65,7 +70,7 @@ export default function PlantPage({userId,token}) {
   return plantDownloaded ? (
 
     <>
-      {wasAddPlantClicked ? <AddPlant userId={userId} token={token }close={close} plantId={plant.plantId} name={plant.botanicalName} rooms={rooms}></AddPlant> : <></>}
+      {wasAddPlantClicked ? <AddPlant userId={userId} token={token} close={close} plantId={plant.plantId} name={plant.botanicalName} rooms={rooms}></AddPlant> : <></>}
       <div
         className="back-btn"
         onClick={() =>
@@ -131,9 +136,12 @@ export default function PlantPage({userId,token}) {
               </div>
             </div>
             <div id="add-plant-container">
-              <div id="add-plant-button" onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>
-                <span onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>Dodaj rośline</span>
-              </div>
+              {
+                cookies[0].token !== undefined &&
+                <div id="add-plant-button" onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>
+                  <span onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>Dodaj rośline</span>
+                </div>
+              }
             </div>
           </div>
         </div>

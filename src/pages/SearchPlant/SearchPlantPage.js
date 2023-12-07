@@ -48,7 +48,11 @@ export default function SearchPlantPage() {
         url = "http://localhost:8080/plant/filter/nontoxic?name=" + plantName;
         break;
       default:
-        url = "http://localhost:8080/plant/name/" + plantName;
+        if (plantName.length > 0) {
+          url = "http://localhost:8080/plant/name/" + plantName;
+        } else {
+          url = `${process.env.REACT_APP_BASE_URL}/plant`;
+        }
         break;
     }
     console.log(url);

@@ -20,10 +20,11 @@ export default function HomePage() {
                     className="home-page-desktop-video"
                     width="480"
                     height="320"
-                    src="https://www.youtube.com/embed/plwwJsWiO6U"
-                    title="Canterbury Park Corgi Races August 1, 2021"
+                    src="https://www.youtube.com/embed/RRMcCNbmFWc?si=qhdE-9NPtB4HHlBi"
+                    title="Sprout"
+                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen>
+                    allowfullscreen>
                 </iframe>
             </div>
         </div>

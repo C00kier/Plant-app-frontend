@@ -97,7 +97,10 @@ export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
         );
       }
       case COMPONENT_STATE.BADGES: {
-        return <Badges />;
+        return <Badges 
+        userId={userId}
+        token={token} 
+        />;
       }
       case COMPONENT_STATE.SETTINGS: {
         return (
