@@ -81,6 +81,7 @@ export default function Recommendation({ token, userId,rooms }) {
             token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
                 userQuizAnswers !== undefined ?
                     <div id="recommended-plants-container">
+                        <span id="recommended-plants-title">Teraz możesz zobaczyć rekomendowane rośliny do Twojego wnętrza</span>
                         <div id="communicate-container">
                             <span id="plant-communicate">Rekomendowane rośliny</span>
                             <span id="sun-communicate" className="criteria-communicate">Nasłonecznienie</span>

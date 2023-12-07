@@ -82,7 +82,21 @@ export default function SearchPlantPage() {
         setSearchResult(res);
         setShouldRenderPlants(true);
       }
-      }
+      }else{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}plant`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const res = await response.json();
+
+        if (res !== undefined) {
+            setSearchResult(res);
+            setShouldRenderPlants(true);
+        }
+        console.log(res);
+    }
   }
   function loadMore() {
     setAmountToLoad(amountToLoad + 12);
@@ -92,7 +106,7 @@ export default function SearchPlantPage() {
   }
   useEffect(() => {
     if (shouldRenderPlants) {
-      setShouldDisplayMoreButton("flex");
+      if(searchResult.length>12) setShouldDisplayMoreButton("flex");
     }
   }, [shouldRenderPlants]);
 
@@ -130,7 +144,7 @@ export default function SearchPlantPage() {
                   return (
                     <SinglePlantResult
                       plantName={element.botanicalName}
-                      id={element.id}
+                      id={element.plantId}
                       key={index}
                     ></SinglePlantResult>
                   );

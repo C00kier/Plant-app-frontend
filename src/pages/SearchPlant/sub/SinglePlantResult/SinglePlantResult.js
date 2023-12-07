@@ -3,18 +3,24 @@ import { useState } from "react";
 import "./SinglePlantResult.css";
 import { useNavigate } from "react-router-dom";
 
+
 export default function SinglePlantResult({ plantName, id }) {
   const [backgroundImage, setBackgroundImage] = useState();
+  
   const navigate = useNavigate();
   const navigateToPlant = () => {
     navigate("/plant/" + id, { state: { isLastPageMyPlants: false } });
   };
   useEffect(() => {
+    try{
     setBackgroundImage(
       require("../../../../assets/plants/" +
         plantName.replace(/\s/g, "-") +
         "-image.jpg")
     );
+    }catch(e){
+      setBackgroundImage(require("../../../../assets/common/blank.png"))
+    }
   }, [plantName]);
 
   return (

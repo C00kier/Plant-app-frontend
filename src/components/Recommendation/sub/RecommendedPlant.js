@@ -42,22 +42,22 @@ export default function RecommendedPlant({ plant, quiz,open }) {
                         </span>
                     </div>
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${sunIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${sunIcon})` }}>
 
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${sizeIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${sizeIcon})` }}>
 
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${difficultyIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${difficultyIcon})` }}>
 
                 </div>
-                <div className={quiz["air_purifying"] ? "icon-container checkmark-icon" : "icon-container cross-icon"}>
+                <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className={quiz["air_purifying"] ? "icon-container checkmark-icon" : "icon-container cross-icon"}>
+                <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className='recommeneded-plant-add-button add-icon icon-container' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
+                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
 
                 </div>
             </div>

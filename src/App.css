@@ -9,22 +9,23 @@
   --white-lower-contrast: #fdfdfd ;
   --footer-light-green-color: rgb(45,106,79,0.09);
   --action-modal-background: rgba(0, 0, 0, 0.04);
+  
 }
 
 nav {
-  height: 10vh;
+  height: 10%;
   width: 100%;
   background-color: var(--white-lower-contrast);
 }
 
 main {
-  min-height: 75vh;
+  min-height: 70%;
   width: 100%;
   background-color: var(--white-lower-contrast);
 }
 
 footer {
-  min-height: 15vh;
+  min-height: 15%;
   width: 100%;
   background-color: var(--footer-light-green-color);
 }

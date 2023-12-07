@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./PlantPage.css";
 import PlantDetail from "./sub/PlantDetail/PlantDetail";
+import AddPlant from "../../components/AddPlant/AddPlant"
 
 export default function PlantPage() {
   const location = useLocation();
@@ -12,6 +13,7 @@ export default function PlantPage() {
   const [backgroundImage, setBackgroundImage] = useState();
   const isLastPageMyPlants = location.state.isLastPageMyPlants;
   const navigate = useNavigate();
+  const [wasAddPlantClicked, setWasAddPlantClicked] = useState(false);
 
   useEffect(() => {
     if (plant !== undefined) {
@@ -78,7 +80,9 @@ export default function PlantPage() {
   }, []);
 
   return plantDownloaded ? (
+
     <>
+      {wasAddPlantClicked ? <AddPlant></AddPlant> : <></>}
       <div
         className="back-btn"
         onClick={() =>
@@ -144,8 +148,8 @@ export default function PlantPage() {
               </div>
             </div>
             <div id="add-plant-container">
-              <div id="add-plant-button">
-                <span>Dodaj rośline</span>
+              <div id="add-plant-button" onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>
+                <span onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>Dodaj rośline</span>
               </div>
             </div>
           </div>
