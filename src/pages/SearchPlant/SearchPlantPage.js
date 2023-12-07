@@ -60,7 +60,7 @@ export default function SearchPlantPage() {
     });
 
     const res = await response.json();
-    if (res != undefined) {
+    if (res !== undefined) {
       setSearchResult(res);
     }
   }
@@ -82,20 +82,20 @@ export default function SearchPlantPage() {
         setSearchResult(res);
         setShouldRenderPlants(true);
       }
-      }else{
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/plant`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const res = await response.json();
+    } else {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/plant`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await response.json();
 
-        if (res !== undefined) {
-            setSearchResult(res);
-            setShouldRenderPlants(true);
-        }
-        console.log(res);
+      if (res !== undefined) {
+        setSearchResult(res);
+        setShouldRenderPlants(true);
+      }
+      console.log(res);
     }
   }
   function loadMore() {
@@ -106,7 +106,7 @@ export default function SearchPlantPage() {
   }
   useEffect(() => {
     if (shouldRenderPlants) {
-      if(searchResult.length>12) setShouldDisplayMoreButton("flex");
+      if (searchResult.length > 12) setShouldDisplayMoreButton("flex");
     }
   }, [shouldRenderPlants]);
 

@@ -15,7 +15,7 @@ export default function EditPlant({
   const [wasPageUpdated, setWasPageUpdated] = useState(false);
 
   async function submit() {
-    if (room) {
+    if (room !== "brak") {
       const responseRoom = await fetch(
         `http://localhost:8080/user-plant/${plant.userPlantId}/room?roomName=${room}`,
         {
@@ -27,6 +27,18 @@ export default function EditPlant({
         }
       );
       console.log(responseRoom);
+    } else {
+      const responseNoRoom = await fetch(
+        `http://localhost:8080/user-plant/${plant.userPlantId}/room/remove`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(responseNoRoom);
     }
 
     if (alias !== plant.alias) {
@@ -75,7 +87,6 @@ export default function EditPlant({
                   className="edit-plant-input-dropdown"
                   disabled={!rooms.length === 0}
                   onChange={(e) => setRoom(e.target.value)}
-                  value={room}
                 >
                   {rooms.map((room, index) => (
                     <option value={room} key={index}>
@@ -83,6 +94,7 @@ export default function EditPlant({
                         room.slice(1, room.length)}
                     </option>
                   ))}
+                  <option value={"brak"}>Bez pokoju</option>
                 </select>
               </div>
               <div id="alias-container" className="edit-plant-input-container">
