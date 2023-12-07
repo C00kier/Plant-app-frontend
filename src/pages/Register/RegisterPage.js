@@ -19,6 +19,7 @@ export default function RegisterPage(props) {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isTermsMpromptShown, setIsTermsMpromptShown] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [areRulesAccepted,setAreRulesAccepted]=useState(false);
 
 
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function RegisterPage(props) {
   function emailInputChangeEvent(e) {
     const targetValue = e.target.value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (targetValue.match(emailRegex) || targetValue.length === 0) {
+    if (targetValue.match(emailRegex) && targetValue.length !== 0) {
       setIsEmailValid(true);
       setFormData((prevData) => ({ ...prevData, email: targetValue }));
     } else {
@@ -42,10 +43,11 @@ export default function RegisterPage(props) {
 
   function passwordInputChangeEvent(e) {
     const targetValue = e.target.value;
-    const passwordRegex =
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    if (targetValue.match(passwordRegex) || targetValue.length === 0) {
+    var regexPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])([a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,16})$/;
+
+    if (targetValue.match(regexPattern) && targetValue.length !== 0 && targetValue.length>=8) {
       setIsPasswordValid(true);
+      console.log('ok');
       setFormData((prevData) => ({ ...prevData, password: targetValue }));
     } else {
       setIsPasswordValid(false);
@@ -60,7 +62,8 @@ export default function RegisterPage(props) {
 
   const handleAcceptRules = () => {
     setFormData((prevData) => ({ ...prevData, acceptRules: !prevData.acceptRules }));
-    setIsTermsMpromptShown(false);
+    setAreRulesAccepted(!areRulesAccepted);
+    if(areRulesAccepted==false) setIsTermsMpromptShown(false);
   };
 
   const handleRegisterClick = () => {
@@ -68,7 +71,7 @@ export default function RegisterPage(props) {
       email: formData.email,
       password: formData.password,
     };
-    if (formData.acceptRules === true) {
+    if (areRulesAccepted && isEmailValid===true && isPasswordValid===true) {
       fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
@@ -90,7 +93,7 @@ export default function RegisterPage(props) {
         });
     }
     else {
-      setIsTermsMpromptShown(true);
+      if(!areRulesAccepted) setIsTermsMpromptShown(true);
     }
   };
   const handleGoogleSignIn = (request) => {
