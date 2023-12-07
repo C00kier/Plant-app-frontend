@@ -6,7 +6,7 @@ export default function UserScore({ userId, token }) {
     const [gameTitle, setGameTitle] = useState(null);
     const [pointsLeft, setPointsLeft] = useState(null);
     const [plantImage, setPlantImage] = useState(null);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
