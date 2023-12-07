@@ -13,6 +13,7 @@ export default function CockpitActionElement(props) {
     const { userPlant, requiredActions } = props;
     const [isActionMenuVisible, setIsActionMenuVisible] = useState(false);
     const [exclamationMarkVisibility, setExclamationMarkVisibility] = useState(false);
+    const [backgroundImage, setBackgroundImage] = useState();
     const [currentAction, setCurrentAction] = useState();
     const [plantCare, setPlantCare] = useState({
         userPlantId: userPlant.userPlantId,
@@ -21,6 +22,21 @@ export default function CockpitActionElement(props) {
         repotting: false
     });
 
+    //set plant image
+    useEffect(() => {
+        try {
+          const image = require(`../../assets/plants/${userPlant.plant.botanicalName.replace(
+            /\s/g,
+            "-"
+          )}-image.jpg`);
+          setBackgroundImage(image);
+        } catch (error) {
+          console.error(`Image not found for plant: ${userPlant.plant.botanicalName}`);
+          setBackgroundImage(require("../../assets/common/blank.png"));
+        }
+      }, [userPlant.plant.botanicalName]);
+
+    //set plant care
     useEffect(() => {
         for (const plantCarePlan of requiredActions) {
             if (plantCarePlan.userPlantId === userPlant.userPlantId) {
@@ -83,7 +99,7 @@ export default function CockpitActionElement(props) {
                         currentAction={currentAction}
                         userPlant={userPlant}/>
                 }
-                <img className="cockpit-userplant-image" src={(userPlant.plant.picture !== null) ? userPlant.plant.picture : blankImage} alt="plant" />
+                <img className="cockpit-userplant-image" src={backgroundImage} alt="plant" />
                 <span className="cockpit-userplant-alias">{userPlant.alias}</span>
                 <div className="grid-action-icons-container">
                     {
