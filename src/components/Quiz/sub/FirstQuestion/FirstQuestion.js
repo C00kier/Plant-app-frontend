@@ -7,11 +7,11 @@ export default function FirstQuestion({ answers, setAnswered }) {
     const [isThirdChecked, setIsThirdChecked] = useState(false);
     useEffect(() => {
         if (isFirstChecked || isSecondChecked || isThirdChecked) setAnswered(true);
-        if (answers.isSunny == 2) {
+        if (answers.isSunny === 2) {
             setIsFirstChecked(true);
-        } else if (answers.isSunny == 1) {
+        } else if (answers.isSunny === 1) {
             setIsSecondChecked(true);
-        } else if (answers.isSunny == 0) {
+        } else if (answers.isSunny === 0) {
             setIsThirdChecked(true);
         }
     }, [isFirstChecked, isSecondChecked, isThirdChecked])
@@ -20,11 +20,11 @@ export default function FirstQuestion({ answers, setAnswered }) {
 
         answers.isSunny = e.target.value;
 
-        if (e.target.name == 'sunny') {
+        if (e.target.name === 'sunny') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
             setIsThirdChecked(false);
-        } else if (e.target.name == 'mid-sunny') {
+        } else if (e.target.name === 'mid-sunny') {
             setIsFirstChecked(false);
             setIsSecondChecked(true);
             setIsThirdChecked(false);

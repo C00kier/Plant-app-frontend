@@ -8,22 +8,22 @@ export default function ThirdQuestion({ answers,setAnswered }) {
     const [isThirdChecked, setIsThirdChecked] = useState(false);
     useEffect(()=>{
         if(isFirstChecked || isSecondChecked || isThirdChecked) setAnswered(true);
-        if(answers.difficulty==0){
+        if(answers.difficulty===0){
             setIsFirstChecked(true);
-        }else if(answers.difficulty==1){
+        }else if(answers.difficulty===1){
             setIsSecondChecked(true);
-        }else if(answers.difficulty==2){
+        }else if(answers.difficulty===2){
             setIsThirdChecked(true);
         }
     },[isFirstChecked,isSecondChecked,isThirdChecked])
 
     function manageCheckboxClicks(e) {
         answers.difficulty = e.target.value;
-        if (e.target.name == 'small') {
+        if (e.target.name === 'small') {
             setIsFirstChecked(true);
             setIsSecondChecked(false);
             setIsThirdChecked(false);
-        } else if (e.target.name == 'medium') {
+        } else if (e.target.name === 'medium') {
             setIsFirstChecked(false);
             setIsSecondChecked(true);
             setIsThirdChecked(false);
