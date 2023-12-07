@@ -119,8 +119,8 @@ export default function CockpitPerformActionWindow(props) {
                         maxDate={new Date()}
                     />
                     <div className="calendar-button-bar flex-row-center-center">
-                        <button className='calendar-button back-button' onClick={() => backButtonCalendarOnClickEvent()}>Wstecz</button>
-                        <button className='calendar-button confrim-button' onClick={async () => await performActionOnClickEvent()}>Zatwierdź</button>
+                        <button className='calendar-button back-button action-window-button' onClick={() => backButtonCalendarOnClickEvent()}>Wstecz</button>
+                        <button className='calendar-button confrim-button action-window-button' onClick={async () => await performActionOnClickEvent()}>Zatwierdź</button>
                     </div>
                 </div>
                 :

@@ -1,15 +1,11 @@
 import './RecommendedPlant.css';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RecommendedPlant({ plant, quiz,open }) {
     const [backgroundImage, setBackgroundImage] = useState();
     const [sunIcon, setSunIcon] = useState();
     const [sizeIcon, setSizeIcon] = useState();
-    const [difficultyIcon, setDifficultyIcon] = useState();
-    const [checkmarkIcon, setCheckmarkIcon] = useState();
-    const [corssIcon, setCrossIcon] = useState();
-    
+    const [difficultyIcon, setDifficultyIcon] = useState();  
 
     useEffect(() => {
         if (plant !== undefined) {
@@ -21,12 +17,7 @@ export default function RecommendedPlant({ plant, quiz,open }) {
             setSunIcon(require("../../../../public/icon/sun-icon-" + quiz.sun + ".png"));
             setSizeIcon(require("../../../../public/icon/size-icon-" + quiz['mature_size'] + ".png"))
             setDifficultyIcon(require("../../../../public/icon/difficulty-icon-" + quiz['care_difficulty'] + ".png"))
-
-
-
-
         }
-        console.log(plant);
     }, [plant])
 
     return (
@@ -42,22 +33,22 @@ export default function RecommendedPlant({ plant, quiz,open }) {
                         </span>
                     </div>
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${sunIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${sunIcon})` }}>
 
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${sizeIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${sizeIcon})` }}>
 
                 </div>
-                <div className='icon-container' style={{ backgroundImage: `url(${difficultyIcon})` }}>
+                <div className='icon-container-recommended' style={{ backgroundImage: `url(${difficultyIcon})` }}>
 
                 </div>
-                <div className={quiz["air_purifying"] ? "icon-container checkmark-icon" : "icon-container cross-icon"}>
+                <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className={quiz["air_purifying"] ? "icon-container checkmark-icon" : "icon-container cross-icon"}>
+                <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className='recommeneded-plant-add-button add-icon icon-container' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
+                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
 
                 </div>
             </div>

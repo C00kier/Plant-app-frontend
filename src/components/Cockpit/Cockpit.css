@@ -141,6 +141,10 @@
     aspect-ratio: 1;
     justify-self: end;
     align-self: flex-start;
+    font-weight: 700;
+    border:1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #action-description{
@@ -163,6 +167,16 @@
     width: 8em;
     height: 3em;
     align-self: center;
+    background-color: var(--active-button-color);
+    border-radius: 15px;
+    font-size: calc(0.75vh + 0.75vw);
+    color: var(--white-lower-contrast);
+    border: none;
+    cursor: pointer;
+}
+
+.action-window-button:hover{
+    background-color: var(--active-button-onclick-color);
 }
 
 .calendar-button{

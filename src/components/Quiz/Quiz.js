@@ -8,12 +8,16 @@ import FourthQuestion from './sub/FourthQuestion/FourthQuestion';
 import FifthQuestion from './sub/FifthQuestion/FifthQuestion';
 import SixthQuestion from './sub/SixthQuestion/SixthQuestion';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import MY_ACCOUNT_COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
-export default function Quiz({ userId, token }) {
+export default function Quiz({ userId, token, setFunctionalityElement }) {
+    const navigate = useNavigate();
     const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
     const [index, setIndex] = useState(1);
     const [hasAnimals, setHasAnimals] = useState();
     const [hasChildren, setHasChildren] = useState();
+    const [wasQuizFinished, setWasQuizFinished] = useState(false);
     const [answers, setAnswers] = useState({
         isToxic: 'none',
         isSunny: -1,
@@ -33,7 +37,7 @@ export default function Quiz({ userId, token }) {
     }
 
     async function submit() {
-        
+
         answers.isToxic = hasAnimals && hasChildren;
         const response = await fetch(`http://localhost:8080/quiz/set-quiz-result?isToxic=${answers.isToxic}&isSunny=${answers.isSunny}&isAirPurifying=${answers.isAirPurifying}
         &matureSize=${answers.matureSize}&difficulty=${answers.difficulty}&userId=${answers.userId}`, {
@@ -44,6 +48,11 @@ export default function Quiz({ userId, token }) {
             },
             body: JSON.stringify(answers)
         })
+        manageQuizCompletion();
+    }
+
+    function manageQuizCompletion() {
+        setFunctionalityElement(MY_ACCOUNT_COMPONENT_STATES.RECOMMENDATION)
     }
 
     function renderSwitch(index) {
@@ -64,7 +73,19 @@ export default function Quiz({ userId, token }) {
     }
     return (
         <>
+            {/* {wasQuizFinished ?
 
+                <div id='quiz-complete-container'>
+                    <div id="quiz-complete-popup">
+                        <div id="quiz-complete-image"></div>
+                        <div id="quiz-complete-communicate-container">
+                            <span id="quiz-complete-communicate">
+                                Dziękujemy za wypełnienie quizu!<br></br>
+                                <span>Teraz możesz zobaczyć które kwiatki będą pasować do Twojego domu.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div> : <></>} */}
             <div id="quiz-container">
                 <QuizHeader index={index}></QuizHeader>
                 <div id="quiz-main">

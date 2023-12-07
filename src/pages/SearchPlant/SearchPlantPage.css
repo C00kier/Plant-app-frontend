@@ -55,7 +55,7 @@
     width: 5%;
     align-self: flex-end;
     margin-left: 0;
-    background-image: url(../../../public/search-setting-button-img.png);
+    background-image: url(../../assets/search/search-setting-button-img.png);
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;

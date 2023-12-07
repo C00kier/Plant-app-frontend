@@ -81,7 +81,7 @@ function App() {
           <Route path={PAGES.CONTACT} element={<ContactPage />} />
           <Route path={PAGES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={PAGES.TERMS} element={<TermsPage />} />
-          <Route path={PAGES.PLANT} element={<PlantPage />} />
+          <Route path={PAGES.PLANT} element={<PlantPage token={cookies.token} userId={cookies.userId} />} />
           <Route path={PAGES.UNASSIGNED} element={<PageNotFound />} />
           <Route path={PAGES.BLOG} element={<BlogPage />} />
           <Route path={PAGES.POST} element={<Post />} />

@@ -30,3 +30,12 @@
     flex-direction: column;
     gap: 1em;
 }
+
+#recommended-plants-title{
+    margin-bottom: 2.5em;
+    font-size: 1.6em;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+    display: flex;
+}
