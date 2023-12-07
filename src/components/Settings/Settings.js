@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
 
-export default function Settings({ setFunctionalityElement, userId }) {
+export default function Settings({ setFunctionalityElement, userId, token }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [nickName, setNickName] = useState(null);
   const [email, setEmail] = useState(null);
