@@ -1,15 +1,11 @@
 import './RecommendedPlant.css';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RecommendedPlant({ plant, quiz,open }) {
     const [backgroundImage, setBackgroundImage] = useState();
     const [sunIcon, setSunIcon] = useState();
     const [sizeIcon, setSizeIcon] = useState();
-    const [difficultyIcon, setDifficultyIcon] = useState();
-    const [checkmarkIcon, setCheckmarkIcon] = useState();
-    const [corssIcon, setCrossIcon] = useState();
-    
+    const [difficultyIcon, setDifficultyIcon] = useState();  
 
     useEffect(() => {
         if (plant !== undefined) {
@@ -21,12 +17,7 @@ export default function RecommendedPlant({ plant, quiz,open }) {
             setSunIcon(require("../../../../public/icon/sun-icon-" + quiz.sun + ".png"));
             setSizeIcon(require("../../../../public/icon/size-icon-" + quiz['mature_size'] + ".png"))
             setDifficultyIcon(require("../../../../public/icon/difficulty-icon-" + quiz['care_difficulty'] + ".png"))
-
-
-
-
         }
-        console.log(plant);
     }, [plant])
 
     return (
