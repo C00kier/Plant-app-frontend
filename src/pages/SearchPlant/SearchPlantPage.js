@@ -55,7 +55,7 @@ export default function SearchPlantPage() {
         }
         break;
     }
-    console.log(url);
+    
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -99,7 +99,6 @@ export default function SearchPlantPage() {
         setSearchResult(res);
         setShouldRenderPlants(true);
       }
-      console.log(res);
     }
   }
   function loadMore() {

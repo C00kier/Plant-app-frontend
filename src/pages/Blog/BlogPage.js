@@ -18,7 +18,7 @@ export default function BlogPage() {
     }, []);
 
     return (
-        <div classNamge="blog-main">
+        <div className="blog-main">
             <h1 className="blog-title">Blog - zadbajmy o rośliny!</h1>
             <div className="blog-container">
                 {posts.map(post => <SinglePostResult key={post.id} post={post} id={post.id} />)}

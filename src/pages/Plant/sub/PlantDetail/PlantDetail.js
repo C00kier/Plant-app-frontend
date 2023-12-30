@@ -2,14 +2,24 @@ import { useEffect } from 'react'
 import './PlantDetail.css'
 import { useState } from 'react';
 
-export default function PlantDetail({detailName,description}){
-    const [formattedDescription,setFormattedDescription]=useState(description);
-    useEffect(()=>{
-        if(description!==undefined){
-            setFormattedDescription(String(formattedDescription).replaceAll("/","\n"));
-        }
-    },[description])
-    
+export default function PlantDetail({ detailName, description }) {
+    const [formattedDescription, setFormattedDescription] = useState(description);
+  
+    useEffect(() => {
+        if (typeof description === 'boolean') {
+            const formattedBoolean = description ? 'Tak' : 'Nie';
+            setFormattedDescription(formattedBoolean);
+          } else if (typeof description === 'string') {
+            const formatted = description.split('/n').map((line, index) => (
+              <span key={index}>
+                {line}
+                <br /><br />
+              </span>
+            ));
+            setFormattedDescription(formatted);
+          }
+      }, [description]);
+
     return (<>
         <div className="plant-detail">
             <div className="plant-detail-left">

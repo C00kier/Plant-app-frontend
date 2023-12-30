@@ -55,7 +55,6 @@ export default function RegisterPage(props) {
   }
 
 
-
   function eyeIconEvent() {
     setIsPasswordShown(!isPasswordShown);
   }

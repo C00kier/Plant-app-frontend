@@ -39,6 +39,7 @@ export default function Navbar(props) {
                         <li className="navbar-dropdown-links-my-account"><Link to={PAGES.HOME}>Moje konto</Link></li>
                         <li className="navbar-desktop-hidden"><Link to={PAGES.SEARCH}>Dodaj roślinę</Link></li>
                         <li><Link to={PAGES.BLOG}>Blog</Link></li>
+                        <li><Link to={PAGES.SEARCH}>Szukaj roślin</Link></li>
                         <li><Link to={PAGES.ABOUT}>O nas</Link></li>
                         <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>
                         <li onClick={handleSignOut}>Wyloguj</li>
@@ -68,6 +69,7 @@ export default function Navbar(props) {
                                 <ul className="navbar-dropdown-links">
                                     <li className="navbar-dropdown-links-bold"><Link to={PAGES.REGISTER}>Zarejestruj się</Link></li>
                                     <li><Link to={PAGES.BLOG}>Blog</Link></li>
+                                    <li><Link to={PAGES.SEARCH}>Szukaj roślin</Link></li>
                                     <li><Link to={PAGES.ABOUT}>O nas</Link></li>
                                     <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>
                                 </ul>

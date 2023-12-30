@@ -54,9 +54,6 @@ export default function PlantPage({ userId, token }) {
       setPlant(await response.json());
       setPlantDownloaded(true);
     }
-    if (response.status === 401) {
-      //todo
-    }
   }
 
   function close() {
@@ -66,6 +63,42 @@ export default function PlantPage({ userId, token }) {
   useEffect(() => {
     getPlantByID();
   }, []);
+
+  function getCareDifficultyText(careDifficulty) {
+    switch (careDifficulty) {
+      case 0:
+        return "Proste";
+      case 1:
+        return "Średnie";
+      case 2:
+        return "Trudne";
+      default:
+        return "Nieznane";
+    }
+  }
+
+  function getSun(sunValue) {
+    switch (sunValue) {
+      case 0:
+        return "Pełne słońce";
+      case 1:
+        return "Półcień";
+      case 2:
+        return "Cieniolubne";
+      default:
+        return "Brak danych";
+    }
+  }
+
+  function getWaterFrequency(days) {
+    if (days === 7) {
+      return "Raz w tygodniu";
+    } else if (days === 14) {
+      return "Co dwa tygodnie";
+    } else {
+      return "Brak danych";
+    }
+  }
 
   return plantDownloaded ? (
 
@@ -103,7 +136,7 @@ export default function PlantPage({ userId, token }) {
                   id="plant-care-difficulty"
                   className="plant-card-description"
                 >
-                  prosta
+                  {getCareDifficultyText(plant.careDifficulty)}
                 </span>
                 <span id="care-difficulty" className="plant-card-type">
                   Pielęgnacja
@@ -114,7 +147,7 @@ export default function PlantPage({ userId, token }) {
                   <div id="sun-card-image"></div>
                 </div>
                 <span id="plant-sun" className="plant-card-description">
-                  półcień
+                {getSun(plant.sun)}
                 </span>
                 <span id="sun" className="plant-card-type">
                   Nasłonecznienie
@@ -128,10 +161,10 @@ export default function PlantPage({ userId, token }) {
                   <div id="plant-care-card-image"></div>
                 </div>
                 <span id="plant-care" className="plant-card-description">
-                  raz w tygodniu
+                  {getWaterFrequency(plant.water)}
                 </span>
                 <span id="care" className="plant-card-type">
-                  Pielęgnacja
+                  Podlewanie
                 </span>
               </div>
             </div>
@@ -164,14 +197,14 @@ export default function PlantPage({ userId, token }) {
           ></PlantDetail>
           <PlantDetail
             detailName={"właściwości oczyszczania powietrza"}
-            description={plant.airPuryfying}
+            description={plant.airPurifying}
           ></PlantDetail>
           <PlantDetail
             detailName={"toksyczność"}
             description={plant.toxicity}
           ></PlantDetail>
           <PlantDetail
-            detailName={"rodzaj"}
+            detailName={"rodzina"}
             description={plant.plantType}
           ></PlantDetail>
           <PlantDetail
