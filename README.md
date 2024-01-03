@@ -2,7 +2,8 @@
 
 The Sprout is a user-friendly application designed to help plant enthusiasts keep track of their plant collection. Whether you're a seasoned plant parent or just starting your green journey, this app provides a convenient way to manage and care for your plants.
 
-[![Sprout Demo Video](http://img.youtube.com/vi/RRMcCNbmFWc/0.jpg)](http://www.youtube.com/watch?v=RRMcCNbmFWc)
+
+[![Sprout Demo Video](http://img.youtube.com/vi/RRMcCNbmFWc/maxresdefault.jpg)](http://www.youtube.com/watch?v=RRMcCNbmFWc)
 
 ## Features
 
