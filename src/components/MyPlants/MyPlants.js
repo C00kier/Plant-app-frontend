@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SinglePlantRooms from "./sub/SinglePlantRooms";
 import SinglePlantAll from "./sub/SinglePlantAll";
 import AddRoom from "./sub/AddRoom";
+import NoPlants from "./sub/NoPlants";
 
 export default function MyPlants({
   userPlants,
@@ -32,6 +33,9 @@ export default function MyPlants({
 
   return (
     <>
+    { userPlants.length < 1 
+    ? <NoPlants/> 
+    :
       <div className="my-plants-container">
         <div className="search-bar-container">
           <h1>Moje rośliny</h1>
@@ -98,6 +102,7 @@ export default function MyPlants({
             ))}
         </div>
       </div>
+      }
       {isAddRoomVisible && (
         <AddRoom
           setRooms={setRooms}

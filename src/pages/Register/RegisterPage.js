@@ -62,7 +62,7 @@ export default function RegisterPage(props) {
   const handleAcceptRules = () => {
     setFormData((prevData) => ({ ...prevData, acceptRules: !prevData.acceptRules }));
     setAreRulesAccepted(!areRulesAccepted);
-    if(areRulesAccepted==false) setIsTermsMpromptShown(false);
+    if(areRulesAccepted===false) setIsTermsMpromptShown(false);
   };
 
   const handleRegisterClick = () => {

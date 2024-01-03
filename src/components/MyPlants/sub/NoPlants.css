@@ -1,0 +1,12 @@
+.no-plants-div{
+    gap: 3em;
+}
+
+.no-plants-div > p{
+    font-size: 1.2em;
+}
+
+.no-plants-link{
+    color: var(--light-green-text-color);
+    cursor: pointer;
+}
