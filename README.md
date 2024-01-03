@@ -1,31 +1,46 @@
-# Sprout
-## Overview
+# Sprout - Plant Enthusiast Application
 
 The Sprout is a user-friendly application designed to help plant enthusiasts keep track of their plant collection. Whether you're a seasoned plant parent or just starting your green journey, this app provides a convenient way to manage and care for your plants.
 
-## Backend
-For the application to work, the backend must also be launched.
-
-https://github.com/C00kier/Plant-app-backend
-
-## Demo
-https://youtu.be/RRMcCNbmFWc
+[![Sprout Demo Video](http://img.youtube.com/vi/RRMcCNbmFWc/0.jpg)](http://www.youtube.com/watch?v=RRMcCNbmFWc)
 
 ## Features
 
-- Searching for Plant Details: Easily search for detailed information about specific plants. Access care tips, growth patterns, and more at your fingertips.
+- **Plant Details**: Easily access detailed information about various plants, including care tips and growth patterns.
+- **Blog Articles**: Stay informed and entertained with curated blog articles on plant care, gardening tips, and community trends.
+- **Gamification**: Make plant care engaging with badges, points, and personal challenges.
+- **Recommendation Quiz**: Answer a few questions and receive personalized plant recommendations based on your lifestyle.
+- **Care System**: Set reminders and manage watering, fertilizing, and repotting schedules.
+- **Room Assignment**: Organize plants by assigning them to specific rooms in your home.
+- **Special Names**: Add a personal touch by assigning special names to your plants.
 
-- Blog Articles: Stay informed and entertained with a curated collection of blog articles covering various topics related to plant care, gardening tips, and the latest trends in the plant community.
+## Project Details
 
-- Gamification: Make plant care fun by incorporating gamification elements. Earn badges, gain points, and set personal challenges to keep your plant care routine engaging.
+- **Technologies Used**: Spring, Java 21, React, HTML, CSS, PostgreSQL
+- **Purpose**: This project was developed as a learning experience, focusing on Spring, defining the scope of functionalities, and creating a user-friendly plant care app.
+- **Example of User Story**: A user can easily search for plant details, manage plant care routines, and receive personalized recommendations based on their preferences and lifestyle.
+- **Project Status**: The application is fully functional. Future plans include transitioning from React to TypeScript and introducing an AI bot for generating plant-related queries.
 
-- Recommendation Based on Quiz: Answer a few questions in the app's quiz, and receive personalized plant recommendations tailored to your lifestyle, environment, and preferences.
+## Authors
 
-- Care System: Get reminder and manage watering, fertilizing, and repotting of your plants.
+- **Mateusz Grygier** - [LinkedIn](https://www.linkedin.com/in/mateusz-grygier/) | [GitHub](https://github.com/HobbitM)
+- **Adrianna Wójcik** - [LinkedIn](https://www.linkedin.com/in/adrianna-wójcik/) | [GitHub](https://github.com/adawojcik)
+- **Iza Bonarowska** - [LinkedIn](https://www.linkedin.com/in/iza-bonarowska/) | [GitHub](https://github.com/izabonarowska)
+- **Sebastian Kostrz** - [LinkedIn](www.linkedin.com/in/sebastian-kostrz-384b7a2a3) | [GitHub](https://github.com/SebastianKostrz)
+- **Bartosz Hiltawski** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/Hiltwa)
+- **Paweł Ignaczak** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/C00kier)
 
-- Assigning Plants to Rooms: Organize your plants by assigning them to specific rooms in your home.
+## Backend
 
-- Assigning Special Names to Plants: Add a personal touch by giving special names to your plants. Create a connection with your green companions and make plant care a more enjoyable experience.
+For the application to function, the backend must also be launched. Find the backend [here](https://github.com/C00kier/Plant-app-backend).
+
+## Requirements
+
+   Node.js (version 12 or higher)
+
+   npm (Node Package Manager)
+   
+   Modern web browser (Chrome, Firefox, Safari, or Edge)
 
 ## Installation
 
@@ -49,13 +64,6 @@ Start the application.
 
 Visit http://localhost:3000 in your web browser to access the app.
 
-## Requirements
+### If you encounter any issues or have questions, please open an issue.
 
-    Node.js (version 12 or higher)
-    npm (Node Package Manager)
-    Modern web browser (Chrome, Firefox, Safari, or Edge)
-
-
-If you encounter any issues or have questions, please open an issue.
-
-Happy planting! 🌱🌿
+### Happy planting! 🌱🌿
