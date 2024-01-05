@@ -2,8 +2,7 @@
 
 The Sprout is a user-friendly application designed to help plant enthusiasts keep track of their plant collection. Whether you're a seasoned plant parent or just starting your green journey, this app provides a convenient way to manage and care for your plants.
 
-
-[![Sprout Demo Video](http://img.youtube.com/vi/RRMcCNbmFWc/maxresdefault.jpg)](http://www.youtube.com/watch?v=RRMcCNbmFWc)
+![mainpage](https://i.ibb.co/wRXZm1D/main.gif)
 
 ## Features
 
@@ -17,10 +16,15 @@ The Sprout is a user-friendly application designed to help plant enthusiasts kee
 
 ## Project Details
 
-- **Technologies Used**: Spring, Java 21, React, HTML, CSS, PostgreSQL
+- **Technologies Used**:
+
+     ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white), ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
+  ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+  
 - **Purpose**: This project was developed as a learning experience, focusing on Spring, defining the scope of functionalities, and creating a user-friendly plant care app.
 - **Example of User Story**: A user can easily search for plant details, manage plant care routines, and receive personalized recommendations based on their preferences and lifestyle.
-- **Project Status**: The application is fully functional. Future plans include transitioning from React to TypeScript and introducing an AI bot for generating plant-related queries.
+- **Project Status**: The application is fully functional. Future plans include transitioning from JavaScript to TypeScript and introducing an AI bot for generating plant-related queries.
 
 ## Authors
 
@@ -65,6 +69,10 @@ Start the application.
 
 Visit http://localhost:3000 in your web browser to access the app.
 
-### If you encounter any issues or have questions, please open an issue.
+## Click to watch project presentation:
+<a href="http://www.youtube.com/watch?v=RRMcCNbmFWc">
+  <img src="http://img.youtube.com/vi/RRMcCNbmFWc/maxresdefault.jpg" alt="Sprout Demo Video" width="50%" height="50%">
+</a>
 
+### If you encounter any issues or have questions, please open an issue.
 ### Happy planting! 🌱🌿
