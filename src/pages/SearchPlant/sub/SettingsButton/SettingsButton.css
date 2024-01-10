@@ -28,21 +28,27 @@
     font-size: 1.1em;
 }
 
+@media screen and (max-width: 768px) {
+    #settings-container {
+        position: fixed;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%;
+        height: 5%;
+        font-size: 1em;
+        padding: 10px;
+        overflow-y: auto;
+        backdrop-filter: none;
+    }
 
+    #filter-select {
+        font-size: 0.9em;
+        padding: 0.5em;
+    }
 
-
-/* .option {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5em;
-    font-weight: 400;
-    font-size: 1.5em;
+    .filter-option {
+        font-size: 1em;
+        padding: 0.7em;
+    }
 }
-
-.option>input[type='checkbox'] {
-    width: 0.7em;
-    height: 0.7em;
-    font-weight: 400;
-    font-size: 0.8em;
-} */
