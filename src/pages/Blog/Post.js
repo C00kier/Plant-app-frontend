@@ -17,7 +17,6 @@ const Post = () => {
                 }
                 const result = await response.json();
                 setPost(result); 
-                console.log(result)
             } catch (error) {
                 console.error('There was a problem fetching the data:', error);
             }

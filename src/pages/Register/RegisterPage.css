@@ -26,7 +26,7 @@
   gap: .5em;
 }
 
-.pasword-input-container {
+.password-input-container {
   display: flex;
   width: 100%;
 }
@@ -103,7 +103,6 @@
 #register-button {
   background-color: #2d6a4f;
   color: var(--white-lower-contrast);
-
   display: flex;
   width: 15em;
   height: 4em;
@@ -150,4 +149,28 @@
 #google-login-container{
   scale: 1.4;
   margin-left: 2em;
+}
+
+@media only screen and (max-width: 768px) {
+  #register-form-section {
+    padding: 0 20px;
+  }
+  
+  .form-input {
+    width: 110%;
+  }
+
+  .password-input-container{
+    width: 120%;
+  }
+
+  #register-form-section{
+    padding: 0px;
+    margin: 20px;
+  }
+  
+  #register-button-section,
+  #register-button {
+    max-width: 100%;
+  }
 }

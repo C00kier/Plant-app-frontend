@@ -149,7 +149,7 @@ export default function RegisterPage(props) {
           <p id="password-communicate">
             Hasło<span> *</span>
           </p>
-          <div className="pasword-input-container">
+          <div className="password-input-container">
             <input
               autoComplete="off"
               type={isPasswordShown ? "text" : "password"}
