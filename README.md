@@ -2,18 +2,9 @@
 
 The Sprout is a user-friendly application designed to help plant enthusiasts keep track of their plant collection. Whether you're a seasoned plant parent or just starting your green journey, this app provides a convenient way to manage and care for your plants.
 
-![mainpage](relative/path/to/Sprout-frontend/src/assets/readme/main.gif)
-
-
-## Features
-
-- **Plant Details**: Easily access detailed information about various plants, including care tips and growth patterns.
-- **Blog Articles**: Stay informed and entertained with curated blog articles on plant care, gardening tips, and community trends.
-- **Gamification**: Make plant care engaging with badges, points, and personal challenges.
-- **Recommendation Quiz**: Answer a few questions and receive personalized plant recommendations based on your lifestyle.
-- **Care System**: Set reminders and manage watering, fertilizing, and repotting schedules.
-- **Room Assignment**: Organize plants by assigning them to specific rooms in your home.
-- **Special Names**: Add a personal touch by assigning special names to your plants.
+<p align="center">
+  <img src="https://github.com/C00kier/Sprout-frontend/raw/development/src/assets/readme/main.gif" width="800" height="400" />
+</p>
 
 ## Project Details
 
@@ -36,6 +27,28 @@ The Sprout is a user-friendly application designed to help plant enthusiasts kee
 - **Bartosz Hiltawski** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/Hiltwa)
 - **Paweł Ignaczak** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/C00kier)
 
+## Features
+
+- **Plant Details**: Easily access detailed information about various plants, including care tips and growth patterns.
+       <p align="center">
+  <img src="https://github.com/C00kier/Sprout-frontend/blob/development/src/assets/readme/search.gif" width="800" height="400" />
+     </p>
+- **Registration**: Create an account to save your home plants
+ <p align="center">
+  <img src="https://github.com/C00kier/Sprout-frontend/blob/development/src/assets/readme/register.gif" width="800" height="400" />
+     </p>
+     
+- **Blog Articles**: Stay informed and entertained with curated blog articles on plant care, gardening tips, and community trends.
+- **Gamification**: Make plant care engaging with badges, points, and personal challenges.
+- **Recommendation Quiz**: Answer a few questions and receive personalized plant recommendations based on your lifestyle.
+- **Care System**: Set reminders and manage watering, fertilizing, and repotting schedules.
+- **Room Assignment**: Organize plants by assigning them to specific rooms in your home.
+- **Special Names**: Add a personal touch by assigning special names to your plants.
+- **Settings**: Change you account settings
+<p align="center">
+  <img src="https://github.com/C00kier/Sprout-frontend/blob/development/src/assets/readme/settings.gif" width="800" height="400" />
+     </p>
+     
 ## Backend
 
 For the application to function, the backend must also be launched. Find the backend [here](https://github.com/C00kier/Plant-app-backend).
