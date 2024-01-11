@@ -1,8 +1,8 @@
 import "./Settings.css";
-import DeletePopUp from "./DeletePopUp.js";
+import DeletePopUp from "./DeletePopUp";
 import { useNavigate } from "react-router-dom";
-import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
-import PAGES from "../../constants/pages.js";
+import COMPONENT_STATE from "../../constants/myAccountComponentStates";
+import PAGES from "../../constants/pages";
 import userIconImage from "../../../src/assets/user/user-circle.256x256.png";
 import { useState, useEffect } from "react";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";

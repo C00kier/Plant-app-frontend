@@ -10,10 +10,10 @@ import plant_house_icon from "../../assets/accountSidebar/plant_house_icon.png";
 import dashboard_speed_icon from "../../assets/accountSidebar/dashboard_speed_icon.png";
 
 //constants
-import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
+import COMPONENT_STATE from "../../constants/myAccountComponentStates";
 
 //contexts
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged";
 
 export default function AccountSidebar() {
     const setFunctionalityElement = useContext(functionalityElementContext);

@@ -1,4 +1,4 @@
-import "./Cockpit.js";
+import "./Cockpit";
 
 export default function CockpitAllPlantsCared(){
     return(

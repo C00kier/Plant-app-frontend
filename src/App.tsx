@@ -38,8 +38,12 @@ import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
 
+//interfaces
+import Cookie from "./models/interfaces/Cookie";
+import FunctionalityElementContext from "./context/FunctionalityElementContext";
+
 //context export
-export const cookiesContext = React.createContext();
+export const cookiesContext = React.createContext<Cookie>({"token" : "", "userId" : ""});
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
@@ -79,12 +83,12 @@ function App() {
           <Route path={PAGES.POST} element={<Post />} />
           <Route element={<UnauthorizedRoutes token={cookies.token} />}>
             <Route path={PAGES.LOGIN} element={
-              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID as string}>
                 <LoginPage setCookie={setCookie} /></GoogleOAuthProvider>} />
             <Route
               path={PAGES.REGISTER}
               element={
-                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID as string}>
                   <RegisterPage setCookie={setCookie} />
                 </GoogleOAuthProvider>
               }
@@ -101,8 +105,10 @@ function App() {
   return (
     <div className="App">
       <CookiesProvider>
-        <cookiesContext.Provider value={cookies}>
-          <RouterProvider router={router} />
+        <cookiesContext.Provider value={cookies as Cookie}>
+          <FunctionalityElementContext>
+            <RouterProvider router={router} />
+          </FunctionalityElementContext>
         </cookiesContext.Provider>
       </CookiesProvider>
     </div>

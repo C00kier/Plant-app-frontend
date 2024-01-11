@@ -2,13 +2,13 @@ import "./Recommendation.css";
 import { useState, useEffect, useContext } from "react";
 
 import RecommendedPlant from "./sub/RecommendedPlant";
-import AddPlant from "../AddPlant/AddPlant.js";
+import AddPlant from "../AddPlant/AddPlant";
 
 //constants
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged";
 
 export default function Recommendation({ token, userId, rooms }) {
     const setFunctionalityElement = useContext(functionalityElementContext);

@@ -8,8 +8,8 @@ import PAGES from "../../constants/pages";
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
-import { cookiesContext } from "../../App.js";
+import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged";
+import { cookiesContext } from "../../App";
 
 export default function CockpitNoPlants() {
     const [username, setUsername] = useState("username");

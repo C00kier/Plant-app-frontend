@@ -5,16 +5,17 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 //constants
-import COMPONENT_STATE from "../../../constants/myAccountComponentStates.js";
+import COMPONENT_STATE from "../../../constants/myAccountComponentStates";
 
 //components
-import Cockpit from "../../../components/Cockpit/Cockpit.js";
-import Recommendation from "../../../components/Recommendation/Recommendation.js";
-import MyPlants from "../../../components/MyPlants/MyPlants.js";
-import Badges from "../../../components/Badges/Badges.js";
-import Settings from "../../../components/Settings/Settings.js";
-import Quiz from "../../../components/Quiz/Quiz.js";
-import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js";
+import Cockpit from "../../../components/Cockpit/Cockpit";
+import Recommendation from "../../../components/Recommendation/Recommendation";
+import MyPlants from "../../../components/MyPlants/MyPlants";
+import Badges from "../../../components/Badges/Badges";
+import Settings from "../../../components/Settings/Settings";
+import Quiz from "../../../components/Quiz/Quiz";
+import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar";
+
 
 export const functionalityElementContext = React.createContext();
 
