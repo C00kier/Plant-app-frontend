@@ -13,10 +13,10 @@ import dashboard_speed_icon from "../../assets/accountSidebar/dashboard_speed_ic
 import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
 
 //contexts
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { functionalityElementContext } from "../../App.js";
 
 export default function AccountSidebar() {
-    const setFunctionalityElement = useContext(functionalityElementContext);
+    const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
 
     return (
         

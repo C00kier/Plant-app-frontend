@@ -8,12 +8,12 @@ import PAGES from "../../constants/pages";
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { functionalityElementContext } from "../../App.js";
 import { cookiesContext } from "../../App.js";
 
 export default function CockpitNoPlants() {
     const [username, setUsername] = useState("username");
-    const setFunctionalityElement = useContext(functionalityElementContext);
+    const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
     const cookies = useContext(cookiesContext);
 
     useEffect(() => {

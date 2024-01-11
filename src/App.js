@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import React from 'react';
+import React, {useState} from 'react';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { CookiesProvider, useCookies } from "react-cookie";
 
@@ -13,6 +13,7 @@ import "./App.css";
 
 //constants
 import PAGES from "./constants/pages";
+import COMPONENT_STATE from "./constants/myAccountComponentStates";
 
 //components
 import Navbar from "./components/NavBar/Navbar";
@@ -40,9 +41,13 @@ import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
 
 //context export
 export const cookiesContext = React.createContext();
+export const functionalityElementContext = React.createContext();
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
+  const [functionalityElement, setFunctionalityElement] = useState(
+    COMPONENT_STATE.COCKPIT
+  );
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -65,7 +70,7 @@ function App() {
             </>
           }
         >
-          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token} removeCookie={removeCookie}/> : <HomePage />} />
+          <Route index element={cookies.token ? <HomePageLogged userId={cookies.userId} token={cookies.token} removeCookie={removeCookie} /> : <HomePage />} />
           <Route path={PAGES.ABOUT} element={<AboutPage />} />
           <Route path={PAGES.SEARCH} element={<SearchPlantPage />} />
 
@@ -102,7 +107,9 @@ function App() {
     <div className="App">
       <CookiesProvider>
         <cookiesContext.Provider value={cookies}>
-          <RouterProvider router={router} />
+          <functionalityElementContext.Provider value={{functionalityElement, setFunctionalityElement}}>
+            <RouterProvider router={router} />
+          </functionalityElementContext.Provider>
         </cookiesContext.Provider>
       </CookiesProvider>
     </div>

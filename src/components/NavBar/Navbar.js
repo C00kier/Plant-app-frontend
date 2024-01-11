@@ -10,7 +10,7 @@ import hamburger from '../../assets/accountSidebar/hamburger_icon.png'
 import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
 
 //contexts
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged.js";
+import { functionalityElementContext } from '../../App.js';
 
 
 export default function Navbar(props) {
@@ -18,7 +18,7 @@ export default function Navbar(props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [myAccountDropdownOpen, setMyAccountDropDownOpen] = useState(false);
     const navigate = useNavigate();
-    const setFunctionalityElement = useContext(functionalityElementContext);
+    const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
 
     const handleSignOut = () => {
         removeCookie("token");
