@@ -2,21 +2,25 @@ import "./AddPlant.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function AddPlant({
+import IAddPlant from "../../models/interfaces/IAddPlant";
+import IUserPlant from "../../models/interfaces/IUserPlant";
+
+export default function AddPlant ({
   close,
   token,
   userId,
   plantId,
   name,
   rooms,
-}) {
-  const [todaysDate, setTodaysDate] = useState(getCurrentDate());
-  const [alias, setAlias] = useState(null);
-  const [lastWater, setLastWater] = useState();
-  const [lastFertilizer, setLastFertilizer] = useState();
-  const [lastRepotted, setLastRepotted] = useState();
-  const [image, setImage] = useState();
-  const [wasPlantAdded, setWasPlantAdded] = useState(false);
+} : IAddPlant)  {
+  const [todaysDate, setTodaysDate] = useState<string>(getCurrentDate());
+  const [alias, setAlias] = useState<string | null>(null);
+  const [lastWater, setLastWater] = useState<string>();
+  const [lastFertilizer, setLastFertilizer] = useState<Date | null>();
+  const [lastRepotted, setLastRepotted] = useState<Date | null>();
+  const [image, setImage] = useState<string>();
+  const [wasPlantAdded, setWasPlantAdded] = useState<boolean>(false);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     if (name !== undefined) {
@@ -41,9 +45,9 @@ export default function AddPlant({
     return formattedDate;
   }
 
-  function manageFertilizerDate(e) {
-    if (e.target.value === null) {
-      setLastFertilizer(null);
+  function manageFertilizerDate(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (e.target.value === undefined) {
+      setLastFertilizer(undefined);
     } else if (e.target.value === "-20") {
       const result = new Date(getCurrentDate());
       result.setDate(result.getDate() - 20);
@@ -55,9 +59,9 @@ export default function AddPlant({
     }
   }
 
-  function manageReportDate(e) {
-    if (e.target.value === null) {
-      setLastRepotted(null);
+  function manageReportDate(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (e.target.value === undefined) {
+      setLastRepotted(undefined);
     } else if (e.target.value === "-365") {
       const result = new Date(getCurrentDate());
       result.setDate(result.getDate() - 365);
@@ -71,7 +75,7 @@ export default function AddPlant({
 
   async function submit() {
     console.log(lastWater);
-    const response = await fetch("http://localhost:8080/user-plant/add", {
+    const response = await fetch(`${BASE_URL}/user-plant/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +89,7 @@ export default function AddPlant({
           plantId: plantId,
         },
         alias: alias,
-        lastWater: new Date(lastWater),
+        lastWater: lastWater,
         lastFertilizer: lastFertilizer,
         lastRepotted: lastRepotted,
       }),
@@ -154,7 +158,7 @@ export default function AddPlant({
                     className="add-plant-input-dropdown"
                     onChange={(e) => manageFertilizerDate(e)}
                   >
-                    <option value={null}>Nigdy</option> //null
+                    <option value={undefined}>Nigdy</option> //null
                     <option value={"-20"}>
                       W ciągu ostatniego miesiąca
                     </option>{" "}
@@ -173,7 +177,7 @@ export default function AddPlant({
                     className="add-plant-input-dropdown"
                     onChange={(e) => manageReportDate(e)}
                   >
-                    <option value={null}>Nigdy</option>//null
+                    <option value={undefined}>Nigdy</option>//null
                     <option value={"-365"}>W ciągu ostatniego roku</option>
                     //-365 dni
                     <option value={"-1000"}>Dłużej niż rok temu</option>{" "}

@@ -9,8 +9,11 @@ import waterIcon from "../../assets/cockpit/waterdrop.png";
 import blankImage from "../../assets/common/blank.png";
 import CockpitPerformActionWindow from "./CockpitPerformActionWindow";
 
-export default function CockpitActionElement(props) {
-    const { userPlant, requiredActions } = props;
+//interfaces
+import IUserPlant from "../../models/interfaces/IUserPlant";
+import IActionSort from "../../models/interfaces/IActionSort";
+
+export default function CockpitActionElement({ userPlant, requiredActions }  : {userPlant: IUserPlant, requiredActions : IActionSort}) {
     const [isActionMenuVisible, setIsActionMenuVisible] = useState(false);
     const [exclamationMarkVisibility, setExclamationMarkVisibility] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState();

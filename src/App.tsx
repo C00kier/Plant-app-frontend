@@ -39,11 +39,11 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
 
 //interfaces
-import Cookie from "./models/interfaces/Cookie";
-import FunctionalityElementContext from "./context/FunctionalityElementContext";
+import ICookie from "./models/interfaces/ICookie";
 
 //context export
 export const cookiesContext = React.createContext<Cookie>({"token" : "", "userId" : ""});
+
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
@@ -105,7 +105,7 @@ function App() {
   return (
     <div className="App">
       <CookiesProvider>
-        <cookiesContext.Provider value={cookies as Cookie}>
+        <cookiesContext.Provider value={cookies as ICookie}>
           <FunctionalityElementContext>
             <RouterProvider router={router} />
           </FunctionalityElementContext>

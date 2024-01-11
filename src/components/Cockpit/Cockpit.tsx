@@ -8,6 +8,7 @@ import { cookiesContext } from "../../App";
 export default function Cockpit() {
     const cookies = useContext(cookiesContext);
     const [userPlants, setUserPlants] = useState([]);
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
 
     useEffect(() => {
         (async () => setUserPlants(await fetchUserPlants()))();
@@ -16,7 +17,7 @@ export default function Cockpit() {
 
     async function fetchUserPlants() {
         try {
-            const response = await fetch(`http://localhost:8080/user-plant/${cookies.userId}`
+            const response = await fetch(`${BASE_URL}/user-plant/${cookies.userId}`
                 , {
                     method: "GET",
                     headers:

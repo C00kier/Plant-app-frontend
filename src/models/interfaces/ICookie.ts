@@ -1,4 +1,4 @@
-export default interface Cookie{
+export default interface ICookie{
     "token" : string,
     "userId" : string
 }

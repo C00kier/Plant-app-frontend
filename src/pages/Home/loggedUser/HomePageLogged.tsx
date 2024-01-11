@@ -1,6 +1,6 @@
 import "./HomePageLogged.css";
 
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -16,14 +16,12 @@ import Settings from "../../../components/Settings/Settings";
 import Quiz from "../../../components/Quiz/Quiz";
 import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar";
 
-
-export const functionalityElementContext = React.createContext();
+//context
+import FunctionalityElementContext from "../../../context/FunctionalityElementContext";
 
 export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
+  const {functionalityElement, setValue: setFunctionalityElement} = useContext(FunctionalityElementContext);
   const location = useLocation();
-  const [functionalityElement, setFunctionalityElement] = useState(
-    COMPONENT_STATE.COCKPIT
-  );
   const [userPlants, setUserPlants] = useState();
   const [rooms, setRooms] = useState([]);
   const myPlants = location.state ? location.state.myPlants : false;
@@ -127,7 +125,6 @@ export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
 
   return (
     <div className="home-page-logged-container">
-      <functionalityElementContext.Provider value={setFunctionalityElement}>
         <div className="home-page-logged-content flex-row-center-center">
           <div className="home-page-logged-sidebar-container">
             <AccountSidebar />
@@ -136,7 +133,6 @@ export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
             {renderFunctionalityElement()}
           </div>
         </div>
-      </functionalityElementContext.Provider>
     </div>
   );
 }

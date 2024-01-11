@@ -8,10 +8,10 @@ import AddPlant from "../AddPlant/AddPlant";
 import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 
 //context
-import { functionalityElementContext } from "../../pages/Home/loggedUser/HomePageLogged";
+import FunctionalityElementContext from "../../context/FunctionalityElementContext";
 
 export default function Recommendation({ token, userId, rooms }) {
-    const setFunctionalityElement = useContext(functionalityElementContext);
+    const {functionalityElement, setValue: setFunctionalityElement} = useContext(FunctionalityElementContext);
     const [userQuizAnswers, setUserQuizAnswers] = useState();
     const [recommendedPlants, setRecommendedPlants] = useState();
     const [shouldDisplayRecommeneded, setShouldDisplayRecommended] = useState(false);

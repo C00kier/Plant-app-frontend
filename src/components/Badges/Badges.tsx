@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Badges.css";
+import ICookie from "../../models/interfaces/ICookie";
 
-export default function UserScore({ userId, token }) {
-    const [experience, setExperience] = useState(null);
-    const [gameTitle, setGameTitle] = useState(null);
-    const [pointsLeft, setPointsLeft] = useState(null);
-    const [plantImage, setPlantImage] = useState(null);
-    
+export default function UserScore({ userId, token }: ICookie) {
+    const [experience, setExperience] = useState<string | null>(null);
+    const [gameTitle, setGameTitle] = useState<string | null>(null);
+    const [pointsLeft, setPointsLeft] = useState<string | null>(null);
+    const [plantImage, setPlantImage] = useState<string>("");
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [experienceResponse, gameTitleResponse, pointsLeftResponse] =
                     await Promise.all([
-                        fetch(`http://localhost:8080/user-game-progress/get-exp?userId=${userId}`, {
+                        fetch(`${BASE_URL}/user-game-progress/get-exp?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
                         }),
-                        fetch(`http://localhost:8080/user-game-progress/get-game-title?userId=${userId}`, {
+                        fetch(`${BASE_URL}/user-game-progress/get-game-title?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
                         }),
-                        fetch(`http://localhost:8080/user-game-progress/get-exp-left?userId=${userId}`, {
+                        fetch(`${BASE_URL}/user-game-progress/get-exp-left?userId=${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
                             },
