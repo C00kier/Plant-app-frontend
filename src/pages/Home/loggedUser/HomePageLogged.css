@@ -22,7 +22,8 @@
 }
 
 @media only screen and (max-width: 436px) {
-    .home-page-logged-sidebar-container{
+
+      .home-page-logged-sidebar-container{
         display: none;
     }
 }
