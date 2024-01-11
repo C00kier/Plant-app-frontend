@@ -36,3 +36,18 @@
     white-space:pre-wrap;
 }
 
+
+@media screen and (max-width: 768px) {
+
+      .plant-detail {
+        flex-direction: column;
+        width: 100%;
+        display: flex;
+        margin-bottom: 0.5em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid #76767648;
+      }
+      .plant-detail-right {
+        width: 100%;
+      }
+    }

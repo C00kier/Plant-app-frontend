@@ -172,7 +172,7 @@ export default function PlantPage({ userId, token }) {
               {
                 cookies[0].token !== undefined &&
                 <div id="add-plant-button" onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>
-                  <span onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>Dodaj rośline</span>
+                  <span onClick={() => setWasAddPlantClicked(!wasAddPlantClicked)}>Dodaj roślinę</span>
                 </div>
               }
             </div>
