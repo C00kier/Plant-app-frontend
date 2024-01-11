@@ -52,7 +52,7 @@
     font-size: .8em;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     #quiz-container {
         font-size: small;
         margin-bottom: 5%;
