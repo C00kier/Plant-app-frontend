@@ -73,19 +73,6 @@ export default function Quiz({ userId, token, setFunctionalityElement }) {
     }
     return (
         <>
-            {/* {wasQuizFinished ?
-
-                <div id='quiz-complete-container'>
-                    <div id="quiz-complete-popup">
-                        <div id="quiz-complete-image"></div>
-                        <div id="quiz-complete-communicate-container">
-                            <span id="quiz-complete-communicate">
-                                Dziękujemy za wypełnienie quizu!<br></br>
-                                <span>Teraz możesz zobaczyć które kwiatki będą pasować do Twojego domu.</span>
-                            </span>
-                        </div>
-                    </div>
-                </div> : <></>} */}
             <div id="quiz-container">
                 <QuizHeader index={index}></QuizHeader>
                 <div id="quiz-main">

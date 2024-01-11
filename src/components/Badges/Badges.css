@@ -1,36 +1,35 @@
-.home-page-desktop-logged-functionality-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-.home-page-desktop-logged-content{
-    display: flex;
-    flex-direction: row;
-}
-.user-game-progress-div{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
- }
-
-.score-div{
-    width: 50%;
+.user-game-progress-div {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-.score-text-div{
-    height: 50%;
-    align-items: flex-start;
-}
-.user-game-title-div{
-    display: flex;
-    flex-direction: column;
-    height: 50%;
-    gap: calc(1.5vh + 1vw);
-}
-h1{
-    line-height: 2;
-}
+  }
 
+  .score-div {
+    width: 100%;
+    flex-direction: column;
+    font-size: small;
+    margin-top: -10%;
+  }
+
+  .growing-plant-div {
+    height: 70%;
+    margin-top: -10%
+  }
+
+@media screen and (max-width: 600px) {
+    .user-game-progress-div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .score-div {
+        width: 100%;
+        flex-direction: column;
+        font-size: small;
+        margin-top: -10%;
+      }
+
+      .growing-plant-div {
+        height: 70%;
+        margin-top: -50%
+      }
+}

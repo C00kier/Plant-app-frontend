@@ -71,6 +71,9 @@ export default function Navbar(props) {
                     <ul className="myAccount-dropdown-links">
                         <li onClick={() => setFunctionalityElement(COMPONENT_STATE.COCKPIT)}>Kokpit</li>
                         <li onClick={() => setFunctionalityElement(COMPONENT_STATE.RECOMMENDATION)}>Rekomendacje</li>
+                        <li onClick={() => setFunctionalityElement(COMPONENT_STATE.MY_PLANTS)}>Moje rośliny</li>
+                        <li onClick={() => setFunctionalityElement(COMPONENT_STATE.BADGES)}>Odznaki</li>
+                        <li onClick={() => setFunctionalityElement(COMPONENT_STATE.SETTINGS)}>Ustawienia</li>
                     </ul>
                 </div>
             )}

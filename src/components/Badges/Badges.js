@@ -6,7 +6,7 @@ export default function UserScore({ userId, token }) {
     const [gameTitle, setGameTitle] = useState(null);
     const [pointsLeft, setPointsLeft] = useState(null);
     const [plantImage, setPlantImage] = useState(null);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -60,25 +60,27 @@ export default function UserScore({ userId, token }) {
 
     return (
         <>
+        <h1 className="">Odznaki</h1>
             <div className="user-game-progress-div">
+                
+                <div className="score-text-div">
+                    <h2>Liczba punktów: {experience} </h2>
+                </div>
                 <div className="score-div">
-                    <div className="score-text-div">
-                        <h1>Score: {experience}</h1>
+                    <div className="growing-plant-div">
+                        <img src={plantImage} alt="Plant" />
                     </div>
                     <div className="user-game-title-div">
-                        <h1>
-                            {gameTitle &&
-                                gameTitle
-                                    .split("_")
-                                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                                    .join(" ")}
+                        <h1> {gameTitle &&
+                            gameTitle
+                                .split("_")
+                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                                .join(" ")}
                         </h1>
+                        </div>
                         <h5>Brakuje Ci {pointsLeft} pkt do kolejnego poziomu</h5>
                     </div>
-                </div>
-                <div className="growing-plant-div">
-                    <img src={plantImage} alt="Plant" />
-                </div>
+                
             </div>
         </>
     );

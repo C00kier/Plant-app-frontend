@@ -26,4 +26,8 @@
       .home-page-logged-sidebar-container{
         display: none;
     }
+
+    .home-page-logged-container {
+        margin-top: 10%;
+    }
 }

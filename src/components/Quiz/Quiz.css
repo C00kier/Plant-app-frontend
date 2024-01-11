@@ -3,7 +3,6 @@
 #quiz-container{
     display: flex;
     flex-direction: column;
-    /* gap: 3em; */
 }
 
 #quiz-main{
@@ -18,7 +17,6 @@
     z-index: 100;
     top: 0;
     left: 0;
-    /* background-color: transparent; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,4 +50,11 @@
 
 #quiz-complete-communicate>span{
     font-size: .8em;
+}
+
+@media screen and (max-width: 600px) {
+    #quiz-container {
+        font-size: small;
+        margin-bottom: 5%;
+    }
 }
