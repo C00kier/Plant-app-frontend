@@ -1,12 +1,17 @@
 export default interface IUserPlant {
+    userPlantId: number;
     user: {
-        userId: number,
-    },
+        userId: number;
+    };
     plant: {
-        plantId: number,
+        plantId: number;
+        botanicalName: string;
+        fertilizer: number;
+        repotting: number;
+        water: number;
     },
-    alias: string | null,
-    lastWater: Date | null,
-    lastFertilizer: Date | null,
-    lastRepotted: Date | null,
+    alias: string | null;
+    lastWatered: Date;
+    lastFertilized: Date;
+    lastRepotted: Date;
 }

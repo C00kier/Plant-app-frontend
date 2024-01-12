@@ -6,19 +6,24 @@ import exclamationMark from "../../assets/cockpit/exclamation_mark.png";
 import fertilizerIcon from "../../assets/cockpit/fertilizer.png";
 import repottedIcon from "../../assets/cockpit/repotted.png";
 import waterIcon from "../../assets/cockpit/waterdrop.png";
-import blankImage from "../../assets/common/blank.png";
 import CockpitPerformActionWindow from "./CockpitPerformActionWindow";
 
 //interfaces
 import IUserPlant from "../../models/interfaces/IUserPlant";
-import IActionSort from "../../models/interfaces/IActionSort";
+import IRequiredAction from "../../models/interfaces/IRequiredAction";
+import IPlantCare from "../../models/interfaces/IPlantCare";
 
-export default function CockpitActionElement({ userPlant, requiredActions }  : {userPlant: IUserPlant, requiredActions : IActionSort}) {
-    const [isActionMenuVisible, setIsActionMenuVisible] = useState(false);
-    const [exclamationMarkVisibility, setExclamationMarkVisibility] = useState(false);
-    const [backgroundImage, setBackgroundImage] = useState();
-    const [currentAction, setCurrentAction] = useState();
-    const [plantCare, setPlantCare] = useState({
+export default function CockpitActionElement({ userPlant, requiredActions }: { userPlant: IUserPlant, requiredActions: IPlantCare[] }) {
+    const [isActionMenuVisible, setIsActionMenuVisible] = useState<boolean>(false);
+    const [exclamationMarkVisibility, setExclamationMarkVisibility] = useState<boolean>(false);
+    const [backgroundImage, setBackgroundImage] = useState<string>();
+    const [currentAction, setCurrentAction] = useState<IRequiredAction>({
+        DESCRIPTION: "",
+        ACTION_NOW: "",
+        PICK_DATE: "",
+        ACTION_TYPE: -1
+    });
+    const [plantCare, setPlantCare] = useState<IPlantCare>({
         userPlantId: userPlant.userPlantId,
         watering: false,
         fertilizing: false,
@@ -28,16 +33,16 @@ export default function CockpitActionElement({ userPlant, requiredActions }  : {
     //set plant image
     useEffect(() => {
         try {
-          const image = require(`../../assets/plants/${userPlant.plant.botanicalName.replace(
-            /\s/g,
-            "-"
-          )}-image.jpg`);
-          setBackgroundImage(image);
+            const image = require(`../../assets/plants/${userPlant.plant.botanicalName.replace(
+                /\s/g,
+                "-"
+            )}-image.jpg`);
+            setBackgroundImage(image);
         } catch (error) {
-          console.error(`Image not found for plant: ${userPlant.plant.botanicalName}`);
-          setBackgroundImage(require("../../assets/common/blank.png"));
+            console.error(`Image not found for plant: ${userPlant.plant.botanicalName}`);
+            setBackgroundImage(require("../../assets/common/blank.png"));
         }
-      }, [userPlant.plant.botanicalName]);
+    }, [userPlant.plant.botanicalName]);
 
     //set plant care
     useEffect(() => {
@@ -72,7 +77,7 @@ export default function CockpitActionElement({ userPlant, requiredActions }  : {
     /**
      * Enable advanced action menu for watering
      */
-    function wateringOnClickEvent() {
+    function wateringOnClickEvent() : void{
         setIsActionMenuVisible(true);
         setCurrentAction(actionMenuDescriptions.WATERING);
     }
@@ -80,7 +85,7 @@ export default function CockpitActionElement({ userPlant, requiredActions }  : {
     /**
      * Enable advanced action menu for fertilizing
      */
-    function fertilizingOnClickEvent() {
+    function fertilizingOnClickEvent() : void{
         setIsActionMenuVisible(true);
         setCurrentAction(actionMenuDescriptions.FERTILIZING);
     }
@@ -88,7 +93,7 @@ export default function CockpitActionElement({ userPlant, requiredActions }  : {
     /**
      * Enable advanced action menu for repotting
      */
-    function repottingOnClickEvent() {
+    function repottingOnClickEvent() : void{
         setIsActionMenuVisible(true);
         setCurrentAction(actionMenuDescriptions.REPOTTING);
     }
@@ -100,7 +105,7 @@ export default function CockpitActionElement({ userPlant, requiredActions }  : {
                     <CockpitPerformActionWindow
                         setIsActionMenuVisible={setIsActionMenuVisible}
                         currentAction={currentAction}
-                        userPlant={userPlant}/>
+                        userPlant={userPlant} />
                 }
                 <img className="cockpit-userplant-image" src={backgroundImage} alt="plant" />
                 <span className="cockpit-userplant-alias">{userPlant.alias}</span>

@@ -1,7 +1,7 @@
 import IUserPlant from "./IUserPlant";
 
-export default interface IActionSort{
-    Today: IUserPlant[],
+export default interface IUserPlantArrays{
+    Today: IUserPlant[];
     Tommorow: IUserPlant[],
     Week: IUserPlant[]
 }

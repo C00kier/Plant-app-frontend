@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import IAddPlant from "../../models/interfaces/IAddPlant";
-import IUserPlant from "../../models/interfaces/IUserPlant";
 
 export default function AddPlant ({
   close,
@@ -36,7 +35,7 @@ export default function AddPlant ({
     }
   }, [name]);
 
-  function getCurrentDate() {
+  function getCurrentDate() : string{
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
@@ -45,7 +44,7 @@ export default function AddPlant ({
     return formattedDate;
   }
 
-  function manageFertilizerDate(e: React.ChangeEvent<HTMLSelectElement>) {
+  function manageFertilizerDate(e: React.ChangeEvent<HTMLSelectElement>) : void{
     if (e.target.value === undefined) {
       setLastFertilizer(undefined);
     } else if (e.target.value === "-20") {
@@ -59,7 +58,7 @@ export default function AddPlant ({
     }
   }
 
-  function manageReportDate(e: React.ChangeEvent<HTMLSelectElement>) {
+  function manageReportDate(e: React.ChangeEvent<HTMLSelectElement>) : void{
     if (e.target.value === undefined) {
       setLastRepotted(undefined);
     } else if (e.target.value === "-365") {

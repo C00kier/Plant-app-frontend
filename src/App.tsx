@@ -41,8 +41,11 @@ import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
 //interfaces
 import ICookie from "./models/interfaces/ICookie";
 
+//context import
+import { ContextProvider as FunctionalityElementContext} from "./context/FunctionalityElementContext";
+
 //context export
-export const cookiesContext = React.createContext<Cookie>({"token" : "", "userId" : ""});
+export const cookiesContext = React.createContext<ICookie>({"token" : "", "userId" : ""});
 
 
 function App() {

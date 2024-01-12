@@ -13,7 +13,7 @@ import { cookiesContext } from "../../App";
 
 export default function CockpitNoPlants() {
     const {functionalityElement, setValue: setFunctionalityElement} = useContext(FunctionalityElementContext);
-    const [username, setUsername] = useState("username");
+    const [username, setUsername] = useState<string>("username");
     const cookies = useContext(cookiesContext);
 
     useEffect(() => {

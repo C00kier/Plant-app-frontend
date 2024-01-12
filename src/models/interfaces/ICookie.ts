@@ -1,4 +1,4 @@
 export default interface ICookie{
-    "token" : string,
-    "userId" : string
+    "token" : string;
+    "userId" : string;
 }

@@ -9,15 +9,20 @@ import CockpitActionHeader from "./CockpitActionHeader";
 import CockpitActionElement from "./CockpitActionElement";
 import CockpitAllPlantsCared from "./CockpitAllPlantsCared";
 
+//interface
+import IUserPlant from "../../models/interfaces/IUserPlant";
+import IUserPlantArrays from "../../models/interfaces/IUserPlantArrays";
+import IPlantCareArrays from "../../models/interfaces/IPlantCareArrays";
+import IPlantCare from "../../models/interfaces/IPlantCare";
 
-export default function CockpitWithPlants(props) {
-    const { userPlants } = props;
-    const [sortedPlantsByActionDate, setSortedPlantsByActionDate] = useState({
+
+export default function CockpitWithPlants({ userPlants } : {userPlants : IUserPlant[]}) {
+    const [sortedPlantsByActionDate, setSortedPlantsByActionDate] = useState<IUserPlantArrays>({
         Today: [],
         Tommorow: [],
         Week: []
     });
-    const [plantsRequiredActions, setPlantsRequiredActions] = useState({
+    const [plantsRequiredActions, setPlantsRequiredActions] = useState<IPlantCareArrays>({
         Today: [],
         Tommorow: [],
         Week: []
@@ -36,8 +41,8 @@ export default function CockpitWithPlants(props) {
         If period of time is more than Week
         plant will not be assigned.
     */
-    function sortPlants() {
-        const sortedPlants = {
+    function sortPlants() : void{
+        const sortedPlants : IUserPlantArrays = {
             Today: [],
             Tommorow: [],
             Week: []
@@ -71,7 +76,7 @@ export default function CockpitWithPlants(props) {
     * @param {*} daysToSubtract number of days we want prediction for
     * @returns {boolean}
     */
-    function shouldBeCared(userPlant, daysToSubtract, plantCareArray) {
+    function shouldBeCared(userPlant : IUserPlant, daysToSubtract : number, plantCareArray : Array<IPlantCare>) : boolean{
         const monthLength = 30;
         const yearLength = 365;
         const requiredActionsObj = {
@@ -113,7 +118,7 @@ export default function CockpitWithPlants(props) {
     * @param {*} daysToSubtract number of days we want prediction for
     * @returns 
     */
-    function shouldTakeAction(date, numberOfDays, daysToSubtract) {
+    function shouldTakeAction(date : Date, numberOfDays : number, daysToSubtract : number) : boolean{
         if (date === null) {
             return true;
         }
@@ -130,7 +135,7 @@ export default function CockpitWithPlants(props) {
      * @param {int} numberOfDays number of days to add to date
      * @returns 
      */
-    function addDaysToDateInTimestamp(date, numberOfDays) {
+    function addDaysToDateInTimestamp(date : Date, numberOfDays : number) : number{
         const numberOfDaysTimestamp = convertNumberOfDaysToTimestamp(numberOfDays);
         const dateMidnight = new Date(date).setHours(0,0,0,0);
         const dateTimestamp = new Date(dateMidnight).getTime();
@@ -143,7 +148,7 @@ export default function CockpitWithPlants(props) {
      * @param {int} numberOfDays number of days to convert 
      * @returns 
      */
-    function convertNumberOfDaysToTimestamp(numberOfDays) {
+    function convertNumberOfDaysToTimestamp(numberOfDays : number) {
         if (Number.isNaN(numberOfDays)) {
             return 0;
         }

@@ -1,6 +1,6 @@
 import "./Cockpit.css";
 
-export default function CockpitActionHeader({timePeriod}) {
+export default function CockpitActionHeader({timePeriod} : {timePeriod: string}) {
     return (
         <>
             <div className="grid-action-container-header">

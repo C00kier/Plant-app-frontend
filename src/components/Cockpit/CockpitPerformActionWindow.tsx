@@ -1,17 +1,25 @@
 import "./Cockpit.css";
 import { useCookies } from "react-cookie";
-import { useState } from "react";
+import { MouseEvent, SetStateAction, useState } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-//imported context
-import { cookiesContext } from "../../App";
+//interfaces
+import IUserPlant from "../../models/interfaces/IUserPlant";
+import IRequiredAction from "../../models/interfaces/IRequiredAction";
 
-export default function CockpitPerformActionWindow(props) {
-    const { setIsActionMenuVisible, currentAction, userPlant } = props;
-    const [isCalendarVisible, setIsCalendarVisible] = useState(false);
-    const [date, setDate] = useState(new Date());
-    const cookies = useCookies(cookiesContext);
+export default function CockpitPerformActionWindow(
+    { setIsActionMenuVisible,
+        currentAction,
+        userPlant }: {
+            setIsActionMenuVisible: (bool: boolean) => void,
+            currentAction: IRequiredAction,
+            userPlant: IUserPlant
+        }) {
+
+    const [isCalendarVisible, setIsCalendarVisible] = useState<boolean>(false);
+    const [date, setDate] = useState<Date>(new Date());
+    const cookies = useCookies();
     const BASE_URL = process.env.REACT_APP_BASE_URL;
 
     /**
@@ -37,7 +45,7 @@ export default function CockpitPerformActionWindow(props) {
     /**
      * Page refresh function
      */
-    const handleRefresh = () => {
+    const handleRefresh = () : void => {
         window.location.reload();
     };
 
@@ -46,7 +54,7 @@ export default function CockpitPerformActionWindow(props) {
      * @param {String} url 
      * @returns 
      */
-    async function updateDateInDatabase(url) {
+    async function updateDateInDatabase(url : string) {
         try {
             const response = await fetch(`${url}`
                 , {
@@ -82,27 +90,28 @@ export default function CockpitPerformActionWindow(props) {
      * Disable action menu on clicking outside menu box
      * @param {*} e event
      */
-    function closeModalOnClickOutside(e) {
-        if (e.target.className === "modal-perform-action flex-column-center-center") {
+    function closeModalOnClickOutside(e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) : void {
+        const target = e.target as HTMLElement;
+    
+        if (target.className && target.className.includes("modal-perform-action flex-column-center-center")) {
             setIsActionMenuVisible(false);
         }
     }
 
-
-    function calendarButtonOnClickEvent() {
+    function calendarButtonOnClickEvent() : void {
         setIsCalendarVisible(true);
     }
 
-    function handleDateChange(newDate) {
+    function handleDateChange(newDate: SetStateAction<Date>) : void {
         setDate(newDate);
     };
 
-    function backButtonCalendarOnClickEvent() {
+    function backButtonCalendarOnClickEvent() : void {
         setDate(new Date);
         setIsCalendarVisible(false);
     }
 
-    function actionWindowOnClickEvent(){
+    function actionWindowOnClickEvent() : void {
         setIsActionMenuVisible(false);
         setIsCalendarVisible(false);
     }
