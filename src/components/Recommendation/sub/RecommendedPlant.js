@@ -1,11 +1,18 @@
 import './RecommendedPlant.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-export default function RecommendedPlant({ plant, quiz,open }) {
+export default function RecommendedPlant({ plant, quiz, open }) {
     const [backgroundImage, setBackgroundImage] = useState();
     const [sunIcon, setSunIcon] = useState();
     const [sizeIcon, setSizeIcon] = useState();
-    const [difficultyIcon, setDifficultyIcon] = useState();  
+    const [difficultyIcon, setDifficultyIcon] = useState();
+    const navigate = useNavigate();
+    const navigateToPlant = () => {
+      navigate("/plant/" + plant.id, {
+        state: { isLastPageMyPlants: true },
+      });
+    };
 
     useEffect(() => {
         if (plant !== undefined) {
@@ -24,11 +31,10 @@ export default function RecommendedPlant({ plant, quiz,open }) {
         <>
             <div className='recommended-plant'>
                 <div className='recommended-plant-data-container'>
-                    <div className='recommended-plant-picture' style={{ backgroundImage: `url(${backgroundImage})` }}>
-
+                    <div className='recommended-plant-picture' onClick={() => navigateToPlant()} style={{ backgroundImage: `url(${backgroundImage})` }}>
                     </div>
                     <div className='recommended-plant-name-container'>
-                        <span className='recommended-plant-name'>
+                        <span className='recommended-plant-name'  onClick={() => navigateToPlant()} >
                             {plant.botanicalName}
                         </span>
                     </div>
@@ -48,7 +54,7 @@ export default function RecommendedPlant({ plant, quiz,open }) {
                 <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={(e)=>open(e,backgroundImage,plant.botanicalName)}>
+                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={(e) => open(e, backgroundImage, plant.botanicalName)}>
 
                 </div>
             </div>

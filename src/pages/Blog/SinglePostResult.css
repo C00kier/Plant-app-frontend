@@ -38,12 +38,6 @@
 
 @media screen and (max-width: 768px) {
     .single-post {
-        width: calc(50% - 20px); /* Two columns on smaller screens */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .single-post {
-        width: calc(100% - 20px); /* Single column on even smaller screens */
+        width: calc(50% - 20px); 
     }
 }

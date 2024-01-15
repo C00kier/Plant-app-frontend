@@ -58,6 +58,7 @@
 .all-plants-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 5%;
 }
 
 .my-plants-container h1 {

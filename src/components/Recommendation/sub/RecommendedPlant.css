@@ -23,8 +23,6 @@
     
 }
 
-
-
 .recommended-plant-name-container{
     text-align: left;
     width: 60%;
@@ -52,7 +50,6 @@
     width: 8% !important;
     height: auto;
     background-size: 70%;
-    /* border: 1px solid black; */
 }
 
 .checkmark-icon{
@@ -68,3 +65,15 @@
     background-image: url(../../../../public/icon/add-icon.png);
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    .recommended-plant-data-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+        width: 100%;
+    }
+    .icon-container-recommended{
+        display: none;
+    }
+  }

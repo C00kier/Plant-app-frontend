@@ -71,7 +71,7 @@ export default function EditPlant({
       <div id="background-shade">
         {wasPlantAdded ? (
           <div id="edit-plant-container">
-            <p id="plant-edit-message">Zauktualizowano roślinę!</p>
+            <p id="plant-edit-message">Zaktualizowano roślinę!</p>
           </div>
         ) : (
           <div id="edit-plant-container">

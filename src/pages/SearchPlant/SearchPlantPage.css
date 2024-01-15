@@ -72,7 +72,6 @@
 }
 
 #search-button:hover {
-    background-color: green;
     transition: all ease-in-out 1s;
 }
 

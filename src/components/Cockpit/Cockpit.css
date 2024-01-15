@@ -52,6 +52,7 @@
     gap: calc(2vh + 2vw);
     width: 100%;
     justify-content: flex-start;
+    margin-bottom: 2%;
 }
 
 .cockpit-with-plants-column-header {

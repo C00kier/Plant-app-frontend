@@ -70,7 +70,6 @@ export default function AddPlant({
   }
 
   async function submit() {
-    console.log(lastWater);
     const response = await fetch("http://localhost:8080/user-plant/add", {
       method: "POST",
       headers: {
@@ -124,14 +123,6 @@ export default function AddPlant({
               </div>
               <div id="add-plant-right">
                 <div id="restore-password-close-bttn" onClick={close}></div>
-                {/* <div id='room-container' className='add-plant-input-container'>
-                                <span>Pokój (opcjonalnie):</span>
-                                <select id='room-input' className='add-plant-input-dropdown' disabled={!rooms.length === 0}>
-                                    {
-                                        rooms.map(room=><option value={room}>{room.charAt(0).toUpperCase()+room.slice(1,room.length)}</option>)
-                                    }
-                                </select>
-                            </div> */}
                 <div
                   id="last-water-container"
                   className="add-plant-input-container"
