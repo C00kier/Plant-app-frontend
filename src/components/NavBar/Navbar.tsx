@@ -4,8 +4,9 @@ import "./Navbar.css";
 import PAGES from '../../constants/pages';
 import logo from '../../../src/assets/logo/sprout_logo.png'
 import userIconImage from '../../../src/assets/user/user-circle.256x256.png';
+import INavbar from '../../models/interfaces/INavbar';
 
-export default function Navbar(props) {
+export default function Navbar(props : INavbar) {
     const { cookies, removeCookie } = props;
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
