@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import './FirstQuestion.css';
 
-export default function FirstQuestion({ answers, setAnswered }) {
-    const [isFirstChecked, setIsFirstChecked] = useState(false);
-    const [isSecondChecked, setIsSecondChecked] = useState(false);
-    const [isThirdChecked, setIsThirdChecked] = useState(false);
+//interfaces
+import IAnswers from '../../../../models/interfaces/IAnswers';
+
+export default function FirstQuestion({ answers, setAnswered }:{answers:IAnswers, setAnswered:React.Dispatch<React.SetStateAction<boolean>>}) {
+    const [isFirstChecked, setIsFirstChecked] = useState<boolean>(false);
+    const [isSecondChecked, setIsSecondChecked] = useState<boolean>(false);
+    const [isThirdChecked, setIsThirdChecked] = useState<boolean>(false);
     useEffect(() => {
         if (isFirstChecked || isSecondChecked || isThirdChecked) setAnswered(true);
         if (answers.isSunny === 2) {
@@ -16,9 +19,9 @@ export default function FirstQuestion({ answers, setAnswered }) {
         }
     }, [isFirstChecked, isSecondChecked, isThirdChecked])
     
-    function manageCheckboxClicks(e) {
+    function manageCheckboxClicks(e: React.ChangeEvent<HTMLInputElement>) {
 
-        answers.isSunny = e.target.value;
+        answers.isSunny = parseInt(e.target.value);
 
         if (e.target.name === 'sunny') {
             setIsFirstChecked(true);

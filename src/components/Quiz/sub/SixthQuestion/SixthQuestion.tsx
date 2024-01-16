@@ -2,25 +2,33 @@ import "./SixthQuestion.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
+//interfaces
+import IAnswers from "../../../../models/interfaces/IAnswers";
+
 export default function SixthQuestion({
   answers,
   setAnswered,
   setHasChildren,
   hasChildren,
+}: {
+  answers: IAnswers;
+  setAnswered: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasChildren: React.Dispatch<React.SetStateAction<boolean|undefined>>;
+  hasChildren: boolean|undefined;
 }) {
-  const [isFirstChecked, setIsFirstChecked] = useState(false);
-  const [isSecondChecked, setIsSecondChecked] = useState(false);
+  const [isFirstChecked, setIsFirstChecked] = useState<boolean>(false);
+  const [isSecondChecked, setIsSecondChecked] = useState<boolean>(false);
   useEffect(() => {
     if (isFirstChecked || isSecondChecked) setAnswered(true);
-    if (hasChildren === "true") {
+    if (hasChildren === true) {
       setIsSecondChecked(true);
-    } else if (hasChildren === "false") {
+    } else if (hasChildren === false) {
       setIsFirstChecked(true);
     }
   }, [isFirstChecked, isSecondChecked]);
 
-  function manageCheckboxClicks(e) {
-    setHasChildren(e.target.value);
+  function manageCheckboxClicks(e: React.ChangeEvent<HTMLInputElement>) {
+    setHasChildren(e.target.value === "true");
     if (e.target.name === "yes") {
       setIsFirstChecked(true);
       setIsSecondChecked(false);
@@ -38,7 +46,7 @@ export default function SixthQuestion({
             <input
               type="checkbox"
               name="yes"
-              value={false}
+              value={String(false)}
               checked={isFirstChecked}
               onChange={manageCheckboxClicks}
             ></input>
@@ -48,7 +56,7 @@ export default function SixthQuestion({
             <input
               type="checkbox"
               name="no"
-              value={true}
+              value={String(true)}
               checked={isSecondChecked}
               onChange={manageCheckboxClicks}
             ></input>
