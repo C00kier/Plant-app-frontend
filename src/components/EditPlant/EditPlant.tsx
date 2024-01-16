@@ -1,3 +1,4 @@
+import IEditPlant from "../../models/interfaces/IEditPlant";
 import "./EditPlant.css";
 import { useState, useEffect } from "react";
 
@@ -8,16 +9,17 @@ export default function EditPlant({
   rooms,
   getUserPlants,
   getUserRooms,
-}) {
-  const [alias, setAlias] = useState(plant.alias);
-  const [wasPlantAdded, setWasPlantAdded] = useState(false);
-  const [room, setRoom] = useState(plant.room);
-  const [wasPageUpdated, setWasPageUpdated] = useState(false);
+}: IEditPlant) {
+  const [alias, setAlias] = useState<string | null>(plant.alias);
+  const [wasPlantAdded, setWasPlantAdded] = useState<boolean>(false);
+  const [room, setRoom] = useState<string | null>(plant.room);
+  const [wasPageUpdated, setWasPageUpdated] = useState<boolean>(false);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   async function submit() {
-    if (room === 0) {
+    if (room === "noRoom") {
       const responseNoRoom = await fetch(
-        `http://localhost:8080/user-plant/${plant.userPlantId}/room/remove`,
+        `${BASE_URL}/user-plant/${plant.userPlantId}/room/remove`,
         {
           method: "PATCH",
           headers: {
@@ -30,7 +32,7 @@ export default function EditPlant({
     }
     if (room !== undefined && room !== null) {
       const responseRoom = await fetch(
-        `http://localhost:8080/user-plant/${plant.userPlantId}/room?roomName=${room}`,
+        `${BASE_URL}/user-plant/${plant.userPlantId}/room?roomName=${room}`,
         {
           method: "PATCH",
           headers: {
@@ -43,7 +45,7 @@ export default function EditPlant({
     }
     if (alias !== plant.alias) {
       const responseAlias = await fetch(
-        `http://localhost:8080/user-plant/${plant.userPlantId}/alias?alias=${alias}`,
+        `${BASE_URL}/user-plant/${plant.userPlantId}/alias?alias=${alias}`,
         {
           method: "PATCH",
           headers: {
@@ -85,7 +87,7 @@ export default function EditPlant({
                 <select
                   id="room-input"
                   className="edit-plant-input-dropdown"
-                  disabled={!rooms.length === 0}
+                  disabled={!(rooms.length === 0)}
                   onChange={(e) => setRoom(e.target.value)}
                 >
                   <option></option>
@@ -95,14 +97,14 @@ export default function EditPlant({
                         room.slice(1, room.length)}
                     </option>
                   ))}
-                  <option value={0}>Bez pokoju</option>
+                  <option value={"noRoom"}>Bez pokoju</option>
                 </select>
               </div>
               <div id="alias-container" className="edit-plant-input-container">
                 <span>Alias: </span>
                 <input
                   type="text"
-                  placeholder={plant.alias}
+                  placeholder={plant.alias ?? ''}
                   onChange={(e) => setAlias(e.target.value)}
                   id="alias-input"
                 ></input>

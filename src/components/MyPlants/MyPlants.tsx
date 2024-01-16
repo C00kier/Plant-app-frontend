@@ -4,6 +4,8 @@ import SinglePlantRooms from "./sub/SinglePlantRooms";
 import SinglePlantAll from "./sub/SinglePlantAll";
 import AddRoom from "./sub/AddRoom";
 import NoPlants from "./sub/NoPlants";
+import IMyPlants from "../../models/interfaces/IMyPlants";
+import IUserPlant from "../../models/interfaces/IUserPlant";
 
 export default function MyPlants({
   userPlants,
@@ -12,21 +14,21 @@ export default function MyPlants({
   token,
   getUserPlants,
   getUserRooms,
-}) {
-  const [plantsToShow, setPlantsToShow] = useState(userPlants);
-  const [isAddRoomVisible, setIsAddRoomVisible] = useState(false);
+} : IMyPlants) {
+  const [plantsToShow, setPlantsToShow] = useState<IUserPlant[]>(userPlants);
+  const [isAddRoomVisible, setIsAddRoomVisible] = useState<boolean>(false);
 
   useEffect(() => {
     setPlantsToShow(userPlants);
   }, [userPlants]);
 
-  function onSearch(e) {
+  function onSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const searchTerm = e.target.value.toLowerCase();
     setPlantsToShow(
       userPlants.filter(
         (plant) =>
           plant.plant.botanicalName.toLowerCase().includes(searchTerm) ||
-          plant.alias.toLowerCase().includes(searchTerm)
+           (plant.alias && plant.alias.toLowerCase().includes(searchTerm))
       )
     );
   }

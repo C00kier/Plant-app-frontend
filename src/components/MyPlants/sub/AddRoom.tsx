@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./AddRoom.css";
+import IAddRoom from "../../../models/interfaces/IAddRoom";
 
-export default function AddRoom({ setIsAddRoomVisible, setRooms, rooms }) {
-  const [room, setRoom] = useState(null);
+export default function AddRoom({ setIsAddRoomVisible, setRooms, rooms } : IAddRoom) {
+  const [room, setRoom] = useState<string | null>(null);
 
-  function save() {
+  function save() : void{
     const isRoomExists = rooms.some((existingRoom) => existingRoom === room);
 
     if (isRoomExists) {
@@ -16,7 +17,7 @@ export default function AddRoom({ setIsAddRoomVisible, setRooms, rooms }) {
     }
   }
 
-  function close() {
+  function close() : void{
     setIsAddRoomVisible(false);
   }
 
