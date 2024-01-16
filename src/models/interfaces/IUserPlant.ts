@@ -11,6 +11,7 @@ export default interface IUserPlant {
         water: number;
     },
     alias: string | null;
+    room: string | null;
     lastWatered: Date;
     lastFertilized: Date;
     lastRepotted: Date;

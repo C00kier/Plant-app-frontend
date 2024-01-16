@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./SinglePlantAll.css";
 import PlantMenu from "./PlantMenu";
 import EditPlant from "../../EditPlant/EditPlant";
+import ISinglePlant from "../../../models/interfaces/ISinglePlant";
 
 export default function SinglePlantResult({
   plant,
@@ -10,10 +11,10 @@ export default function SinglePlantResult({
   token,
   getUserRooms,
   getUserPlants,
-}) {
-  const [backgroundImage, setBackgroundImage] = useState();
-  const [isMenuActive, setIsMenuActive] = useState(false);
-  const [isEditPlantShown, setIsEditPlantShown] = useState(false);
+} : ISinglePlant) {
+  const [backgroundImage, setBackgroundImage] = useState<string>();
+  const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
+  const [isEditPlantShown, setIsEditPlantShown] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -28,7 +29,7 @@ export default function SinglePlantResult({
     }
   }, [plant.plant.botanicalName]);
 
-  function close() {
+  function close() : void{
     setIsEditPlantShown(false);
   }
 
@@ -52,7 +53,7 @@ export default function SinglePlantResult({
         onMouseLeave={() => setIsMenuActive(false)}
       >
         {isMenuActive ? (
-          <PlantMenu plant={plant} clickEvent={setIsEditPlantShown}></PlantMenu>
+          <PlantMenu plant={plant} clickEvent={() => setIsEditPlantShown}></PlantMenu>
         ) : (
           <div
             className="plant-image-all"
