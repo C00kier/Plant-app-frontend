@@ -10,7 +10,6 @@ export default function AddPlant ({
   userId,
   plantId,
   name,
-  rooms,
 } : IAddPlant)  {
   const [todaysDate, setTodaysDate] = useState<string>(getCurrentDate());
   const [alias, setAlias] = useState<string | null>(null);

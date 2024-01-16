@@ -1,7 +1,9 @@
 import React from "react";
 import "./DeletePopUp.css";
 
-const DeletePopUp = ({ confirmDelete, cancelDelete }) => {
+import IDeletePopUp from "../../models/interfaces/IDeletePopUp";
+
+const DeletePopUp = ({ confirmDelete, cancelDelete } : IDeletePopUp) => {
   return (
     <div className="delete-popup-container">
       <div className="delete-popup-content">

@@ -1,5 +1,5 @@
 import "./Recommendation.css";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, ReactElement, SetStateAction } from "react";
 
 import RecommendedPlant from "./sub/RecommendedPlant";
 import AddPlant from "../AddPlant/AddPlant";
@@ -10,15 +10,18 @@ import COMPONENT_STATES from "../../constants/myAccountComponentStates";
 //context
 import FunctionalityElementContext from "../../context/FunctionalityElementContext";
 
-export default function Recommendation({ token, userId, rooms }) {
+//interfaces
+import IQuizAnswers from "../../models/interfaces/IQuizAnswers";
+
+export default function Recommendation({ token, userId }:{token:string, userId:number}) {
     const {functionalityElement, setValue: setFunctionalityElement} = useContext(FunctionalityElementContext);
-    const [userQuizAnswers, setUserQuizAnswers] = useState();
-    const [recommendedPlants, setRecommendedPlants] = useState();
-    const [shouldDisplayRecommeneded, setShouldDisplayRecommended] = useState(false);
-    const [shouldDisplayAddPlant, setShouldDisplayAddPlant] = useState(false);
-    const [plantId, setPlantId] = useState();
-    const [image, setImage] = useState();
-    const [name, setName] = useState();
+    const [userQuizAnswers, setUserQuizAnswers] = useState<IQuizAnswers>();
+    const [recommendedPlants, setRecommendedPlants] = useState<{id:number,botanicalName:string}[]>();
+    const [shouldDisplayRecommeneded, setShouldDisplayRecommended] = useState<boolean>(false);
+    const [shouldDisplayAddPlant, setShouldDisplayAddPlant] = useState<boolean>(false);
+    const [plantId, setPlantId] = useState<number>();
+    const [image, setImage] = useState<string>();
+    const [name, setName] = useState<string>();
 
     const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -31,7 +34,7 @@ export default function Recommendation({ token, userId, rooms }) {
         if (recommendedPlants !== undefined) setShouldDisplayRecommended(true);
     }, [recommendedPlants]);
 
-    async function getUserQuiz(userId) {
+    async function getUserQuiz(userId:number) {
         try {
             const response = await fetch(`${BASE_URL}/quiz/get-quiz-result?userId=` + userId,
                 {
@@ -53,6 +56,7 @@ export default function Recommendation({ token, userId, rooms }) {
 
     async function getRecommendedPlants() {
         try {
+            if (userQuizAnswers){
             const response = await fetch(`${BASE_URL}/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
                 method: 'GET',
                 headers: {
@@ -65,14 +69,15 @@ export default function Recommendation({ token, userId, rooms }) {
                 const data = await response.json();
                 if (data !== undefined) setRecommendedPlants(data);
             }
+        }
         } catch (error) {
             console.error(`Error fetching data: ${error}`);
         }
     }
 
-    function open(e, backgroundImage, botanicalName) {
+    function open(e: React.MouseEvent<HTMLDivElement, MouseEvent>, backgroundImage:string|undefined, botanicalName:string) {
         setShouldDisplayAddPlant(!shouldDisplayAddPlant);
-        setPlantId(e.target.id);
+        setPlantId(parseInt(e.currentTarget.id, 10));
         setImage(backgroundImage);
         setName(botanicalName);
     }
@@ -84,7 +89,7 @@ export default function Recommendation({ token, userId, rooms }) {
     return (
         <>
             {(shouldDisplayAddPlant ? <AddPlant close={close} userId={userId} plantId={plantId}
-                token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
+                token={token} name={name}></AddPlant> : <></>)}{
                 userQuizAnswers !== undefined ?
                     <div id="recommended-plants-container">
                         <span id="recommended-plants-title">Teraz możesz zobaczyć rekomendowane rośliny do Twojego wnętrza</span>
@@ -98,7 +103,7 @@ export default function Recommendation({ token, userId, rooms }) {
                             <span id="add-to-my-plants-communicate" className="criteria-communicate">Dodaj do<br></br> moich roślin</span>
                         </div>
                         <div id="plants-container">
-                            {shouldDisplayRecommeneded ? recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} plant={plant} quiz={userQuizAnswers}
+                            {shouldDisplayRecommeneded ? recommendedPlants && recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} plant={plant} quiz={userQuizAnswers}
                                 open={open}></RecommendedPlant>) : <></>}
                         </div>
                     </div>

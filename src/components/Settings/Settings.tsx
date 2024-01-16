@@ -1,31 +1,40 @@
 import "./Settings.css";
-import DeletePopUp from "./DeletePopUp";
+
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+//constants
 import COMPONENT_STATE from "../../constants/myAccountComponentStates";
 import PAGES from "../../constants/pages";
+
+//assets
 import userIconImage from "../../../src/assets/user/user-circle.256x256.png";
-import { useState, useEffect } from "react";
+import DeletePopUp from "./DeletePopUp";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
+
+//interfaces
+import ISettings from "../../models/interfaces/ISettings";
+import IUserInfo from "../../models/interfaces/IUserInfo";
 
 export default function Settings({
   setFunctionalityElement,
   userId,
   token,
   removeCookie,
-}) {
-  const [photoUrl, setPhotoUrl] = useState(null);
-  const [nickName, setNickName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [oldPassword, setOldPassword] = useState(null);
-  const [newPassword, setNewPassword] = useState(null);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
-  const [updated, setUpdated] = useState("");
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+}: ISettings) {
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [nickName, setNickName] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [oldPassword, setOldPassword] = useState<string | null>(null);
+  const [newPassword, setNewPassword] = useState<string | null>(null);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
+  const [updated, setUpdated] = useState<string>("");
+  const [showDeletePopup, setShowDeletePopup] = useState<boolean>(false);
+  const [selectedFile, setSelectedFile] = useState<File>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,12 +62,12 @@ export default function Settings({
     fetchData();
   }, [userId]);
 
-  function handleFileChange(e) {
-    const file = e.target.files[0];
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
     setSelectedFile(file);
   }
 
-  function handleEmailInput(e) {
+  function handleEmailInput(e: React.ChangeEvent<HTMLInputElement>) {
     const targetValue = e.target.value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (targetValue.match(emailRegex) || targetValue.length === 0) {
@@ -69,7 +78,7 @@ export default function Settings({
     }
   }
 
-  function handlePasswordInput(e) {
+  function handlePasswordInput(e: React.ChangeEvent<HTMLInputElement>) {
     const targetValue = e.target.value;
     const passwordRegex =
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
@@ -91,7 +100,7 @@ export default function Settings({
     navigate(PAGES.HOME);
   };
 
-  async function updateEvent(toUpdate) {
+  async function updateEvent(toUpdate: string) {
     let requestData = updateSwitch(toUpdate);
 
     try {
@@ -115,18 +124,20 @@ export default function Settings({
 
   async function confirmDelete() {
     try {
-      const response = await fetch("http://localhost:8080/user/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(userInfo.userId),
-      });
+      if (userInfo) {
+        const response = await fetch("http://localhost:8080/user/delete", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(userInfo.userId),
+        });
 
-      if (response.status === 200) {
-        console.log(response);
-        handleSignOut();
+        if (response.status === 200) {
+          console.log(response);
+          handleSignOut();
+        }
       }
     } catch (error) {
       console.error("Error:", error);
@@ -139,7 +150,7 @@ export default function Settings({
     setShowDeletePopup(false);
   }
 
-  function updateSwitch(toUpdate) {
+  function updateSwitch(toUpdate: string) {
     switch (toUpdate) {
       case "nickname":
         return {
@@ -275,7 +286,9 @@ export default function Settings({
             </p>
             <div
               className="confirm-button"
-              onClick={isPasswordValid ? () => updateEvent("password") : null}
+              onClick={
+                isPasswordValid ? () => updateEvent("password") : undefined
+              }
             >
               <span>Zmień</span>
             </div>
