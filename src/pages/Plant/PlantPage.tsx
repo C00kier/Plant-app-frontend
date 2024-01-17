@@ -5,28 +5,28 @@ import PlantDetail from "./sub/PlantDetail/PlantDetail";
 import AddPlant from "../../components/AddPlant/AddPlant"
 
 //imported context
-import { cookiesContext } from "../../App";
 import { useCookies } from "react-cookie";
+import ICookie from "../../models/interfaces/ICookie";
+import IPlant from "../../models/interfaces/IPlant";
 
-export default function PlantPage({ userId, token }) {
+export default function PlantPage({ userId, token } : ICookie) {
   const location = useLocation();
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
-  const cookies = useCookies(cookiesContext);
-  const [plant, setPlant] = useState();
-  const [plantDownloaded, setPlantDownloaded] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState();
+  const cookies = useCookies();
+  const [plant, setPlant] = useState<IPlant | null>(null);
+  const [plantDownloaded, setPlantDownloaded] = useState<boolean>(false);
+  const [backgroundImage, setBackgroundImage] = useState<string>();
   const isLastPageMyPlants = location.state.isLastPageMyPlants;;
-  const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
-  const [wasAddPlantClicked, setWasAddPlantClicked] = useState(false);
+  const [wasAddPlantClicked, setWasAddPlantClicked] = useState<boolean>(false);
 
   useEffect(() => {
     if (plant !== undefined) {
       try {
         setBackgroundImage(
           require("../../assets/plants/" +
-            plant.botanicalName.replace(/\s/g, "-") +
+            plant?.botanicalName.replace(/\s/g, "-") +
             "-image.jpg")
         );
       } catch (e) {
@@ -35,11 +35,11 @@ export default function PlantPage({ userId, token }) {
     }
   }, [plant]);
 
-  const navigateToMyPlants = () => {
+  const navigateToMyPlants = ()  : void => {
     navigate("/", { state: { myPlants: true } });
   };
 
-  const navigateToSearch = () => {
+  const navigateToSearch = () : void => {
     navigate("/search");
   };
 
@@ -56,7 +56,7 @@ export default function PlantPage({ userId, token }) {
     }
   }
 
-  function close() {
+  function close() : void{
     setWasAddPlantClicked(!setWasAddPlantClicked)
   }
 
@@ -64,7 +64,7 @@ export default function PlantPage({ userId, token }) {
     getPlantByID();
   }, []);
 
-  function getCareDifficultyText(careDifficulty) {
+  function getCareDifficultyText(careDifficulty : any) : string{
     switch (careDifficulty) {
       case 0:
         return "Proste";
@@ -77,7 +77,7 @@ export default function PlantPage({ userId, token }) {
     }
   }
 
-  function getSun(sunValue) {
+  function getSun(sunValue : any) : string{
     switch (sunValue) {
       case 0:
         return "Pełne słońce";
@@ -90,7 +90,7 @@ export default function PlantPage({ userId, token }) {
     }
   }
 
-  function getWaterFrequency(days) {
+  function getWaterFrequency(days : any) : string{
     if (days === 7) {
       return "Raz w tygodniu";
     } else if (days === 14) {
@@ -103,7 +103,7 @@ export default function PlantPage({ userId, token }) {
   return plantDownloaded ? (
 
     <>
-      {wasAddPlantClicked ? <AddPlant userId={userId} token={token} close={close} plantId={plant.plantId} name={plant.botanicalName} rooms={rooms}></AddPlant> : <></>}
+      {wasAddPlantClicked ? <AddPlant userId={userId} token={token} close={close} plantId={plant?.plantId} name={plant?.botanicalName}></AddPlant> : <></>}
       <div
         className="back-btn"
         onClick={() =>
@@ -124,8 +124,8 @@ export default function PlantPage({ userId, token }) {
           </div>
           <div id="plant-main-right">
             <div id="plant-name-container">
-              <span id="plant-name">{plant.botanicalName}</span>
-              <span id="common-name">{plant.commonName}</span>
+              <span id="plant-name">{plant?.botanicalName}</span>
+              <span id="common-name">{plant?.commonName}</span>
             </div>
             <div id="plant-info-images">
               <div id="plant-care-difficulty-card" className="plant-image-card">
@@ -136,7 +136,7 @@ export default function PlantPage({ userId, token }) {
                   id="plant-care-difficulty"
                   className="plant-card-description"
                 >
-                  {getCareDifficultyText(plant.careDifficulty)}
+                  {getCareDifficultyText(plant?.careDifficulty)}
                 </span>
                 <span id="care-difficulty" className="plant-card-type">
                   Pielęgnacja
@@ -147,7 +147,7 @@ export default function PlantPage({ userId, token }) {
                   <div id="sun-card-image"></div>
                 </div>
                 <span id="plant-sun" className="plant-card-description">
-                {getSun(plant.sun)}
+                {getSun(plant?.sun)}
                 </span>
                 <span id="sun" className="plant-card-type">
                   Nasłonecznienie
@@ -161,7 +161,7 @@ export default function PlantPage({ userId, token }) {
                   <div id="plant-care-card-image"></div>
                 </div>
                 <span id="plant-care" className="plant-card-description">
-                  {getWaterFrequency(plant.water)}
+                  {getWaterFrequency(plant?.water)}
                 </span>
                 <span id="care" className="plant-card-type">
                   Podlewanie
@@ -181,79 +181,79 @@ export default function PlantPage({ userId, token }) {
         <div id="plant-details-container">
           <PlantDetail
             detailName={"podstawowe informacje"}
-            description={plant.plantOverview}
+            description={plant?.plantOverview}
           ></PlantDetail>
           <PlantDetail
             detailName={"rodzaj"}
-            description={plant.plantType}
+            description={plant?.plantType}
           ></PlantDetail>
           <PlantDetail
             detailName={"kraj pochodzenia"}
-            description={plant.nativeArea}
+            description={plant?.nativeArea}
           ></PlantDetail>
           <PlantDetail
             detailName={"wielkość dorosłej rośliny"}
-            description={plant.matureSize + " m"}
+            description={plant?.matureSize + " m"}
           ></PlantDetail>
           <PlantDetail
             detailName={"właściwości oczyszczania powietrza"}
-            description={plant.airPurifying}
+            description={plant?.airPurifying.toString()}
           ></PlantDetail>
           <PlantDetail
             detailName={"toksyczność"}
-            description={plant.toxicity}
+            description={plant?.toxicity.toString()}
           ></PlantDetail>
           <PlantDetail
             detailName={"rodzina"}
-            description={plant.plantType}
+            description={plant?.plantType}
           ></PlantDetail>
           <PlantDetail
             detailName={"pielęgnacja"}
-            description={plant.careDescription}
+            description={plant?.careDescription}
           ></PlantDetail>
           <PlantDetail
             detailName={"podlewanie"}
-            description={plant.waterExtended}
+            description={plant?.waterExtended}
           ></PlantDetail>
           <PlantDetail
             detailName={"nasłonecznienie"}
-            description={plant.sunExtended}
+            description={plant?.sunExtended}
           ></PlantDetail>
           <PlantDetail
             detailName={"temperatura"}
-            description={plant.temperature}
+            description={plant?.temperature}
           ></PlantDetail>
           <PlantDetail
             detailName={"wilgotność"}
-            description={plant.humidity}
+            description={plant?.humidity}
           ></PlantDetail>
           <PlantDetail
             detailName={"Nawożenie"}
-            description={plant.fertilizerExtended}
+            description={plant?.fertilizerExtended}
           ></PlantDetail>
           <PlantDetail
             detailName={"rozkwit"}
-            description={plant.repottingExtended}
+            description={plant?.repottingExtended}
           ></PlantDetail>
           <PlantDetail
             detailName={"rodzaj ziemi"}
-            description={plant.soilType}
+            description={plant?.soilType}
           ></PlantDetail>
           <PlantDetail
             detailName={"ph ziemi"}
-            description={plant.soilPh}
+            description={plant?.soilPh}
           ></PlantDetail>
           <PlantDetail
             detailName={"rozmnażanie"}
-            description={plant.propagating}
+            description={plant?.propagating}
           ></PlantDetail>
           <PlantDetail
             detailName={"choroby i szkodniki"}
-            description={plant.pestsAndDiseases}
+            description={plant?.pestsAndDiseases}
           ></PlantDetail>
           <PlantDetail
             detailName={"przycinanie"}
-            description={plant.pruning}
+            description={plant?.pruning}
           ></PlantDetail>
         </div>
       </div>

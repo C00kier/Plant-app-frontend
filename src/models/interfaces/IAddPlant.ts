@@ -1,7 +1,7 @@
 export default interface IAddPlant{
     close: () => void;
     token: string;
-    userId: number;
+    userId: string;
     plantId: number|undefined;
     name: string|undefined;
 }

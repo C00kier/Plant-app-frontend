@@ -2,54 +2,57 @@ import "./SearchPlantPage.css";
 import { useEffect, useState } from "react";
 import SinglePlantResult from "./sub/SinglePlantResult/SinglePlantResult";
 import SettingsButton from "./sub/SettingsButton/SettingsButton";
+import IPlantDTO from "../../models/interfaces/IPlantDTO";
 
 export default function SearchPlantPage() {
-  const [plantName, setPlantName] = useState("");
-  const [searchResult, setSearchResult] = useState();
-  const [shouldRenderPlants, setShouldRenderPlants] = useState(false);
+  const [plantName, setPlantName] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<IPlantDTO[]>([]);
+  const [shouldRenderPlants, setShouldRenderPlants] = useState<boolean>(false);
   const [shouldDisplayMoreButton, setShouldDisplayMoreButton] =
-    useState("none");
-  const [amountToLoad, setAmountToLoad] = useState(12);
-  const [shouldShowSettings, setShouldShowSettings] = useState(false);
+    useState<string>("none");
+  const [amountToLoad, setAmountToLoad] = useState<number>(12);
+  const [shouldShowSettings, setShouldShowSettings] = useState<boolean>(false);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  async function filter(e) {
+
+  async function filter(e: { target: { value: string; }; }) {
     let filterIndex = e.target.value;
     let url = "";
     switch (filterIndex) {
       case "1": //swiatlolubne
-        url = "http://localhost:8080/plant/filter/sun/0?name=" + plantName;
+        url = `${BASE_URL}/plant/filter/sun/0?name=` + plantName;
         break;
       case "2": //czesciowo naslonecznione
-        url = "http://localhost:8080/plant/filter/sun/1?name=" + plantName;
+        url = `${BASE_URL}/plant/filter/sun/1?name=` + plantName;
         break;
       case "3": //cieniolubne
-        url = "http://localhost:8080/plant/filter/sun/2?name=" + plantName;
+        url = `${BASE_URL}/plant/filter/sun/2?name=` + plantName;
         break;
       case "4": //la poczatkujacych
         url =
-          "http://localhost:8080/plant/filter/difficulty/0?name=" + plantName;
+          `${BASE_URL}/plant/filter/difficulty/0?name=` + plantName;
         break;
       case "5": // dla zaawansowanych
         url =
-          "http://localhost:8080/plant/filter/difficulty/1?name=" + plantName;
+          `${BASE_URL}/plant/filter/difficulty/1?name=` + plantName;
         break;
       case "6": //dla expertow
         url =
-          "http://localhost:8080/plant/filter/difficulty/2?name=" + plantName;
+          `${BASE_URL}/plant/filter/difficulty/2?name=` + plantName;
         break;
       case "7": //oczyszczajace powietrze
         url =
-          "http://localhost:8080/plant/filter/airpuryfying?name=" + plantName;
+          `${BASE_URL}/plant/filter/airpuryfying?name=` + plantName;
         break;
       case "8": // bezpieczne dla dzieci
-        url = "http://localhost:8080/plant/filter/nontoxic?name=" + plantName;
+        url = `${BASE_URL}/plant/filter/nontoxic?name=` + plantName;
         break;
       case "9": // bezpieczne dla zwierzat
-        url = "http://localhost:8080/plant/filter/nontoxic?name=" + plantName;
+        url = `${BASE_URL}/plant/filter/nontoxic?name=` + plantName;
         break;
       default:
         if (plantName.length > 0) {
-          url = "http://localhost:8080/plant/name/" + plantName;
+          url = `${BASE_URL}/plant/name/` + plantName;
         } else {
           url = `${process.env.REACT_APP_BASE_URL}/plant`;
         }
@@ -72,7 +75,7 @@ export default function SearchPlantPage() {
   async function search() {
     if (plantName.length > 0) {
       const response = await fetch(
-        "http://localhost:8080/plant/name/" + plantName,
+        `${BASE_URL}/plant/name/` + plantName,
         {
           method: "GET",
           headers: {
@@ -87,7 +90,7 @@ export default function SearchPlantPage() {
         setShouldRenderPlants(true);
       }
     } else {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/plant`, {
+      const response = await fetch(`${BASE_URL}/plant`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -101,10 +104,13 @@ export default function SearchPlantPage() {
       }
     }
   }
-  function loadMore() {
-    setAmountToLoad(amountToLoad + 12);
-    if (amountToLoad >= searchResult.length - 12 || searchResult.length === 0) {
-      setShouldDisplayMoreButton("none");
+  function loadMore() : void{
+    if (searchResult) {
+      setAmountToLoad(amountToLoad + 12);
+      
+      if (amountToLoad >= (searchResult.length - 12) || searchResult.length === 0) {
+        setShouldDisplayMoreButton("none");
+      }
     }
   }
   useEffect(() => {
@@ -142,7 +148,7 @@ export default function SearchPlantPage() {
         <div id="search-result-container">
           {shouldRenderPlants ? (
             <>
-              {searchResult.map((element, index) => {
+              {searchResult.map((element : IPlantDTO, index : number) => {
                 if (index < amountToLoad) {
                   return (
                     <SinglePlantResult

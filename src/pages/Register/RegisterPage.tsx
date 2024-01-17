@@ -1,13 +1,12 @@
 import "./RegisterPage.css";
 import { useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
 import { useNavigate } from "react-router-dom";
 import PAGES from "../../constants/pages";
 
-export default function RegisterPage(props) {
-  const { setCookie } = props;
+export default function RegisterPage({ setCookie }) {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const [formData, setFormData] = useState({
@@ -15,22 +14,22 @@ export default function RegisterPage(props) {
     password: "",
     acceptRules: false,
   });
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isTermsMpromptShown, setIsTermsMpromptShown] = useState(false);
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const [areRulesAccepted,setAreRulesAccepted]=useState(false);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const [isTermsMpromptShown, setIsTermsMpromptShown] = useState<boolean>(false);
+  const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false);
+  const [areRulesAccepted,setAreRulesAccepted]=useState<boolean>(false);
 
 
   const navigate = useNavigate();
-  const navigateToLogin = () => {
+  const navigateToLogin = ()  : void => {
     navigate("/login");
   }
-  const navigateToHome = () => {
+  const navigateToHome = ()  : void => {
     navigate("/");
   }
 
-  function emailInputChangeEvent(e) {
+  function emailInputChangeEvent(e: { target: { value: string; }; }) {
     const targetValue = e.target.value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (targetValue.match(emailRegex) && targetValue.length !== 0) {
@@ -41,7 +40,7 @@ export default function RegisterPage(props) {
     }
   }
 
-  function passwordInputChangeEvent(e) {
+  function passwordInputChangeEvent(e: { target: { value: string; }; }) {
     const targetValue = e.target.value;
     var regexPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])([a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,16})$/;
 
@@ -55,17 +54,17 @@ export default function RegisterPage(props) {
   }
 
 
-  function eyeIconEvent() {
+  function eyeIconEvent()  : void {
     setIsPasswordShown(!isPasswordShown);
   }
 
-  const handleAcceptRules = () => {
+  const handleAcceptRules = ()  : void => {
     setFormData((prevData) => ({ ...prevData, acceptRules: !prevData.acceptRules }));
     setAreRulesAccepted(!areRulesAccepted);
     if(areRulesAccepted===false) setIsTermsMpromptShown(false);
   };
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = ()  : void => {
     const requestData = {
       email: formData.email,
       password: formData.password,
@@ -95,7 +94,7 @@ export default function RegisterPage(props) {
       if(!areRulesAccepted) setIsTermsMpromptShown(true);
     }
   };
-  const handleGoogleSignIn = (request) => {
+  const handleGoogleSignIn = (request : CredentialResponse) => {
     fetch(`${BASE_URL}/auth/authenticate/google`, {
       method: "POST",
       headers: {
@@ -118,7 +117,7 @@ export default function RegisterPage(props) {
       });
   }
 
-  function navigateToTerms() {
+  function navigateToTerms() : void {
     navigate(PAGES.TERMS);
   }
 
