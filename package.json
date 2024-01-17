@@ -29,7 +29,8 @@
   },
   "devDependencies": {
     "@jridgewell/sourcemap-codec": "latest",
-    "@rollup/plugin-terser": "latest"
+    "@rollup/plugin-terser": "latest",
+    "@types/react-google-recaptcha": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",

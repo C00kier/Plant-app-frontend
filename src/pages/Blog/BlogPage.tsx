@@ -2,8 +2,11 @@ import "./BlogPage.css";
 import { useEffect, useState } from "react";
 import SinglePostResult from './SinglePostResult';
 
+//interfaces
+import IPost from "../../models/interfaces/IPost";
+
 export default function BlogPage() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<IPost[]>([]);
 
     useEffect(() => {
         fetch('http://localhost:8080/post/getAllPosts', {

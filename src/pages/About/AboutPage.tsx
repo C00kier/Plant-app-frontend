@@ -1,11 +1,14 @@
 import "./AboutPage.css";
 import { useEffect } from "react";
 
+//interfaces
+import ITeamMember from "../../models/interfaces/ITeamMemeber";
+
 export default function AboutPage() {
   useEffect(()=>{
     window.scrollTo(0,0);
   },[])
-  const teamMembers = [
+  const teamMembers : ITeamMember[] = [
     {
       name: "Mateusz Grygier",
       position: "Junior Fullstack Developer",

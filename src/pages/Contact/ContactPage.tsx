@@ -6,11 +6,10 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export default function ContactPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-}, [])
+  }, []);
   const schema = yup
     .object({
       firstName: yup
@@ -104,7 +103,9 @@ export default function ContactPage() {
         <ReCAPTCHA
           sitekey="6Lf5owwpAAAAADuLD9zTbUfYAVwS_Tj4a7hooFuS"
           onChange={(value) => {
-            setValue("recaptcha", value);
+            if (value !== null) {
+              setValue("recaptcha", value);
+            }
           }}
         />
 
