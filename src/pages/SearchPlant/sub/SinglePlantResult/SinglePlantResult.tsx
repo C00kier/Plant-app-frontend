@@ -4,11 +4,11 @@ import "./SinglePlantResult.css";
 import { useNavigate } from "react-router-dom";
 
 
-export default function SinglePlantResult({ plantName, id }) {
-  const [backgroundImage, setBackgroundImage] = useState();
+export default function SinglePlantResult({plantName, id} : { plantName : string, id : number }) {
+  const [backgroundImage, setBackgroundImage] = useState<string>();
   
   const navigate = useNavigate();
-  const navigateToPlant = () => {
+  const navigateToPlant = () : void=> {
     navigate("/plant/" + id, { state: { isLastPageMyPlants: false } });
   };
   useEffect(() => {

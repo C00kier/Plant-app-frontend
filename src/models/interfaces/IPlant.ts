@@ -1,0 +1,30 @@
+export default interface IPlant{
+    plantId: number;
+    matureSize: number;
+    toxicity: boolean;
+    airPurifying : boolean;
+    repotting : number;
+    fertilizer : number;
+    sun : number;
+    water : number;
+    careDifficulty : number;
+    botanicalName : string;
+    commonName : string;
+    translation : string;
+    plantOverview : string;
+    nativeArea : string;
+    plantType : string;
+    careDescription : string;
+    waterExtended : string;
+    sunExtended : string;
+    temperature : string;
+    humidity : string;
+    fertilizerExtended : string;
+    bloomTime : string;
+    repottingExtended : string;
+    soilType : string;
+    soilPh : string;
+    propagating : string;
+    pestsAndDiseases : string;
+    pruning : string;
+}

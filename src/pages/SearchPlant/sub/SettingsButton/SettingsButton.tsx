@@ -1,8 +1,6 @@
 import './SettingsButton.css'
 
-export default function SettingsButton({filter}) {
-    
-
+export default function SettingsButton({ filter }: { filter: (e: React.ChangeEvent<HTMLSelectElement>) => Promise<void> }) {
     return (
         <>
             <div id='settings-container'>
