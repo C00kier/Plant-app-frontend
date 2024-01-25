@@ -19,7 +19,6 @@ export default function Footer() {
                     <li><Link to={PAGES.ABOUT}>O nas</Link></li>
                     <li><Link to={PAGES.CONTACT}>Kontakt</Link></li>
                     <li><Link to={PAGES.PRIVACY_POLICY}>Polityka Prywatności</Link></li>
-                    <li><Link to={PAGES.TERMS}>Regulamin</Link></li>
                     </ul>
                 </div>
                 <div className="footer-social">
