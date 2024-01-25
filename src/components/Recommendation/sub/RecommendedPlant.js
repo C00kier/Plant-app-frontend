@@ -9,7 +9,7 @@ export default function RecommendedPlant({ plant, quiz, open }) {
     const [difficultyIcon, setDifficultyIcon] = useState();
     const navigate = useNavigate();
     const navigateToPlant = () => {
-      navigate("/plant/" + plant.id, {
+      navigate("/plant/" + plant.plantId, {
         state: { isLastPageMyPlants: true },
       });
     };
@@ -21,9 +21,9 @@ export default function RecommendedPlant({ plant, quiz, open }) {
             } catch (e) {
                 setBackgroundImage(require("../../../assets/common/blank.png"));
             }
-            setSunIcon(require("../../../../public/icon/sun-icon-" + quiz.sun + ".png"));
-            setSizeIcon(require("../../../../public/icon/size-icon-" + quiz['mature_size'] + ".png"))
-            setDifficultyIcon(require("../../../../public/icon/difficulty-icon-" + quiz['care_difficulty'] + ".png"))
+            setSunIcon(require("../../../assets/recommendation/sun-icon-" + plant.sun + ".png"));
+            setSizeIcon(require("../../../assets/recommendation/size-icon-" + plant.matureSize + ".png"))
+            setDifficultyIcon(require("../../../assets/recommendation/difficulty-icon-" + plant.careDifficulty + ".png"))
         }
     }, [plant])
 
@@ -40,10 +40,8 @@ export default function RecommendedPlant({ plant, quiz, open }) {
                     </div>
                 </div>
                 <div className='icon-container-recommended' style={{ backgroundImage: `url(${sunIcon})` }}>
-
                 </div>
                 <div className='icon-container-recommended' style={{ backgroundImage: `url(${sizeIcon})` }}>
-
                 </div>
                 <div className='icon-container-recommended' style={{ backgroundImage: `url(${difficultyIcon})` }}>
 

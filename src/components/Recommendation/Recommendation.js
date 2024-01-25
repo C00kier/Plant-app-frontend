@@ -14,7 +14,7 @@ export default function Recommendation({ token, userId, rooms }) {
     const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
     const [userQuizAnswers, setUserQuizAnswers] = useState();
     const [recommendedPlants, setRecommendedPlants] = useState();
-    const [shouldDisplayRecommeneded, setShouldDisplayRecommended] = useState(false);
+    const [shouldDisplayRecommended, setShouldDisplayRecommended] = useState(false);
     const [shouldDisplayAddPlant, setShouldDisplayAddPlant] = useState(false);
     const [plantId, setPlantId] = useState();
     const [image, setImage] = useState();
@@ -84,7 +84,8 @@ export default function Recommendation({ token, userId, rooms }) {
     return (
         <>
             {(shouldDisplayAddPlant ? <AddPlant close={close} userId={userId} plantId={plantId}
-                token={token} name={name} rooms={rooms}></AddPlant> : <></>)}{
+                token={token} name={name} rooms={rooms}></AddPlant> : <></>)}
+                {
                 userQuizAnswers !== undefined ?
                     <div id="recommended-plants-container">
                         <span id="recommended-plants-title">Teraz możesz zobaczyć rekomendowane rośliny do Twojego wnętrza</span>
@@ -98,8 +99,9 @@ export default function Recommendation({ token, userId, rooms }) {
                             <span id="add-to-my-plants-communicate" className="criteria-communicate">Dodaj do<br></br> moich roślin</span>
                         </div>
                         <div id="plants-container">
-                            {shouldDisplayRecommeneded ? recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} plant={plant} quiz={userQuizAnswers}
-                                open={open}></RecommendedPlant>) : <></>}
+                            {shouldDisplayRecommended ? recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} 
+                            plant={plant} quiz={userQuizAnswers} 
+                            open={open}></RecommendedPlant>) : <></>}
                         </div>
                     </div>
                     : <>
