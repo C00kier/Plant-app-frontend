@@ -20,66 +20,73 @@ export default function Recommendation({ token, userId, rooms }) {
     const [image, setImage] = useState();
     const [name, setName] = useState();
 
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-    useEffect(() => {
-        if (userQuizAnswers === undefined) getUserQuiz(userId);
-        if (userQuizAnswers !== undefined) getRecommendedPlants();
-    }, [userQuizAnswers]);
+  useEffect(() => {
+    if (userQuizAnswers === undefined) getUserQuiz(userId);
+    if (userQuizAnswers !== undefined) getRecommendedPlants();
+  }, [userQuizAnswers]);
 
-    useEffect(() => {
-        if (recommendedPlants !== undefined) setShouldDisplayRecommended(true);
-    }, [recommendedPlants]);
+  useEffect(() => {
+    if (recommendedPlants !== undefined) setShouldDisplayRecommended(true);
+  }, [recommendedPlants]);
 
-    async function getUserQuiz(userId) {
-        try {
-            const response = await fetch(`${BASE_URL}/quiz/get-quiz-result?userId=` + userId,
-                {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data !== undefined) setUserQuizAnswers(data);
-            }
-        } catch (error) {
-            console.error(`Error fetching data: ${error}`);
+  async function getUserQuiz(userId) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/quiz/get-quiz-result?userId=` + userId,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
+
+      if (response.status === 200) {
+        const data = await response.json();
+        if (data !== undefined) setUserQuizAnswers(data);
+      }
+    } catch (error) {
+      console.error(`Error fetching data: ${error}`);
     }
+  }
 
-    async function getRecommendedPlants() {
-        try {
-            const response = await fetch(`${BASE_URL}/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers['air_purifying']}&matureSize=${userQuizAnswers['mature_size']}&careDifficulty=${userQuizAnswers['care_difficulty']}`, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-            })
-
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data !== undefined) setRecommendedPlants(data);
-            }
-        } catch (error) {
-            console.error(`Error fetching data: ${error}`);
+  async function getRecommendedPlants() {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/plant/filter/plants-by-quiz?isToxic=${userQuizAnswers.toxicity}&sun=${userQuizAnswers.sun}&isAirPurifying=${userQuizAnswers["air_purifying"]}&matureSize=${userQuizAnswers["mature_size"]}&careDifficulty=${userQuizAnswers["care_difficulty"]}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
-    }
+      );
 
-    function open(e, backgroundImage, botanicalName) {
-        setShouldDisplayAddPlant(!shouldDisplayAddPlant);
-        setPlantId(e.target.id);
-        setImage(backgroundImage);
-        setName(botanicalName);
+      if (response.status === 200) {
+        const data = await response.json();
+        if (data !== undefined) setRecommendedPlants(data);
+      }
+    } catch (error) {
+      console.error(`Error fetching data: ${error}`);
     }
+  }
 
-    function close() {
-        setShouldDisplayAddPlant(!shouldDisplayAddPlant);
-    }
+  function open(backgroundImage, botanicalName, plantId) {
+    console.log(botanicalName);
+    console.log(plantId);
+    setShouldDisplayAddPlant(!shouldDisplayAddPlant);
+    setPlantId(plantId);
+    setImage(backgroundImage);
+    setName(botanicalName);
+  }
+
+  function close() {
+    setShouldDisplayAddPlant(!shouldDisplayAddPlant);
+  }
 
     return (
         <>

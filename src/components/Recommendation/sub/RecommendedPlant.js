@@ -52,7 +52,7 @@ export default function RecommendedPlant({ plant, quiz, open }) {
                 <div className={quiz["air_purifying"] ? "icon-container-recommended checkmark-icon" : "icon-container-recommended cross-icon"}>
 
                 </div>
-                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={(e) => open(e, backgroundImage, plant.botanicalName)}>
+                <div className='recommeneded-plant-add-button add-icon icon-container-recommended' id={plant.id} onClick={() => open(backgroundImage, plant.botanicalName, plant.plantId)}>
 
                 </div>
             </div>
