@@ -12,8 +12,8 @@ export default function AddPlant({
 }) {
   const [todaysDate, setTodaysDate] = useState(getCurrentDate());
   const [alias, setAlias] = useState(null);
-  const [lastWater, setLastWater] = useState();
-  const [lastFertilizer, setLastFertilizer] = useState();
+  const [lastWatered, setLastWater] = useState();
+  const [lastFertilized, setLastFertilizer] = useState();
   const [lastRepotted, setLastRepotted] = useState();
   const [image, setImage] = useState();
   const [wasPlantAdded, setWasPlantAdded] = useState(false);
@@ -84,8 +84,8 @@ export default function AddPlant({
           plantId: plantId,
         },
         alias: alias,
-        lastWater: new Date(lastWater),
-        lastFertilizer: lastFertilizer,
+        lastWatered: new Date(lastWatered),
+        lastFertilized: lastFertilized,
         lastRepotted: lastRepotted,
       }),
     });
