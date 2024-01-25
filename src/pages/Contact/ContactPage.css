@@ -9,7 +9,7 @@
 
 .contact-text-container {
     gap: calc(1vh + 1vw);
-    width: 80%;
+    width: 50%;
     max-width: none;
 }
 
@@ -25,15 +25,14 @@
     padding: 1em;
     font-size: calc(0.7vh + 0.7vw);
     color: var(--light-grey-text-color);
+    text-align: justify;
 }
 
-/* Right Container Styling */
 .contact-righ-container {
-    width: 80%;
+    width: 50%;
     margin-left: 1em;
 }
 
-/* Form input fields */
 .contact-righ-container input,
 .contact-righ-container select {
     width: 90%;
@@ -42,12 +41,13 @@
     box-sizing: border-box;
     border-radius: 25px;
     border: 1px solid black;
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 .contact-righ-container textarea[name="message"] {
     height: 8em;
-    font: 500 calc(1vh + 1vw)/1 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
 }
 
 .contact-righ-container input[type="submit"] {
@@ -82,5 +82,24 @@
     font-size: 1.2em;
     overflow-y: auto; 
     resize: vertical;
+}
+
+@media screen and (max-width: 768px) {
+
+    .contact-text-container {
+        width: 80%;
+    }
+
+    .contact-lower-text {
+        padding: 1em;
+        font-size: calc(1vh + 1vw);
+        color: var(--light-grey-text-color);
+    }
+
+   .contact-righ-container{
+    width: 80%
+   }
+
+
 }
 
