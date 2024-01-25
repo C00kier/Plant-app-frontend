@@ -6,7 +6,7 @@ const Post = () => {
     const id = url.split("/")[url.split("/").length - 1]
     const [post, setPost] = useState([]);
     const [backgroundImage, setBackgroundImage] = useState('');
-    const [formattedArticle,setFormattedArticle]=useState('');
+    const [formattedArticle, setFormattedArticle]=useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,8 +26,8 @@ const Post = () => {
     }, [id]);
 
     useEffect(() => {
-        setBackgroundImage(require("../../assets/blog/" + id + ".jpg"));
-    }, [post.id, setBackgroundImage])
+        import(`../../assets/blog/${id}.jpg`).then(image => setBackgroundImage(image.default));
+    }, [id, setBackgroundImage])
 
     
     useEffect(()=>{
