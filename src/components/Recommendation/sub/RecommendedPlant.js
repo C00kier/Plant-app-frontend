@@ -26,15 +26,15 @@ export default function RecommendedPlant({ plant, quiz, open }) {
         setBackgroundImage(require("../../../assets/common/blank.png"));
       }
       setSunIcon(
-        require("../../../../public/icon/sun-icon-" + quiz.sun + ".png")
+        require("../../../assets/recommendation/sun-icon-" + quiz.sun + ".png")
       );
       setSizeIcon(
-        require("../../../../public/icon/size-icon-" +
+        require("../../../assets/recommendation/size-icon-" +
           quiz["mature_size"] +
           ".png")
       );
       setDifficultyIcon(
-        require("../../../../public/icon/difficulty-icon-" +
+        require("../../../assets/recommendation/difficulty-icon-" +
           quiz["care_difficulty"] +
           ".png")
       );
