@@ -26,10 +26,11 @@ export default function SinglePlantResult({ plantName, id }) {
   return (
     <>
       <div className="single-plant" onClick={() => navigateToPlant()}>
-        <div
+        {/* <div
           className="plant-image"
           style={{ backgroundImage: `url(${backgroundImage})` }}
-        ></div>
+        ></div> */}
+        <img className="plant-image" loading='lazy' src={backgroundImage}></img>
         <div className="plant-name">
           <span>{plantName}</span>
         </div>
