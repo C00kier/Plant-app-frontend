@@ -37,7 +37,7 @@ export default function Cockpit() {
     return (
         <>
             {
-                userPlants.length > 0
+                userPlants && userPlants.length > 0
                     ? <CockpitWithPlants userPlants={userPlants} />
                     : <CockpitNoPlants />
             }

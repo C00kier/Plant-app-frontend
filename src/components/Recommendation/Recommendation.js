@@ -79,8 +79,6 @@ export default function Recommendation({ token, userId, rooms }) {
   }
 
   function open(backgroundImage, botanicalName, plantId) {
-    console.log(botanicalName);
-    console.log(plantId);
     setShouldDisplayAddPlant(!shouldDisplayAddPlant);
     setPlantId(plantId);
     setImage(backgroundImage);
