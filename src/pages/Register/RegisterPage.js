@@ -187,7 +187,7 @@ export default function RegisterPage(props) {
               </p><p className={
                 isTermsMpromptShown
                   ? "informative-text-incorrect" : "informative-text-correct"
-              } id="accept-rules-"> * Aby zarejestrować się, zaakceptuj regulamin</p>
+              } id="accept-rules"> * <p id='rules-not-accepted'>Aby zarejestrować się, zaakceptuj regulamin</p></p>
             </div>
             <p id="rodo-text">
               Twoje dane osobowe będą wykorzystywane aby dostosować działanie

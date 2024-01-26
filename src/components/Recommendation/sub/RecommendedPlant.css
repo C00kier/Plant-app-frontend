@@ -53,16 +53,16 @@
 }
 
 .checkmark-icon{
-    background-image: url(../../../../public/icon/checkmark-icon.png);
+    background-image: url(../../../assets/recommendation/checkmark-icon.png);
     
 }
 
 .cross-icon{
-    background-image: url(../../../../public/icon/cross-icon.png);
+    background-image: url(../../../assets/recommendation/cross-icon.png);
 }
 
 .add-icon{
-    background-image: url(../../../../public/icon/add-icon.png);
+    background-image: url(../../../assets/recommendation/add-icon.png);
     cursor: pointer;
 }
 

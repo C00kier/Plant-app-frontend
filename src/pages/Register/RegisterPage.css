@@ -92,6 +92,8 @@
 #accept-rules {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  /* padding-left: 1em; */
 }
 
 #rules {
@@ -129,6 +131,10 @@
 
 .informative-text-incorrect {
   color: #f40a0a;
+}
+
+#rules-not-accepted{
+  padding-left: 1em;
 }
 
 .informative-text-correct {

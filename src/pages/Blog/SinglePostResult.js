@@ -9,8 +9,8 @@ export default function SinglePostResult({ post, id }) {
          navigate("/blog/post/" + id);
     }
     useEffect(() => {
-        setBackgroundImage(require("../../assets/blog/" + id + ".jpg"));
-    }, [post.id, setBackgroundImage])
+        import(`../../assets/blog/${id}.jpg`).then(image => setBackgroundImage(image.default));
+    }, [id, setBackgroundImage])
 
     return (
         <>
