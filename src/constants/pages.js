@@ -11,6 +11,7 @@ const PAGES = {
     POST: "/blog/post/:id",
     FORUM: "/forum",
     PLANT: "/plant/:id",
+    FORGOT_PASSWORD: "/reset-password/:token",
     UNASSIGNED: "*"
 }
 
