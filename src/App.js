@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { CookiesProvider, useCookies } from "react-cookie";
 
@@ -38,6 +38,7 @@ import HomePageLogged from "./pages/Home/loggedUser/HomePageLogged";
 //utils
 import PrivateRoutes from "./utils/PrivateRoutes";
 import UnauthorizedRoutes from "./utils/UnauthorizedRoutes";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 //context export
 export const cookiesContext = React.createContext();
@@ -94,6 +95,7 @@ function App() {
                 </GoogleOAuthProvider>
               }
             />
+            <Route path={PAGES.FORGOT_PASSWORD} element={<ForgotPassword />} />
           </Route>
           <Route element={<PrivateRoutes token={cookies.token} />} >
             <Route path={PAGES.FORUM} element={<ForumPage />} />
@@ -107,7 +109,7 @@ function App() {
     <div className="App">
       <CookiesProvider>
         <cookiesContext.Provider value={cookies}>
-          <functionalityElementContext.Provider value={{functionalityElement, setFunctionalityElement}}>
+          <functionalityElementContext.Provider value={{ functionalityElement, setFunctionalityElement }}>
             <RouterProvider router={router} />
           </functionalityElementContext.Provider>
         </cookiesContext.Provider>
