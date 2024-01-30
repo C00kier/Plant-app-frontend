@@ -25,7 +25,7 @@ The Sprout is a user-friendly application designed to help plant enthusiasts kee
 - **Iza Bonarowska** - [LinkedIn](https://www.linkedin.com/in/iza-bonarowska/) | [GitHub](https://github.com/izabonarowska)
 - **Sebastian Kostrz** - [LinkedIn](www.linkedin.com/in/sebastian-kostrz-384b7a2a3) | [GitHub](https://github.com/SebastianKostrz)
 - **Bartosz Hiltawski** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/Hiltwa)
-- **Paweł Ignaczak** - [LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/C00kier)
+- **Paweł Ignaczak** - [LinkedIn](https://www.linkedin.com/in/paweł-ignaczak-2320832b0) | [GitHub](https://github.com/C00kier)
 
 ## Features
 

@@ -47,6 +47,7 @@
     border-radius: 30px;
     border: none;
     background-color: var(--active-button-color);
+    cursor: pointer;
 }
 
 .home-page-desktop-start-button:hover{
