@@ -18,8 +18,9 @@ import AccountSidebar from "../../../components/AccountSidebar/AccountSidebar.js
 
 //context
 import { functionalityElementContext } from "../../../App.js";
+import { set } from "react-hook-form";
 
-export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
+export default function HomePageDesktopLogged({ userId, token, removeCookie, setCookie }) {
   const location = useLocation();
   const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
   const [userPlants, setUserPlants] = useState();
@@ -108,6 +109,7 @@ export default function HomePageDesktopLogged({ userId, token, removeCookie }) {
             userId={userId}
             token={token}
             removeCookie={removeCookie}
+            setCookie={setCookie}
           />
         );
       }

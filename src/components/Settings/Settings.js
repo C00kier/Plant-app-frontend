@@ -13,6 +13,7 @@ export default function Settings({
   userId,
   token,
   removeCookie,
+  setCookie,
 }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [nickName, setNickName] = useState(null);
@@ -105,8 +106,11 @@ export default function Settings({
       });
 
       if (response.status === 200) {
-        console.log(response);
         setUpdated(toUpdate);
+      } else if (response.status === 202) {
+        const data = await response.text();
+        setUpdated(toUpdate);
+        setCookie("token", data, { path: "/" });
       }
     } catch (error) {
       console.error("Error:", error);
