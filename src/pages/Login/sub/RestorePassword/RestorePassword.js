@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function RestorePassword({ close }) {
     const [displayInvalidEmail, setDisplayInvalidEmail] = useState("none");
+    const [displayNotAllowed, setDisplayNotAllowed] = useState("none");
     const [emailString, setEmailString] = useState("");
     const [displayEmailSend, setDisplayEmailSend] = useState(false);
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -23,11 +24,16 @@ export default function RestorePassword({ close }) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ "email": emailString })
                 });
-
-                response.ok
-                    ? setDisplayEmailSend(true)
-                    : setDisplayInvalidEmail("block");
-
+                if (response.status === 200){
+                    setDisplayEmailSend(true);
+                }
+                else if (response.status === 406){
+                    setDisplayNotAllowed("block");
+                }
+                else {
+                    setDisplayInvalidEmail("block");
+                }
+             
             } catch (error) {
                 console.error(`Error fetching data: ${error}`);
             }
@@ -54,7 +60,8 @@ export default function RestorePassword({ close }) {
                                         Wyslij link!
                                     </span>
                                 </div>
-                                <span id="email-invalid-communicate" style={{ display: displayInvalidEmail }}>E-mail niepoprawny!</span>
+                                <span className="email-invalid-communicate" style={{ display: displayInvalidEmail }}>E-mail niepoprawny!</span>
+                                <span className="email-invalid-communicate" style={{ display: displayNotAllowed }}>Zmiana hasła niedostępna dla kont Google</span>
                             </>
                     }
                 </div>
