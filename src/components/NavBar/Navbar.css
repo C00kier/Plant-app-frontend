@@ -50,6 +50,7 @@
   width: 50px;
   height: auto;
   padding: 2em;
+  cursor: pointer;
 }
 
 .navbar-dropdown-container {

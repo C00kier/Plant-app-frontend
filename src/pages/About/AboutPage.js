@@ -44,7 +44,7 @@ export default function AboutPage() {
     {
       name: "Paweł Ignaczak",
       position: "Junior Fullstack Developer",
-      linkedin: "https://www.linkedin.com/",
+      linkedin: "https://www.linkedin.com/in/paweł-ignaczak-2320832b0",
       github: "https://github.com/C00kier",
       image: "pawel.webp",
     },
