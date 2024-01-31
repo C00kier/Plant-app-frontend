@@ -28,10 +28,12 @@ export default function Navbar(props) {
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
+        setMyAccountDropDownOpen(false);
     };
 
     const toggleMyAccountDropdown = () => {
         setMyAccountDropDownOpen(!myAccountDropdownOpen);
+        setDropdownOpen(false);
     }
 
     const commonLinks = (
