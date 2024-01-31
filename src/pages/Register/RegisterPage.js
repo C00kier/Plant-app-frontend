@@ -17,18 +17,17 @@ export default function RegisterPage(props) {
   });
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isTermsMpromptShown, setIsTermsMpromptShown] = useState(false);
+  const [isTermsMpromptShown, setIsTermsMpromptShown] = useState(true);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const [areRulesAccepted,setAreRulesAccepted]=useState(false);
-
+  const [areRulesAccepted, setAreRulesAccepted] = useState(false);
 
   const navigate = useNavigate();
   const navigateToLogin = () => {
     navigate("/login");
-  }
+  };
   const navigateToHome = () => {
     navigate("/");
-  }
+  };
 
   function emailInputChangeEvent(e) {
     const targetValue = e.target.value;
@@ -43,26 +42,33 @@ export default function RegisterPage(props) {
 
   function passwordInputChangeEvent(e) {
     const targetValue = e.target.value;
-    var regexPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])([a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,16})$/;
+    var regexPattern =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])([a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,16})$/;
 
-    if (targetValue.match(regexPattern) && targetValue.length !== 0 && targetValue.length>=8) {
+    if (
+      targetValue.match(regexPattern) &&
+      targetValue.length !== 0 &&
+      targetValue.length >= 8
+    ) {
       setIsPasswordValid(true);
-      console.log('ok');
+      console.log("ok");
       setFormData((prevData) => ({ ...prevData, password: targetValue }));
     } else {
       setIsPasswordValid(false);
     }
   }
 
-
   function eyeIconEvent() {
     setIsPasswordShown(!isPasswordShown);
   }
 
   const handleAcceptRules = () => {
-    setFormData((prevData) => ({ ...prevData, acceptRules: !prevData.acceptRules }));
+    setFormData((prevData) => ({
+      ...prevData,
+      acceptRules: !prevData.acceptRules,
+    }));
     setAreRulesAccepted(!areRulesAccepted);
-    if(areRulesAccepted===false) setIsTermsMpromptShown(false);
+    setIsTermsMpromptShown(!isTermsMpromptShown);
   };
 
   const handleRegisterClick = () => {
@@ -70,7 +76,7 @@ export default function RegisterPage(props) {
       email: formData.email,
       password: formData.password,
     };
-    if (areRulesAccepted && isEmailValid===true && isPasswordValid===true) {
+    if (areRulesAccepted && isEmailValid === true && isPasswordValid === true) {
       fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
@@ -79,7 +85,6 @@ export default function RegisterPage(props) {
         body: JSON.stringify(requestData),
       })
         .then((response) => {
-
           if (response.status === 200) navigateToHome();
           return response.json();
         })
@@ -90,9 +95,8 @@ export default function RegisterPage(props) {
         .catch((error) => {
           console.error("Error:", error);
         });
-    }
-    else {
-      if(!areRulesAccepted) setIsTermsMpromptShown(true);
+    } else {
+      if (!areRulesAccepted) setIsTermsMpromptShown(true);
     }
   };
   const handleGoogleSignIn = (request) => {
@@ -107,7 +111,7 @@ export default function RegisterPage(props) {
         if (response.status === 200) {
           navigateToHome();
         }
-        return response.json()
+        return response.json();
       })
       .then((data) => {
         setCookie("token", data.token, { path: "/" });
@@ -116,7 +120,7 @@ export default function RegisterPage(props) {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  };
 
   function navigateToTerms() {
     navigate(PAGES.TERMS);
@@ -175,7 +179,7 @@ export default function RegisterPage(props) {
             specjalny
           </p>
           <div id="register-button-section">
-            <div id="accept-rules">
+            <div className="accept-rules">
               <input type="checkbox" onClick={handleAcceptRules}></input>
               <p className="accept-rules">Akceptuje</p>
               <p
@@ -184,25 +188,39 @@ export default function RegisterPage(props) {
                 onClick={() => navigateToTerms()}
               >
                 regulamin
-              </p><p className={
-                isTermsMpromptShown
-                  ? "informative-text-incorrect" : "informative-text-correct"
-              } id="accept-rules"> * <p id='rules-not-accepted'>Aby zarejestrować się, zaakceptuj regulamin</p></p>
+              </p>
+              <p
+                className={
+                  isTermsMpromptShown
+                    ? "informative-text-incorrect"
+                    : "informative-text-correct"
+                }
+                id="accept-rules-info"
+              >
+                {" "}
+                *
+                <p id="rules-not-accepted">
+                  Aby zarejestrować się, zaakceptuj regulamin
+                </p>
+              </p>
             </div>
             <p id="rodo-text">
               Twoje dane osobowe będą wykorzystywane aby dostosować działanie
-              strony do twoich potrzeb, do zarządzania dostępem do Twojego
-              konta oraz do innych celów opisanych w naszej polityka
-              prywatności.
+              strony do twoich potrzeb, do zarządzania dostępem do Twojego konta
+              oraz do innych celów opisanych w naszej polityka prywatności.
             </p>
             <div id="register-button" onClick={handleRegisterClick}>
               <span>Zarejestruj</span>
             </div>
             <div className="have-account-container">
-              <p>Masz już konto?</p><p className="hyper-link" onClick={navigateToLogin}>zaloguj się!</p></div>
+              <p>Masz już konto?</p>
+              <p className="hyper-link" onClick={navigateToLogin}>
+                zaloguj się!
+              </p>
+            </div>
             <GoogleLogin
               onSuccess={(credentialResponse) => {
-                handleGoogleSignIn(credentialResponse)
+                handleGoogleSignIn(credentialResponse);
               }}
               onError={() => {
                 console.log("Login Failed");

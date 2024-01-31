@@ -89,11 +89,16 @@
   align-items: flex-start;
 }
 
-#accept-rules {
+.accept-rules {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  /* padding-left: 1em; */
+}
+
+#accept-rules-info {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 #rules {
@@ -117,8 +122,8 @@
   font-size: 1.5em;
 }
 
-#accept-rules-text {
-  margin:0.5em;
+#accept-rules-info {
+  padding-left: 0.5em;
 }
 
 #rodo-text {
@@ -134,7 +139,7 @@
 }
 
 #rules-not-accepted{
-  padding-left: 1em;
+  padding-left: 0.5em;
 }
 
 .informative-text-correct {
