@@ -1,0 +1,66 @@
+.delete-plant-container {
+    height: auto;
+    background-color: var(--white-lower-contrast);
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    position: fixed;
+    top: 20%;
+    width: 30em;
+    height: 35%;
+  }
+
+  #close-bttn {
+    background-image: url("../../../assets/login/cross-close.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 2vh;
+    height: 2vh;
+    align-self: flex-end;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  #close-bttn:hover {
+    scale:1.2;
+  }
+  
+  #plant-delete-message {
+  font-size: 2em;
+  }
+  
+  #delete-plant-message {
+    font-size: 2em;
+    font-weight: 700;
+  }
+   
+  
+  .confirm-delete-bttn {
+    background-color: #2d6a4f;
+    width: 15em;
+    height: 3.5em;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .confirm-delete-bttn:hover {
+    background-color: #208d5c;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #confirm-delete-message {
+    color: white;
+    font-size: 1.3em;
+  }
+  
+  
+  

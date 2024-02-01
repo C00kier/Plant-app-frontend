@@ -22,17 +22,48 @@ export default function MyPlants({
 
   useEffect(() => {
     getUserPlants();
+    console.log(userPlants)
   }, []);
 
   function onSearch(e) {
-    const searchTerm = e.target.value.toLowerCase();
+    const searchTerm = (e.target.value || '').toLowerCase();
     setPlantsToShow(
-      userPlants.filter(
-        (plant) =>
-          plant.plant.botanicalName.toLowerCase().includes(searchTerm) ||
-          plant.alias.toLowerCase().includes(searchTerm)
-      )
+      userPlants.filter((plant) => {
+        const botanicalName = plant.plant?.botanicalName || '';
+        const alias = plant.alias || '';
+        return (
+          botanicalName.toLowerCase().includes(searchTerm) ||
+          alias.toLowerCase().includes(searchTerm)
+        );
+      })
     );
+  }
+
+  async function deletePlant(plant){
+    try {
+      const response = await fetch(
+        "http://localhost:8080/user-plant/" + plant.userPlantId,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error(
+          "Failed to remove user plants:",
+          response.status,
+          response.statusText
+        );
+        return;
+      }
+      getUserPlants();
+    } catch (error) {
+      console.error("Error fetching user plants:", error.message);
+    }
   }
 
   return (
@@ -102,6 +133,7 @@ export default function MyPlants({
                   token={token}
                   getUserPlants={getUserPlants}
                   getUserRooms={getUserRooms}
+                  deletePlant={deletePlant}
                 ></SinglePlantAll>
               ))}
           </div>

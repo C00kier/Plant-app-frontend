@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./PlantMenu.css";
 
-export default function PlantMenu({ plant, clickEvent, getUserRooms }) {
+export default function PlantMenu({ plant, clickEvent }) {
   const navigate = useNavigate();
   const navigateToPlant = () => {
     navigate("/plant/" + plant.plant.plantId, {

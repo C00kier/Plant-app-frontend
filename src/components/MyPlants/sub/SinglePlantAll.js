@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./SinglePlantAll.css";
 import PlantMenu from "./PlantMenu";
 import EditPlant from "../../EditPlant/EditPlant";
+import ConfirmDeletePopup from "./ConfirmDeletePopup";
+import deleteIcon from "../../../assets/myPlants/trash.png";
 
 export default function SinglePlantResult({
   plant,
@@ -10,10 +12,12 @@ export default function SinglePlantResult({
   token,
   getUserRooms,
   getUserPlants,
+  deletePlant,
 }) {
   const [backgroundImage, setBackgroundImage] = useState();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isEditPlantShown, setIsEditPlantShown] = useState(false);
+  const [isConfirmDeleteVisible, setIsConfirmDeleteVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -32,6 +36,10 @@ export default function SinglePlantResult({
     setIsEditPlantShown(false);
   }
 
+  function closePopup(){
+    setIsConfirmDeleteVisible(false);
+  }
+
   return (
     <>
       {isEditPlantShown ? (
@@ -43,6 +51,15 @@ export default function SinglePlantResult({
           getUserPlants={getUserPlants}
           getUserRooms={getUserRooms}
         ></EditPlant>
+      ) : (
+        <></>
+      )}
+      {isConfirmDeleteVisible ? (
+        <ConfirmDeletePopup
+          plant={plant}
+          deletePlant={deletePlant}
+          closePopup={closePopup}
+        ></ConfirmDeletePopup>
       ) : (
         <></>
       )}
@@ -70,6 +87,11 @@ export default function SinglePlantResult({
         <div className="plant-room-all">
           <p>{plant.room}</p>
         </div>
+        <div
+          className="delete-plant-button"
+          style={{ backgroundImage: `url(${deleteIcon})` }}
+          onClick={() => setIsConfirmDeleteVisible(true)}
+        ></div>
       </div>
     </>
   );
