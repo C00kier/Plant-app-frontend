@@ -134,6 +134,7 @@
     width: 30px;
     height: auto;
     padding: 2em;
+    cursor: pointer;
   }
   
   .navbar-dropdown-container {
@@ -197,6 +198,7 @@
 
   .my-account-icon {
     width: 20%;
+    cursor: pointer;
   }
 
   .my-account-icon img {
