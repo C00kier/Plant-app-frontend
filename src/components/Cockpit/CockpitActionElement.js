@@ -90,6 +90,8 @@ export default function CockpitActionElement(props) {
         setCurrentAction(actionMenuDescriptions.REPOTTING);
     }
 
+    console.log(userPlant.alias);
+
     return (
         <>
             <div className="grid-action-container-element">
@@ -100,7 +102,7 @@ export default function CockpitActionElement(props) {
                         userPlant={userPlant}/>
                 }
                 <img className="cockpit-userplant-image" src={backgroundImage} alt="plant" />
-                <span className="cockpit-userplant-alias">{userPlant.alias}</span>
+                <span className="cockpit-userplant-alias">{(userPlant.alias === null || userPlant.alias === "") ? userPlant.plant.commonName : userPlant.alias}</span>
                 <div className="grid-action-icons-container">
                     {
                         plantCare.watering &&
