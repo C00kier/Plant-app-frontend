@@ -98,7 +98,7 @@ export default function AddPlant({
 
   return (
     <>
-      <div id="background-shade">
+      <div id="background-shade-container">
         {wasPlantAdded ? (
           <div id="add-plant-container">
             <div id="plant-added-image"></div>
@@ -108,6 +108,9 @@ export default function AddPlant({
           </div>
         ) : (
           <div id="add-plant-container">
+            <div id="close-button-container">
+              <div id="close-bttn" onClick={close}></div>
+            </div>
             <div id="add-plant-message-container">
               <span id="add-plant-message">Dodaj roślinę</span>
             </div>
@@ -122,7 +125,6 @@ export default function AddPlant({
                 </div>
               </div>
               <div id="add-plant-right">
-                <div id="restore-password-close-bttn" onClick={close}></div>
                 <div
                   id="last-water-container"
                   className="add-plant-input-container"
