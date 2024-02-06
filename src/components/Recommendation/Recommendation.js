@@ -105,7 +105,7 @@ export default function Recommendation({ token, userId, rooms }) {
                         </div>
                         <div id="plants-container">
                             {shouldDisplayRecommended ? recommendedPlants.map((plant, index) => <RecommendedPlant key={"recommendedPlant" + index} 
-                            plant={plant} quiz={userQuizAnswers} 
+                            plant={plant} quiz={userQuizAnswers} token={token}
                             open={open}></RecommendedPlant>) : <></>}
                         </div>
                     </div>

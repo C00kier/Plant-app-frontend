@@ -2,7 +2,8 @@ import "./RecommendedPlant.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function RecommendedPlant({ plant, quiz, open }) {
+export default function RecommendedPlant({ plant, quiz, open, token }) {
+  const [plantToShow, setPlantToShow] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState();
   const [sunIcon, setSunIcon] = useState();
   const [sizeIcon, setSizeIcon] = useState();
@@ -15,7 +16,40 @@ export default function RecommendedPlant({ plant, quiz, open }) {
   };
 
   useEffect(() => {
-    if (plant !== undefined) {
+    if (plantToShow === null) {
+      getPlantInfo();
+    }
+  }, []);
+
+  async function getPlantInfo() {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/plant/${plant.plantId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        console.error(
+          "Failed to fetch plant:",
+          response.status,
+          response.statusText
+        );
+        return;
+      }
+      const data = await response.json();
+      setPlantToShow(data);
+    } catch (error) {
+      console.error("Error fetching user plants:", error.message);
+    }
+  }
+
+  useEffect(() => {
+    if (plant !== undefined && plantToShow !== null) {
       try {
         setBackgroundImage(
           require("../../../assets/plants/" +
@@ -26,16 +60,18 @@ export default function RecommendedPlant({ plant, quiz, open }) {
         setBackgroundImage(require("../../../assets/common/blank.png"));
       }
       setSunIcon(
-        require("../../../assets/recommendation/sun-icon-" + quiz.sun + ".png")
+        require("../../../assets/recommendation/sun-icon-" +
+          plantToShow.sun +
+          ".png")
       );
       setSizeIcon(
         require("../../../assets/recommendation/size-icon-" +
-          quiz["mature_size"] +
+          plantToShow.matureSize +
           ".png")
       );
       setDifficultyIcon(
         require("../../../assets/recommendation/difficulty-icon-" +
-          quiz["care_difficulty"] +
+          plantToShow.careDifficulty +
           ".png")
       );
     }
@@ -73,14 +109,14 @@ export default function RecommendedPlant({ plant, quiz, open }) {
         ></div>
         <div
           className={
-            quiz["air_purifying"]
+            plantToShow && plantToShow.airPurifying
               ? "icon-container-recommended checkmark-icon"
               : "icon-container-recommended cross-icon"
           }
         ></div>
         <div
           className={
-            quiz["air_purifying"]
+            plantToShow && plantToShow.toxicity
               ? "icon-container-recommended checkmark-icon"
               : "icon-container-recommended cross-icon"
           }

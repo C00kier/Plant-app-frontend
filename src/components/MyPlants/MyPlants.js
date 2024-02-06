@@ -22,7 +22,6 @@ export default function MyPlants({
 
   useEffect(() => {
     getUserPlants();
-    console.log(userPlants)
   }, []);
 
   function onSearch(e) {
