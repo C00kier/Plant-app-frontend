@@ -5,11 +5,14 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { CookiesProvider, useCookies } from "react-cookie";
 
 import "./App.css";
+
+//assets
+import userIconImage from "./assets/user/user-circle.256x256.png";
 
 //constants
 import PAGES from "./constants/pages";
@@ -43,12 +46,50 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 //context export
 export const cookiesContext = React.createContext();
 export const functionalityElementContext = React.createContext();
+export const profileImageContext = React.createContext();
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
+  const [profileImage, setProfileImage] = useState(null);
   const [functionalityElement, setFunctionalityElement] = useState(
     COMPONENT_STATE.COCKPIT
   );
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+  useEffect(() => {
+    loadProfileImage();
+  }, [setProfileImage, cookies])
+
+  const loadProfileImage = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/image/${cookies.userId}`);
+      if (response.ok) {
+        const imageBlob = await response.blob();
+        if (imageBlob.size > 0) {
+          const imageUrl = URL.createObjectURL(imageBlob);
+          setProfileImage(imageUrl);
+          return;
+        }
+        await loadGoogleImage();
+      }
+    } catch (error) {
+      console.error("Failed to load profile image", error);
+    }
+  }
+
+  const loadGoogleImage = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/user/google-image/${cookies.userId}`);
+      if (response.ok) {
+        const data = await response.json();
+        data.url !== null ? setProfileImage(data.url) : setProfileImage(userIconImage);
+      } else if (response.status === 404) {
+        setProfileImage(userIconImage);
+      }
+    } catch (error) {
+      console.error("Failed to load google profile image", error);
+    }
+  };
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -110,7 +151,9 @@ function App() {
       <CookiesProvider>
         <cookiesContext.Provider value={cookies}>
           <functionalityElementContext.Provider value={{ functionalityElement, setFunctionalityElement }}>
-            <RouterProvider router={router} />
+            <profileImageContext.Provider value={{ profileImage, setProfileImage }}>
+              <RouterProvider router={router} />
+            </profileImageContext.Provider>
           </functionalityElementContext.Provider>
         </cookiesContext.Provider>
       </CookiesProvider>

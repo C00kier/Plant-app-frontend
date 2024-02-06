@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
 import PAGES from "../../constants/pages.js";
 import userIconImage from "../../../src/assets/user/user-circle.256x256.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import eyeShow from "../../assets/RegisterPage/eyeShow.png";
 import eyeHide from "../../assets/RegisterPage/eyeHide.png";
+import { profileImageContext } from "../../App.js";
 
 export default function Settings({
   setFunctionalityElement,
@@ -15,7 +16,6 @@ export default function Settings({
   removeCookie,
   setCookie,
 }) {
-  const [photoUrl, setPhotoUrl] = useState(null);
   const [nickName, setNickName] = useState(null);
   const [email, setEmail] = useState(null);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -27,12 +27,14 @@ export default function Settings({
   const [updated, setUpdated] = useState("");
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const { profileImage, setProfileImage } = useContext(profileImageContext);
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/user`, {
+        const response = await fetch(`${BASE_URL}/user`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -96,7 +98,7 @@ export default function Settings({
     let requestData = updateSwitch(toUpdate);
 
     try {
-      const response = await fetch("http://localhost:8080/user/update", {
+      const response = await fetch(`${BASE_URL}/user/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -119,7 +121,7 @@ export default function Settings({
 
   async function confirmDelete() {
     try {
-      const response = await fetch("http://localhost:8080/user/delete", {
+      const response = await fetch(`${BASE_URL}/user/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -137,6 +139,28 @@ export default function Settings({
     }
 
     setShowDeletePopup(false);
+  }
+
+  async function updateProfileImageEvent() {
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("userId", userId);
+
+    try {
+      const response = await fetch(`${BASE_URL}/image`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        setProfileImage(URL.createObjectURL(selectedFile));
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   }
 
   function cancelDelete() {
@@ -161,11 +185,6 @@ export default function Settings({
           oldPassword: oldPassword,
           newPassword: newPassword,
         };
-      case "photo":
-        return {
-          userId: userId,
-          newPhotoUrl: photoUrl,
-        };
     }
   }
   return (
@@ -179,21 +198,31 @@ export default function Settings({
           <p>{userInfo && userInfo.email}</p>
           <img
             src={
-              userInfo && userInfo.photoUrl ? userInfo.photoUrl : userIconImage
+              profileImage ? profileImage : (userInfo && userInfo.photoUrl ? userInfo.photoUrl : userIconImage)
             }
             alt=""
           />
         </div>
 
         <p className="change-text">Zmień zdjęcie profilowe</p>
-        <label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="file-input"
-          />
-        </label>
+        <div id="settings-change-image-div" className="flex-column">
+          <label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="file-input"
+            />
+          </label>
+          <p id="image-change-description">Rozmiar zdjecia nie może być większy niż 1MB</p>
+          {
+            selectedFile !== null
+            &&
+            <div className="confirm-button" onClick={() => updateProfileImageEvent()}>
+              <span>Zatwierdź</span>
+            </div>
+          }
+        </div>
         <p className="change-text">Zmień pseudonim</p>
         <input
           className="change-input-nickname"

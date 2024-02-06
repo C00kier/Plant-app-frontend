@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext} from 'react';
 import "./Navbar.css";
 import PAGES from '../../constants/pages';
 import logo from '../../../src/assets/logo/sprout_logo.png'
@@ -11,18 +11,21 @@ import COMPONENT_STATE from "../../constants/myAccountComponentStates.js";
 
 //contexts
 import { functionalityElementContext } from '../../App.js';
+import { profileImageContext } from '../../App.js';
 
 
 export default function Navbar(props) {
-    const { cookies, removeCookie } = props;
+    const { cookies, removeCookie} = props;
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [myAccountDropdownOpen, setMyAccountDropDownOpen] = useState(false);
     const navigate = useNavigate();
-    const {functionalityElement, setFunctionalityElement} = useContext(functionalityElementContext);
+    const { functionalityElement, setFunctionalityElement } = useContext(functionalityElementContext);
+    const {profileImage, setProfileImage} = useContext(profileImageContext);
 
     const handleSignOut = () => {
         removeCookie("token");
         removeCookie("userId");
+        setProfileImage(userIconImage);
         navigate(PAGES.HOME);
     }
 
@@ -48,7 +51,7 @@ export default function Navbar(props) {
 
     const userIcon = (
         <div className="user-icon" onClick={toggleDropdown}>
-            <img className="user-icon-image" src={userIconImage} alt="user-icon" />
+            <img className="user-icon-image" src={profileImage ? profileImage : userIconImage} alt="user-icon" />
             {dropdownOpen && (
                 <div className="navbar-dropdown-container">
                     <ul className="navbar-dropdown-links">
@@ -99,7 +102,7 @@ export default function Navbar(props) {
                 <>
                     {commonLinks}
                     <div className="user-icon" onClick={toggleDropdown}>
-                        <img className="user-icon-image" src={userIconImage} alt="user-icon" />
+                        <img className="user-icon-image" src={profileImage ? profileImage : userIconImage} alt="user-icon" />
                         {dropdownOpen && (
                             <div className="navbar-dropdown-container">
                                 <ul className="navbar-dropdown-links">

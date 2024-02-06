@@ -24,10 +24,12 @@
 }
 
 .user-info-container img {
-  width: 40%;
+  width: 7em;
+  aspect-ratio: 1;
   border-radius: 50%;
   margin-top: 0.5em;
   align-self: center;
+  border: 2px solid black;
 }
 
 .user-info-container span {
@@ -134,4 +136,13 @@
   height: 1.8em;
   top: 1em;
   right: 3em;
+}
+
+#settings-change-image-div{
+  gap: 1em;
+}
+
+#image-change-description{
+  align-self: flex-start;
+  font-size: 0.75em;
 }

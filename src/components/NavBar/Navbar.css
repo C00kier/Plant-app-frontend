@@ -48,9 +48,10 @@
 
 .user-icon-image {
   width: 50px;
-  height: auto;
+  aspect-ratio: 1;
   padding: 2em;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .navbar-dropdown-container {
@@ -129,12 +130,13 @@
   .navbar-links-container {
     display: none;
   }
-    
+
   .user-icon-image {
-    width: 30px;
-    height: auto;
+    width: 40px;
+    aspect-ratio: 1;
     padding: 2em;
     cursor: pointer;
+    border-radius: 50%;
   }
   
   .navbar-dropdown-container {
