@@ -10,9 +10,9 @@ export default function SearchPlantPage() {
     useState("none");
   const [amountToLoad, setAmountToLoad] = useState(12);
 
-  useEffect (() => {
+  useEffect(() => {
     search();
-  }, [])
+  }, []);
 
   async function filter(e) {
     let filterIndex = e.target.value;
@@ -118,7 +118,7 @@ export default function SearchPlantPage() {
   return (
     <>
       <div id="search-page">
-        <div id="search-section" className="flex-column-center-center" >
+        <div id="search-section" className="flex-column-center-center">
           <div id="search-bar-section" className="flex-column-center-center">
             <span id="search-communicate">Szukaj rośliny</span>
             <div id="upper-search-row" className="flex-row">
@@ -126,24 +126,47 @@ export default function SearchPlantPage() {
                 type="text"
                 id="search-bar"
                 onChange={(e) => setPlantName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    search();
+                  }
+                }}
               ></input>
             </div>
             <div id="bottom-search-row" className="flex-row">
               <div id="search-button" onClick={search}>
                 <span>Szukaj</span>
               </div>
-              <div id='settings-container'>
-                <select id='filter-select' onChange={filter}>
+              <div id="settings-container">
+                <select id="filter-select" onChange={filter}>
                   <option value="0">Filtruj..</option>
-                  <option value="1" className='filter-option'>Światłolubne</option>
-                  <option value="2" className='filter-option'>Częściowo nasłonecznione</option>
-                  <option value="3" className='filter-option'>Cieniolubne</option>
-                  <option value="4" className='filter-option'>Dla początkujących</option>
-                  <option value="5" className='filter-option'>Dla zaawansowanych</option>
-                  <option value="6" className='filter-option'>Dla expertów</option>
-                  <option value="7" className='filter-option'>Oczyszczające powietrze</option>
-                  <option value="8" className='filter-option'>Bezpieczne dla dzieci</option>
-                  <option value="9" className='filter-option'>Bezpieczne dla zwierząt</option>
+                  <option value="1" className="filter-option">
+                    Światłolubne
+                  </option>
+                  <option value="2" className="filter-option">
+                    Częściowo nasłonecznione
+                  </option>
+                  <option value="3" className="filter-option">
+                    Cieniolubne
+                  </option>
+                  <option value="4" className="filter-option">
+                    Dla początkujących
+                  </option>
+                  <option value="5" className="filter-option">
+                    Dla zaawansowanych
+                  </option>
+                  <option value="6" className="filter-option">
+                    Dla expertów
+                  </option>
+                  <option value="7" className="filter-option">
+                    Oczyszczające powietrze
+                  </option>
+                  <option value="8" className="filter-option">
+                    Bezpieczne dla dzieci
+                  </option>
+                  <option value="9" className="filter-option">
+                    Bezpieczne dla zwierząt
+                  </option>
                 </select>
               </div>
             </div>
