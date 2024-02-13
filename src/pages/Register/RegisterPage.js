@@ -126,6 +126,12 @@ export default function RegisterPage(props) {
     navigate(PAGES.TERMS);
   }
 
+  const handleEnterPress = async (e) => {
+    if(e.key === 'Enter'){
+      handleRegisterClick();
+    }
+  }
+
   return (
     <>
       <div id="register-page">
@@ -140,6 +146,7 @@ export default function RegisterPage(props) {
             id="email-input"
             className="form-input"
             onChange={emailInputChangeEvent}
+            onKeyDown={handleRegisterClick}
           ></input>
           <p
             className={
@@ -160,6 +167,7 @@ export default function RegisterPage(props) {
               id="password-input"
               className="form-input"
               onChange={passwordInputChangeEvent}
+              onKeyDown={handleRegisterClick}
             ></input>
             <img
               className={isPasswordShown ? "eye-icon2" : "eye-icon1"}

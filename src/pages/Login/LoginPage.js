@@ -82,6 +82,12 @@ export default function LoginPage(props) {
       });
   };
 
+  const handleEnterPress = async (e) => {
+    if(e.key === 'Enter'){
+      await login();
+    }
+  }
+
   return (
     <>
       {displayRestorePassword ? (
@@ -103,6 +109,7 @@ export default function LoginPage(props) {
             id="email-input"
             className="login-input"
             onChange={(e) => setLoginCredential(e.target.value)}
+            onKeyDown={handleEnterPress}
           ></input>
 
           <p id="password-communicate">
@@ -114,6 +121,7 @@ export default function LoginPage(props) {
             id="password-input"
             className="login-input"
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleEnterPress}
           ></input>
           <p
             id="password-incorrent-communicate"
