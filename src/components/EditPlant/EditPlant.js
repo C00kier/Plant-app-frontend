@@ -105,6 +105,11 @@ export default function EditPlant({
                   placeholder={plant.alias}
                   onChange={(e) => setAlias(e.target.value)}
                   id="alias-input"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      submit();
+                    }
+                  }}
                 ></input>
               </div>
             </div>
