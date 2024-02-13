@@ -2,9 +2,10 @@
 
 .cockpit-text {
   gap: calc(1vh + 1vw);
-  align-self: flex-start;
+  align-items: flex-start;
   font-size: calc(0.9vh + 0.9vw);
   font-weight: 600;
+  text-align: start;
 }
 
 .start-quiz-button {
@@ -30,6 +31,7 @@
 
 .cockpit-no-plants-container {
   gap: calc(2.5vh + 2vw);
+  align-items: flex-start;
 }
 
 /*Cockpit with plants*/

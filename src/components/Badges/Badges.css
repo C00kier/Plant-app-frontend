@@ -1,16 +1,17 @@
 .user-game-progress-div {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 5vh;
+    margin-left: 2vw;
   }
 
   .score-div {
-    width: 100%;
     flex-direction: column;
     font-size: small;
   }
 
-  .growing-plant-div {
+  .growing-plant-div{
     height: 70%; 
   }
 
